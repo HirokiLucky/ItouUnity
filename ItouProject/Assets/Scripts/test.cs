@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows.Speech;
@@ -12,6 +13,9 @@ public class test : MonoBehaviour
     private Button m_speechToTextButton = default;
 
     private DictationRecognizer m_DictationRecognizer;
+
+    [SerializeField] private TextMeshProUGUI ReturnText;
+    
 
     void InitDictationRecognizer()
     {
@@ -40,6 +44,7 @@ public class test : MonoBehaviour
     void OnFinishSpeechToTextButton(string text, ConfidenceLevel confidence)
     {
         Debug.LogFormat("Dictation result: {0}", text);
+        ReturnText.text = text;
         m_DictationRecognizer.Stop();
         m_DictationRecognizer.Dispose();
         m_speechToTextButton.interactable = true;

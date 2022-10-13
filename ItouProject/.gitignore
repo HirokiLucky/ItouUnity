@@ -58,3 +58,10 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Custom
+/Assets/Font/Kokoro.otf
+/Assets/Font/Kokoro.otf.meta
+/Assets/Font/SourceHanSansJP-Regular SDF.asset
+/Assets/Font/SourceHanSansJP-Regular SDF.asset.meta
+/Assets/Font/SourceHanSansJP-Regular.otf
+/Assets/Font/SourceHanSansJP-Regular.otf.meta
