@@ -7,15 +7,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows.Speech;
 
-public class test : MonoBehaviour
+public class Listenner : MonoBehaviour
 {
     [SerializeField]
     private Button m_speechToTextButton = default;
 
     private DictationRecognizer m_DictationRecognizer;
 
-    [SerializeField] private TextMeshProUGUI ReturnText;
-    
+    public TextMeshProUGUI ReturnText;
+
+    [SerializeField] ScrollViews _scrollViews;
+    [SerializeField] private GameSystem _gameSystem;
 
     void InitDictationRecognizer()
     {
@@ -36,7 +38,7 @@ public class test : MonoBehaviour
     }
     public void OnClickSpeechToTextButton()
     {
-        Debug.Log("a");
+        Debug.Log("認識開始");
         InitDictationRecognizer();
         m_DictationRecognizer.Start();
         m_speechToTextButton.interactable = false;
@@ -44,6 +46,8 @@ public class test : MonoBehaviour
     void OnFinishSpeechToTextButton(string text, ConfidenceLevel confidence)
     {
         Debug.LogFormat("Dictation result: {0}", text);
+        _scrollViews.AddText(text);
+        _gameSystem.AddWordList(text);
         ReturnText.text = text;
         m_DictationRecognizer.Stop();
         m_DictationRecognizer.Dispose();
