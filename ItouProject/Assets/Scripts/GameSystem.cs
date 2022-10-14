@@ -10,6 +10,8 @@ public class GameSystem : MonoBehaviour
     private char lastWord = 'り';
     [SerializeField] private TextMeshProUGUI lastWordUI;
 
+    [SerializeField] private ScrollViews _scrollViews;
+
     public void AddWordList(string addWord)
     {
         if (wordList.Contains(addWord))
@@ -17,8 +19,8 @@ public class GameSystem : MonoBehaviour
             Debug.Log("既に言われた言葉です");
         }else if (lastWord != addWord.FirstOrDefault()) {
             Debug.Log("「"+ lastWord + "」から始まっていません");
-        }else
-        {
+        }else {
+            _scrollViews.AddText(addWord);
             wordList.Add(addWord);
             Debug.Log(wordList.Count);
 

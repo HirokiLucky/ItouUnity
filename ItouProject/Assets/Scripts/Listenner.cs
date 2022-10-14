@@ -16,7 +16,7 @@ public class Listenner : MonoBehaviour
 
     public TextMeshProUGUI ReturnText;
 
-    [SerializeField] ScrollViews _scrollViews;
+    // [SerializeField] ScrollViews _scrollViews;
     [SerializeField] private GameSystem _gameSystem;
 
     void InitDictationRecognizer()
@@ -46,7 +46,7 @@ public class Listenner : MonoBehaviour
     void OnFinishSpeechToTextButton(string text, ConfidenceLevel confidence)
     {
         Debug.LogFormat("Dictation result: {0}", text);
-        _scrollViews.AddText(text);
+        // _scrollViews.AddText(text);
         _gameSystem.AddWordList(text);
         ReturnText.text = text;
         m_DictationRecognizer.Stop();
