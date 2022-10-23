@@ -7,10 +7,11 @@ using UnityEngine;
 public class GameSystem : MonoBehaviour
 {
     private List<string> wordList = new List<string>();
-    private char lastWord = 'り';
+    public char lastWord = 'り';
     [SerializeField] private TextMeshProUGUI lastWordUI;
 
     [SerializeField] private ScrollViews _scrollViews;
+    [SerializeField] private Enemy _enemy;
 
     public void AddWordList(string addWord)
     {
@@ -25,7 +26,12 @@ public class GameSystem : MonoBehaviour
             Debug.Log(wordList.Count);
 
             lastWord = addWord.LastOrDefault();
+            if (lastWord == 'ん')
+            {
+                Debug.Log("game over");
+            }
             lastWordUI.text = "「" + lastWord + "」から始まる";
+            _enemy.Response(lastWord);
         }
     }
 }
