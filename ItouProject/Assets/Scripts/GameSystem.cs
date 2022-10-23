@@ -34,4 +34,17 @@ public class GameSystem : MonoBehaviour
             _enemy.Response(lastWord);
         }
     }
+    
+    public void AddWordListEnemy(string addWord)
+    {
+        lastWord = addWord.LastOrDefault();
+        if (wordList.Contains(addWord)) Debug.Log("既に言われた言葉でした");
+        else if (lastWord == 'ん') Debug.Log("game over　Enemy");
+        
+        _scrollViews.AddText(addWord);
+        wordList.Add(addWord);
+        Debug.Log(wordList.Count);
+        
+        lastWordUI.text = "「" + lastWord + "」から始まる";
+    }
 }

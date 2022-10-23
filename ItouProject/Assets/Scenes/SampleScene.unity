@@ -458,6 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 844067721}
+  _gameSystem: {fileID: 1242238997}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2107,6 +2108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b5a6969a0f73545a714cb02b8dfe19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastWord: 12426
   lastWordUI: {fileID: 134557898}
   _scrollViews: {fileID: 1591701925}
   _enemy: {fileID: 384138343}
@@ -2361,8 +2363,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speechToTextButton: {fileID: 1986330068}
+  m_Keywords: []
   ReturnText: {fileID: 1815332300}
   _gameSystem: {fileID: 1242238997}
+  _data: {fileID: 844067721}
 --- !u!212 &1715277208
 SpriteRenderer:
   m_ObjectHideFlags: 0
