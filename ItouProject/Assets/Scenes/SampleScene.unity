@@ -2179,6 +2179,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114699901572180746, guid: 4ca1679f59738414ba176b2992042c80, type: 3}
+      propertyPath: decayDamp
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114699901572180746, guid: 4ca1679f59738414ba176b2992042c80, type: 3}
+      propertyPath: attackDamp
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114699901572180746, guid: 4ca1679f59738414ba176b2992042c80, type: 3}
+      propertyPath: colorMax.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114699901572180746, guid: 4ca1679f59738414ba176b2992042c80, type: 3}
+      propertyPath: colorMax.g
+      value: 0.2391181
+      objectReference: {fileID: 0}
+    - target: {fileID: 114699901572180746, guid: 4ca1679f59738414ba176b2992042c80, type: 3}
+      propertyPath: colorMax.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114699901572180746, guid: 4ca1679f59738414ba176b2992042c80, type: 3}
+      propertyPath: colorMin.b
+      value: 0.9702923
+      objectReference: {fileID: 0}
+    - target: {fileID: 114699901572180746, guid: 4ca1679f59738414ba176b2992042c80, type: 3}
+      propertyPath: colorMin.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114699901572180746, guid: 4ca1679f59738414ba176b2992042c80, type: 3}
+      propertyPath: colorMin.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ca1679f59738414ba176b2992042c80, type: 3}
 --- !u!1 &1591701923
