@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class JackO : MonoBehaviour
 {
-    [SerializeField] private GameObject jackO;
     private Animator _animator;
+    
+    [SerializeField] private GameObject magicAura;
+    private ParticleSystem magicAuraParticle;
     
     private static readonly int Dead = Animator.StringToHash("Dead");
     private static readonly int Hurt = Animator.StringToHash("Hurt");
@@ -14,7 +16,8 @@ public class JackO : MonoBehaviour
 
     void Start()
     {
-        _animator = jackO.GetComponent<Animator>();
+        _animator = gameObject.GetComponent<Animator>();
+        magicAuraParticle = magicAura.GetComponent<ParticleSystem>();
     }
     
 
@@ -25,11 +28,18 @@ public class JackO : MonoBehaviour
     
     public void HurtJackO()
     {
-        _animator.SetTrigger(Hurt);
+        
     }
     
     public void AttackJackO()
     {
-        _animator.SetTrigger(Attack);
+        magicAura.SetActive(true);
+        magicAuraParticle.Play();
+        Invoke("StopParticle",3);
+    }
+
+    void StopParticle()
+    {
+        magicAuraParticle.Stop();
     }
 }
