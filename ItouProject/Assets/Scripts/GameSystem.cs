@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,16 @@ public class GameSystem : MonoBehaviour
 
     [SerializeField] private ScrollViews _scrollViews;
     [SerializeField] private Enemy _enemy;
+    [SerializeField] private Wizard _wizard;
+    [SerializeField] private JackO _jackO;
+
+    enum Turn
+    {
+        WizardTurn,
+        JackOTurn
+    }
+
+    private Turn turn;
 
     public void AddWordList(string addWord)
     {
@@ -46,5 +57,40 @@ public class GameSystem : MonoBehaviour
         Debug.Log(wordList.Count);
         
         lastWordUI.text = "「" + lastWord + "」から始まる";
+    }
+
+    private void Start()
+    {
+        turn = Turn.WizardTurn;
+        StartCoroutine("WaitSeconds");
+    }
+
+    private void Update()
+    {
+        if (turn == Turn.WizardTurn)
+        {
+            StartCoroutine("WaitSecondsWizard");
+        }
+        else
+        {
+            StartCoroutine("WaitSecondsJackO");
+        }
+    }
+
+    IEnumerator WaitSeconds()
+    {
+        yield return new WaitForSeconds(3);
+    }
+    
+    IEnumerator WaitSecondsWizard()
+    {
+        yield return new WaitForSeconds(3);
+        _jackO.HurtJackO(2);
+    }
+    
+    IEnumerator WaitSecondsJackO()
+    {
+        yield return new WaitForSeconds(3);
+        _wizard.HurtWizard(2);
     }
 }

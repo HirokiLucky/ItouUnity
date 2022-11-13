@@ -6,6 +6,8 @@ public class Wizard : MonoBehaviour
 {
     private Animator _animator;
 
+    public int hpWizard = 10;
+
     [SerializeField] private GameObject magicAura;
     private ParticleSystem magicAuraParticle;
     
@@ -26,9 +28,15 @@ public class Wizard : MonoBehaviour
         _animator.SetTrigger(Dead);
     }
 
-    public void HurtWizard()
+    public void HurtWizard(int damage)
     {
         _animator.SetTrigger(Hurt);
+        hpWizard -= damage;
+        Debug.Log(damage + "ダメージ魔法使いは受けた。HP：" + hpWizard);
+        if (hpWizard <= 0)
+        {
+            Debug.Log("魔法使いダウン");
+        }
     }
     
     public void AttackWizard()

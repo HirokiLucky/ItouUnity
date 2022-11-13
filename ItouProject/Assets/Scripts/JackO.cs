@@ -6,6 +6,8 @@ public class JackO : MonoBehaviour
 {
     private Animator _animator;
     
+    public int hpJackO = 10;
+    
     [SerializeField] private GameObject magicAura;
     private ParticleSystem magicAuraParticle;
     
@@ -26,9 +28,14 @@ public class JackO : MonoBehaviour
         _animator.SetTrigger(Dead);
     }
     
-    public void HurtJackO()
+    public void HurtJackO(int damage)
     {
-        
+        hpJackO -= damage;
+        Debug.Log(damage + "ダメージジャックは受けた。HP：" + hpJackO);
+        if (hpJackO <= 0)
+        {
+            Debug.Log("ジャックダウン");
+        }
     }
     
     public void AttackJackO()
