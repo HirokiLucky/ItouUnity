@@ -24,8 +24,12 @@ public class Listenner : MonoBehaviour
     [SerializeField] private GameSystem _gameSystem;
 
     [SerializeField] private Data _data;
+    [SerializeField] private AttackEffects _attackEffects;
 
     private char lastWordSave = 'り';
+
+    [SerializeField] private GameObject magicButton;
+    [SerializeField] private GameObject stopButton;
 
     private void Start()
     {
@@ -60,7 +64,10 @@ public class Listenner : MonoBehaviour
         ReturnText.text = args.text;
         m_Recognizer.Stop();
         m_Recognizer.Dispose();
-        m_speechToTextButton.interactable = true;
+        magicButton.SetActive(false);
+        stopButton.SetActive(false);
+        _attackEffects.Attack(_gameSystem.lastWord);
+        
     }
 
     public void OnClickStop()

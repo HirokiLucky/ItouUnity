@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2933236076794973621}
   - component: {fileID: 5339242810834605612}
   - component: {fileID: 5365007091089255768}
+  - component: {fileID: 4867177016098451669}
   m_Layer: 0
   m_Name: Tarot4
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,3 +98,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876a0be33c600e34aa2707b1871c570c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &4867177016098451669
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2489061009955794860}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.12403083, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.24, y: 6.25}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.0151725, y: 5.0773354}
+  m_EdgeRadius: 0
