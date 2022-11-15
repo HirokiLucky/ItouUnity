@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -15,14 +16,11 @@ public class GameSystem : MonoBehaviour
     [SerializeField] private Enemy _enemy;
     [SerializeField] private Wizard _wizard;
     [SerializeField] private JackO _jackO;
-
-    enum Turn
-    {
-        WizardTurn,
-        JackOTurn
-    }
-
-    private Turn turn;
+    [SerializeField] private Listenner _listenner;
+    
+    GameObject clickedGameObject;
+    [SerializeField] private GameObject magicButton;
+    [SerializeField] private GameObject stopButton;
 
     public void AddWordList(string addWord)
     {
@@ -59,38 +57,34 @@ public class GameSystem : MonoBehaviour
         lastWordUI.text = "「" + lastWord + "」から始まる";
     }
 
-    private void Start()
-    {
-        turn = Turn.WizardTurn;
-        StartCoroutine("WaitSeconds");
-    }
-
     private void Update()
     {
-        if (turn == Turn.WizardTurn)
-        {
-            StartCoroutine("WaitSecondsWizard");
-        }
-        else
-        {
-            StartCoroutine("WaitSecondsJackO");
-        }
+        ClickCard();
     }
 
-    IEnumerator WaitSeconds()
+    void ClickCard()
     {
-        yield return new WaitForSeconds(3);
-    }
-    
-    IEnumerator WaitSecondsWizard()
-    {
-        yield return new WaitForSeconds(3);
-        _jackO.HurtJackO(2);
-    }
-    
-    IEnumerator WaitSecondsJackO()
-    {
-        yield return new WaitForSeconds(3);
-        _wizard.HurtWizard(2);
+        if (Input.GetMouseButtonDown(0)){
+ 
+            clickedGameObject = null;
+ 
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit2d = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
+ 
+            if (hit2d) {
+                clickedGameObject = hit2d.transform.gameObject;
+            }
+
+            if (clickedGameObject != null)
+            {
+                if(clickedGameObject.CompareTag("Card"))
+                {
+                    Debug.Log(clickedGameObject);
+                    magicButton.SetActive(true);
+                    stopButton.SetActive(true);
+                    _listenner.OnClickSpeechToTextButton();
+                }
+            }
+        }
     }
 }
