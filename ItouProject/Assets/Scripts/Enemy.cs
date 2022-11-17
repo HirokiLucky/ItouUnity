@@ -9,11 +9,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameSystem _gameSystem;
     [SerializeField] private AttackEffects _attackEffects;
     
+    // 6番目
     public void Response(char lastword)
     {
         StartCoroutine("ThinkingTime", lastword);
     }
 
+    // 7番目
     IEnumerator ThinkingTime(char lastword)
     {
         int rest = Random.Range(7, 10);

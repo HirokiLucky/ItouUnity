@@ -62,6 +62,8 @@ public class GameSystem : MonoBehaviour
         ClickCard();
     }
 
+    
+    // 2番目
     void ClickCard()
     {
         if (Input.GetMouseButtonDown(0)){

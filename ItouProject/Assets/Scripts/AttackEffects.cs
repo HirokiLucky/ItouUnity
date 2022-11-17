@@ -9,17 +9,17 @@ public class AttackEffects : MonoBehaviour
     [SerializeField] private Enemy _enemy;
     [SerializeField] private Wizard _wizard;
 
+    
+    // 5番目
     public void Attack(char lastword)
     {
         bomb.SetActive(true);
-        
-        
-        
+
         // シーケンス終了OnCompleteで
         _enemy.Response(lastword);
     }
     
-    
+    // 8番目 => 1番目
     public void Attack()
     {
         bomb.SetActive(true);

@@ -52,6 +52,7 @@ public class Wizard : MonoBehaviour
         magicAuraParticle.Play();
     }
     
+    // 1番目
     public void WizardTurn()
     {
         Sequence sequence = DOTween.Sequence();
@@ -59,6 +60,5 @@ public class Wizard : MonoBehaviour
             .Append(card1.transform.DOMoveX(-14f, 1)).SetRelative(true)
             .Join(card2.transform.DOMoveX(-9f, 1).SetRelative(true))
             .Join(card3.transform.DOMoveX(-4f, 1)).SetRelative(true);
-        
     }
 }
