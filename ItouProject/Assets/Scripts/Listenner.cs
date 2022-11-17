@@ -69,8 +69,9 @@ public class Listenner : MonoBehaviour
         m_Recognizer.Dispose();
         magicButton.SetActive(false);
         stopButton.SetActive(false);
+        m_speechToTextButton.interactable = true;
+        Destroy(_gameSystem.clickedGameObject_save);
         _attackEffects.Attack(_gameSystem.lastWord);
-        
     }
 
     public void OnClickStop()
