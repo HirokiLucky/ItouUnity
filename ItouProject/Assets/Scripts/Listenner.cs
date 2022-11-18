@@ -39,6 +39,7 @@ public class Listenner : MonoBehaviour
     }
 
 
+    // 3番目
     public void OnClickSpeechToTextButton()
     {
         Debug.Log("認識開始");
@@ -52,6 +53,8 @@ public class Listenner : MonoBehaviour
         m_Recognizer.Start();
         m_speechToTextButton.interactable = false;
     }
+    
+    // 4番目
     private void OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         StringBuilder builder = new StringBuilder();
@@ -66,8 +69,9 @@ public class Listenner : MonoBehaviour
         m_Recognizer.Dispose();
         magicButton.SetActive(false);
         stopButton.SetActive(false);
+        m_speechToTextButton.interactable = true;
+        Destroy(_gameSystem.clickedGameObject_save);
         _attackEffects.Attack(_gameSystem.lastWord);
-        
     }
 
     public void OnClickStop()
