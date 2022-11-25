@@ -7,6 +7,8 @@ public class Wizard : MonoBehaviour
 {
     private Animator _animator;
 
+    [SerializeField] private GameSystem _gameSystem;
+
     public int hpWizard = 10;
 
     [SerializeField] private GameObject magicAura;
@@ -39,6 +41,8 @@ public class Wizard : MonoBehaviour
         if (hpWizard <= 0)
         {
             Debug.Log("魔法使いダウン");
+            DeadWizard();
+            _gameSystem.GameOver();
         }
     }
     

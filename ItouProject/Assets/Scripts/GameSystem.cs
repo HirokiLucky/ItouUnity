@@ -25,6 +25,7 @@ public class GameSystem : MonoBehaviour
     [NonSerialized]public GameObject clickedGameObject_save;
     [SerializeField] private GameObject magicButton;
     [SerializeField] private GameObject stopButton;
+    [SerializeField] private GameObject magicBook;
     
     [SerializeField] private GameObject card1;
     [SerializeField] private GameObject card2;
@@ -184,5 +185,15 @@ public class GameSystem : MonoBehaviour
             .Append(enemyTurn.DOAnchorPosX(-100, 2))
             .Append(enemyTurn.DOAnchorPosX(-550, 0.5f))
             .Append(enemyTurn.DOAnchorPosX(550, 0));
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("You Lose ...");
+    }
+
+    public void GameClear()
+    {
+        magicBook.SetActive(true);
     }
 }
