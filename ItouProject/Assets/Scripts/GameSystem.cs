@@ -170,8 +170,8 @@ public class GameSystem : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(yourTurn.DOAnchorPosX(100, 0.5f))
-            .Append(yourTurn.DOAnchorPosX(-100, 2))
+            .Append(yourTurn.DOAnchorPosX(200, 0.5f))
+            .Append(yourTurn.DOAnchorPosX(0, 2))
             .Append(yourTurn.DOAnchorPosX(-550, 0.5f))
             .Append(yourTurn.DOAnchorPosX(550, 0))
             .OnComplete(() => Invoke("WizardTurn", 1f));
@@ -181,8 +181,8 @@ public class GameSystem : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(enemyTurn.DOAnchorPosX(100, 0.5f))
-            .Append(enemyTurn.DOAnchorPosX(-100, 2))
+            .Append(enemyTurn.DOAnchorPosX(200, 0.5f))
+            .Append(enemyTurn.DOAnchorPosX(0, 2))
             .Append(enemyTurn.DOAnchorPosX(-550, 0.5f))
             .Append(enemyTurn.DOAnchorPosX(550, 0));
     }
