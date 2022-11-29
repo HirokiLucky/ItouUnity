@@ -10,18 +10,18 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AttackEffects _attackEffects;
     
     // 6番目
-    public void Response(char lastword)
+    public void Response(char lastword, int wordCount)
     {
         StartCoroutine("ThinkingTime", lastword);
     }
 
     // 7番目
-    IEnumerator ThinkingTime(char lastword)
+    IEnumerator ThinkingTime(char lastword, int wordCount)
     {
         int rest = Random.Range(7, 10);
         yield return　new WaitForSeconds(rest);
         
-        string[] seachWord = data.sound50Index[lastword.ToString()];
+        string[] seachWord = data.sound50Index[lastword.ToString()][wordCount];
         int num = Random.Range(0, seachWord.Length - 1);
         string res = seachWord[num];
         Debug.Log(res);

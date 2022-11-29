@@ -27,13 +27,14 @@ public class Listenner : MonoBehaviour
     [SerializeField] private AttackEffects _attackEffects;
 
     private char lastWordSave = 'り';
+    private int wordCount = 3;
 
     [SerializeField] private GameObject magicButton;
     [SerializeField] private GameObject stopButton;
 
     private void Start()
     {
-        m_Keywords = _data.sound50Index[_gameSystem.lastWord.ToString()];
+        m_Keywords = _data.sound50Index[_gameSystem.lastWord.ToString()][wordCount];
         m_Recognizer = new KeywordRecognizer(m_Keywords);
         m_Recognizer.OnPhraseRecognized += OnPhraseRecognized;
     }
@@ -45,7 +46,7 @@ public class Listenner : MonoBehaviour
         Debug.Log("認識開始");
         if (lastWordSave != _gameSystem.lastWord)
         {
-            m_Keywords = _data.sound50Index[_gameSystem.lastWord.ToString()];
+            m_Keywords = _data.sound50Index[_gameSystem.lastWord.ToString()][wordCount];
             lastWordSave = _gameSystem.lastWord;
             m_Recognizer = new KeywordRecognizer(m_Keywords);
             m_Recognizer.OnPhraseRecognized += OnPhraseRecognized;
@@ -65,13 +66,14 @@ public class Listenner : MonoBehaviour
         
         _gameSystem.AddWordList(args.text);
         ReturnText.text = args.text;
+        wordCount = args.text.Length;
         m_Recognizer.Stop();
         m_Recognizer.Dispose();
         magicButton.SetActive(false);
         stopButton.SetActive(false);
         m_speechToTextButton.interactable = true;
         Destroy(_gameSystem.clickedGameObject_save);
-        _attackEffects.Attack(_gameSystem.lastWord);
+        _attackEffects.Attack(_gameSystem.lastWord, args.text.Length);
     }
 
     public void OnClickStop()

@@ -21,7 +21,7 @@ public class AttackEffects : MonoBehaviour
 
     // 5番目
     // プレイヤーのエフェクト
-    public void Attack(char lastword)
+    public void Attack(char lastword, int wordCount)
     {
         _wizard.AttackWizard();
         
@@ -32,7 +32,7 @@ public class AttackEffects : MonoBehaviour
         
         // シーケンス終了OnCompleteで
         _gameSystem.EnemyTurn();
-        _enemy.Response(lastword);
+        _enemy.Response(lastword, wordCount);
     }
     
     // 8番目 => 1番目
