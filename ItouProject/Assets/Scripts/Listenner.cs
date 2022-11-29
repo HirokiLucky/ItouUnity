@@ -34,6 +34,7 @@ public class Listenner : MonoBehaviour
 
     private void Start()
     {
+        // できた
         m_Keywords = _data.sound50Index[_gameSystem.lastWord.ToString()][wordCount];
         m_Recognizer = new KeywordRecognizer(m_Keywords);
         m_Recognizer.OnPhraseRecognized += OnPhraseRecognized;
