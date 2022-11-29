@@ -2375,6 +2375,7 @@ MonoBehaviour:
   - "\u308C"
   - "\u308D"
   - "\u308F"
+  textAsset: {fileID: 4900000, guid: ae22ced1f0bee3240929b668a56b90db, type: 3}
 --- !u!4 &844067722
 Transform:
   m_ObjectHideFlags: 0

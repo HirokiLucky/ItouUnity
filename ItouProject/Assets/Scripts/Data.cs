@@ -167,5 +167,14 @@ public class Data : MonoBehaviour
         {"や", ya}, {"ゆ", yu}, {"よ", yo},
         {"ら", ra}, {"り", ri}, {"る", ru}, {"れ", re}, {"ろ", ro},
         {"わ", wa}
-    }; 
+    };
+
+    [SerializeField] private TextAsset textAsset;
+    private string loadText;
+    
+    private void Start()
+    {
+        loadText = textAsset.text;
+        
+    }
 }
