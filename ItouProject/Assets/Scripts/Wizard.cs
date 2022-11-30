@@ -11,8 +11,7 @@ public class Wizard : MonoBehaviour
 
     public int hpWizard = 10;
 
-    [SerializeField] private GameObject magicAura;
-    private ParticleSystem magicAuraParticle;
+    
     
     private static readonly int Dead = Animator.StringToHash("Dead");
     private static readonly int Hurt = Animator.StringToHash("Hurt");
@@ -24,7 +23,7 @@ public class Wizard : MonoBehaviour
     void Start()
     {
         _animator = gameObject.GetComponent<Animator>();
-        magicAuraParticle = magicAura.GetComponent<ParticleSystem>();
+        
     }
     
 
@@ -49,8 +48,6 @@ public class Wizard : MonoBehaviour
     public void AttackWizard()
     {
         _animator.SetTrigger(Attack);
-        magicAura.SetActive(true);
-        magicAuraParticle.Play();
     }
     
     
