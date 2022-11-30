@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
         int rest = Random.Range(7, 10);
         yield return　new WaitForSeconds(rest);
         
-        string[] seachWord = data.sound50Index[lastword.ToString()][wordCount];
+        string[] seachWord = data.sound50Index[lastword.ToString()][wordCount - 2];
         int num = Random.Range(0, seachWord.Length - 1);
         string res = seachWord[num];
         Debug.Log(res);

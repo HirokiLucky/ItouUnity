@@ -27,7 +27,7 @@ public class GameSystem : MonoBehaviour
     [SerializeField] private GameObject stopButton;
     [SerializeField] private GameObject magicBook;
     
-    [SerializeField] private GameObject card1;
+    //[SerializeField] private GameObject card1;
     [SerializeField] private GameObject card2;
     [SerializeField] private GameObject card3;
     [SerializeField] private GameObject card4;
@@ -46,7 +46,7 @@ public class GameSystem : MonoBehaviour
 
     private void Start()
     {
-        cards = new[] { card1, card2, card3, card4, card5, card6, card7, card8};
+        cards = new[] { card2, card3, card4, card5, card6, card7, card8};
         Invoke("YourTurn", 1f);
     }
 
@@ -129,6 +129,8 @@ public class GameSystem : MonoBehaviour
             {
                 if(clickedGameObject.CompareTag("Card"))
                 {
+                    string talotNum = clickedGameObject.name;
+                    _listenner.wordCount = Convert.ToInt32(talotNum.Substring(5, 1));
                     Debug.Log(clickedGameObject);
                     magicButton.SetActive(true);
                     stopButton.SetActive(true);

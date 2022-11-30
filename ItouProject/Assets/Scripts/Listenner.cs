@@ -26,15 +26,15 @@ public class Listenner : MonoBehaviour
     [SerializeField] private Data _data;
     [SerializeField] private AttackEffects _attackEffects;
 
-    private char lastWordSave = 'り';
-    private int wordCount = 2;
+    private char lastWordSave = 'あ';
+    public int wordCount = 2;
 
     [SerializeField] private GameObject magicButton;
     [SerializeField] private GameObject stopButton;
 
     private void Start()
     {
-        m_Keywords = _data.sound50Index[_gameSystem.lastWord.ToString()][wordCount];
+        m_Keywords = _data.sound50Index[_gameSystem.lastWord.ToString()][wordCount - 2];
         m_Recognizer = new KeywordRecognizer(m_Keywords);
         m_Recognizer.OnPhraseRecognized += OnPhraseRecognized;
     }
@@ -46,7 +46,7 @@ public class Listenner : MonoBehaviour
         Debug.Log("認識開始");
         if (lastWordSave != _gameSystem.lastWord)
         {
-            m_Keywords = _data.sound50Index[_gameSystem.lastWord.ToString()][wordCount];
+            m_Keywords = _data.sound50Index[_gameSystem.lastWord.ToString()][wordCount - 2];
             lastWordSave = _gameSystem.lastWord;
             m_Recognizer = new KeywordRecognizer(m_Keywords);
             m_Recognizer.OnPhraseRecognized += OnPhraseRecognized;
