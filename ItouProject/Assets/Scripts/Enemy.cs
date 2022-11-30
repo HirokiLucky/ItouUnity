@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     // 6番目
     public void Response(char lastword, int wordCount)
     {
-        StartCoroutine("ThinkingTime", lastword);
+        StartCoroutine(ThinkingTime(lastword, wordCount));
     }
 
     // 7番目

@@ -5530,7 +5530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97fe8fb5bfda22f4ebb9acd5f99347a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
+  data: {fileID: 844067723}
   _gameSystem: {fileID: 1242238997}
   _attackEffects: {fileID: 2044789795}
 --- !u!1 &2010212695
