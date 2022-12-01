@@ -27,6 +27,11 @@ public class AttackEffects : MonoBehaviour
     [SerializeField] private GameObject ps4;
     private ParticleSystem ps3Particle;
     private ParticleSystem ps4Particle;
+    
+    [SerializeField] private GameObject ps5;
+    [SerializeField] private GameObject ps6;
+    private ParticleSystem ps5Particle;
+    private ParticleSystem ps6Particle;
 
     private Vector2 wizardPos = new Vector2(-6, -3.1f);
     private Vector2 JackOPos = new Vector2(6, -3.2f);
@@ -41,6 +46,8 @@ public class AttackEffects : MonoBehaviour
         ps2Particle = ps2.GetComponent<ParticleSystem>();
         ps3Particle = ps3.GetComponent<ParticleSystem>();
         ps4Particle = ps4.GetComponent<ParticleSystem>();
+        ps5Particle = ps5.GetComponent<ParticleSystem>();
+        ps6Particle = ps6.GetComponent<ParticleSystem>();
     }
 
 
@@ -146,20 +153,23 @@ public class AttackEffects : MonoBehaviour
     public void Level4()
     {
         WizardMagic();
-        ps3.transform.position = wizardPos + new Vector2(2, 1);
-        ps4.transform.position = JackOPos + new Vector2(0, 3);
-        ps3.SetActive(true);
-        ps4.SetActive(true);
-        ps3Particle.Play();
-        ps4Particle.Play();
+        ps5.transform.position = wizardPos + new Vector2(2, 2);
+        ps6.transform.position = JackOPos;
+        ps5.SetActive(true);
+        ps5Particle.Play();
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(ps3.transform.DOMoveX(10, 1).SetEase(Ease.OutFlash)).SetRelative(true);
+            .Append(ps5.transform.DOMove(JackOPos, 4))
+            .AppendCallback(() =>
+            {
+                ps6.SetActive(true);
+                ps6Particle.Play();
+            })
+            .OnComplete(() => ps5.SetActive(false));;
     }
     
     public void Level5()
     {
-        Debug.Log("aa");
         WizardMagic();
         ps1.transform.position = JackOPos;
         ps2.transform.position = JackOPos;
