@@ -18,12 +18,15 @@ public class AttackEffects : MonoBehaviour
     [SerializeField] private JackO _jackO;
     [SerializeField] private GameSystem _gameSystem;
 
-    [ContextMenuItem("level2", "Level2")] public string message = "この変数はLevel2()を呼ぶ";
-
     [SerializeField] private GameObject ps1;
     [SerializeField] private GameObject ps2;
     private ParticleSystem ps1Particle;
     private ParticleSystem ps2Particle;
+    
+    [SerializeField] private GameObject ps3;
+    [SerializeField] private GameObject ps4;
+    private ParticleSystem ps3Particle;
+    private ParticleSystem ps4Particle;
 
     private Vector2 wizardPos = new Vector2(-6, -3.1f);
     private Vector2 JackOPos = new Vector2(6, -3.2f);
@@ -36,6 +39,8 @@ public class AttackEffects : MonoBehaviour
         magicLightParticle = magicAura.GetComponent<ParticleSystem>();
         ps1Particle = ps1.GetComponent<ParticleSystem>();
         ps2Particle = ps2.GetComponent<ParticleSystem>();
+        ps3Particle = ps3.GetComponent<ParticleSystem>();
+        ps4Particle = ps4.GetComponent<ParticleSystem>();
     }
 
 
@@ -97,8 +102,107 @@ public class AttackEffects : MonoBehaviour
                 break;
         }
     }
+    void WizardMagic()
+    {
+        magicAura.SetActive(true);
+        magicLight.SetActive(true);
+        magicAuraParticle.Play();
+        magicLightParticle.Play();
+    }
 
     public void Level2()
+    {
+        WizardMagic();
+        ps1.transform.position = JackOPos;
+        ps2.transform.position = JackOPos;
+        ps1.SetActive(true);
+        ps2.SetActive(true);
+        ps1Particle.Play();
+        ps2Particle.Play();
+        Sequence sequence = DOTween.Sequence();
+        sequence
+            .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true);
+    }
+    
+    public void Level3()
+    {
+        WizardMagic();
+        ps3.transform.position = wizardPos + new Vector2(2, 1);
+        ps4.transform.position = JackOPos + new Vector2(0, 3);
+        ps3.SetActive(true);
+        ps3Particle.Play();
+        Sequence sequence = DOTween.Sequence();
+        sequence
+            .Append(ps3.transform.DOMove(JackOPos, 3).SetEase(Ease.InExpo))
+            .AppendCallback(() =>
+            {
+                ps4.SetActive(true);
+                ps4Particle.Play();
+            })
+            .Append(ps3.transform.DOMoveX(10, 1))
+            .OnComplete(() => ps3.SetActive(false));
+    }
+    
+    public void Level4()
+    {
+        WizardMagic();
+        ps3.transform.position = wizardPos + new Vector2(2, 1);
+        ps4.transform.position = JackOPos + new Vector2(0, 3);
+        ps3.SetActive(true);
+        ps4.SetActive(true);
+        ps3Particle.Play();
+        ps4Particle.Play();
+        Sequence sequence = DOTween.Sequence();
+        sequence
+            .Append(ps3.transform.DOMoveX(10, 1).SetEase(Ease.OutFlash)).SetRelative(true);
+    }
+    
+    public void Level5()
+    {
+        Debug.Log("aa");
+        WizardMagic();
+        ps1.transform.position = JackOPos;
+        ps2.transform.position = JackOPos;
+        ps1.SetActive(true);
+        ps2.SetActive(true);
+        ps1Particle.Play();
+        ps2Particle.Play();
+        Sequence sequence = DOTween.Sequence();
+        sequence
+            .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true);
+    }
+    
+    public void Level6()
+    {
+        Debug.Log("aa");
+        WizardMagic();
+        ps1.transform.position = JackOPos;
+        ps2.transform.position = JackOPos;
+        ps1.SetActive(true);
+        ps2.SetActive(true);
+        ps1Particle.Play();
+        ps2Particle.Play();
+        Sequence sequence = DOTween.Sequence();
+        sequence
+            .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true);
+    }
+    
+    public void Level7()
+    {
+        Debug.Log("aa");
+        WizardMagic();
+        ps1.transform.position = JackOPos;
+        ps2.transform.position = JackOPos;
+        ps1.SetActive(true);
+        ps2.SetActive(true);
+        ps1Particle.Play();
+        ps2Particle.Play();
+        Sequence sequence = DOTween.Sequence();
+        sequence
+            .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true);
+    }
+    
+    public void Level8()
     {
         Debug.Log("aa");
         WizardMagic();
@@ -113,11 +217,5 @@ public class AttackEffects : MonoBehaviour
             .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true);
     }
 
-    void WizardMagic()
-    {
-        magicAura.SetActive(true);
-        magicLight.SetActive(true);
-        magicAuraParticle.Play();
-        magicLightParticle.Play();
-    }
+    
 }

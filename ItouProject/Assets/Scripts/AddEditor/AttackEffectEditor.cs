@@ -16,5 +16,29 @@ public class AttackEffectEditor : Editor
         {
             attackEffects.Level2();   
         }
+        if (GUILayout.Button("Level3"))
+        {
+            attackEffects.Level3();   
+        }
+        if (GUILayout.Button("Level4"))
+        {
+            attackEffects.Level4();   
+        }
+        if (GUILayout.Button("Level5"))
+        {
+            attackEffects.Level5();   
+        }
+        if (GUILayout.Button("Level6"))
+        {
+            attackEffects.Level6();   
+        }
+        if (GUILayout.Button("Level7"))
+        {
+            attackEffects.Level7();   
+        }
+        if (GUILayout.Button("Level8"))
+        {
+            attackEffects.Level8();   
+        }
     }
 }
