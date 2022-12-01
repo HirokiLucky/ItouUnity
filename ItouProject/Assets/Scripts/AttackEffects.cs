@@ -55,6 +55,28 @@ public class AttackEffects : MonoBehaviour
     private ParticleSystem ps14Particle;
     private ParticleSystem ps15Particle;
     private ParticleSystem ps16Particle;
+    
+    [SerializeField] private GameObject ps17;
+    [SerializeField] private GameObject ps18;
+    [SerializeField] private GameObject ps19;
+    [SerializeField] private GameObject ps20;
+    [SerializeField] private GameObject ps21;
+    [SerializeField] private GameObject ps22;
+    [SerializeField] private GameObject ps23;
+    [SerializeField] private GameObject ps24;
+    [SerializeField] private GameObject ps25;
+    [SerializeField] private GameObject ps26;
+    private ParticleSystem ps17Particle;
+    private ParticleSystem ps18Particle;
+    private ParticleSystem ps19Particle;
+    private ParticleSystem ps20Particle;
+    private ParticleSystem ps21Particle;
+    private ParticleSystem ps22Particle;
+    private ParticleSystem ps23Particle;
+    private ParticleSystem ps24Particle;
+    private ParticleSystem ps25Particle;
+    private ParticleSystem ps26Particle;
+
 
     private Vector2 wizardPos = new Vector2(-6, -3.1f);
     private Vector2 JackOPos = new Vector2(6, -3.2f);
@@ -81,6 +103,16 @@ public class AttackEffects : MonoBehaviour
         ps14Particle = ps14.GetComponent<ParticleSystem>();
         ps15Particle = ps15.GetComponent<ParticleSystem>();
         ps16Particle = ps16.GetComponent<ParticleSystem>();
+        ps17Particle = ps17.GetComponent<ParticleSystem>();
+        ps18Particle = ps18.GetComponent<ParticleSystem>();
+        ps19Particle = ps19.GetComponent<ParticleSystem>();
+        ps20Particle = ps20.GetComponent<ParticleSystem>();
+        ps21Particle = ps21.GetComponent<ParticleSystem>();
+        ps22Particle = ps22.GetComponent<ParticleSystem>();
+        ps23Particle = ps23.GetComponent<ParticleSystem>();
+        ps24Particle = ps24.GetComponent<ParticleSystem>();
+        ps25Particle = ps25.GetComponent<ParticleSystem>();
+        ps26Particle = ps26.GetComponent<ParticleSystem>();
 
     }
 
@@ -289,18 +321,72 @@ public class AttackEffects : MonoBehaviour
     
     public void Level8()
     {
-        Debug.Log("aa");
         WizardMagic();
-        ps1.transform.position = JackOPos;
-        ps2.transform.position = JackOPos;
-        ps1.SetActive(true);
-        ps2.SetActive(true);
-        ps1Particle.Play();
-        ps2Particle.Play();
+        Vector2 grond = new Vector2(6, -4);
+        ps17.transform.position = wizardPos;
+        ps18.transform.position = wizardPos;
+        ps19.transform.position = wizardPos;
+        ps20.transform.position = wizardPos;
+        ps21.transform.position = wizardPos;
+        ps22.transform.position = grond;
+        ps23.transform.position = grond;
+        ps24.transform.position = grond;
+        ps25.transform.position = grond;
+        ps26.transform.position = grond;
+        ps17.SetActive(true);
+        ps18.SetActive(true);
+        ps19.SetActive(true);
+        ps20.SetActive(true);
+        ps21.SetActive(true);
+        ps17Particle.Play();
+        ps18Particle.Play();
+        ps19Particle.Play();
+        ps20Particle.Play();
+        ps21Particle.Play();
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true);
+            .Append(ps17.transform.DOMove( JackOPos + new Vector2(0,4), 2))
+            .Join(ps18.transform.DOMove( JackOPos + new Vector2(4,0), 2))
+            .Join(ps19.transform.DOMove( JackOPos + new Vector2(-4,0), 2))
+            .Join(ps20.transform.DOMove( JackOPos + new Vector2(2,2), 2))
+            .Join(ps21.transform.DOMove( JackOPos + new Vector2(-2,2), 2))
+            .Append(ps17.transform.DOMove( JackOPos, 1))
+            .AppendCallback(() =>
+            {
+                ps22.SetActive(true);
+                ps22Particle.Play();
+            })
+            .Append(ps18.transform.DOMove( JackOPos, 1))
+            .AppendCallback(() =>
+            {
+                ps23.SetActive(true);
+                ps23Particle.Play();
+            })
+            .Append(ps19.transform.DOMove( JackOPos, 1))
+            .AppendCallback(() =>
+            {
+                ps24.SetActive(true);
+                ps24Particle.Play();
+            })
+            .Append(ps20.transform.DOMove( JackOPos, 1))
+            .AppendCallback(() =>
+            {
+                ps25.SetActive(true);
+                ps25Particle.Play();
+            })
+            .Append(ps21.transform.DOMove( JackOPos, 1))
+            .AppendCallback(() =>
+            {
+                ps26.SetActive(true);
+                ps26Particle.Play();
+            })
+            .OnComplete(() =>
+            {
+                ps17.SetActive(false);
+                ps18.SetActive(false);
+                ps19.SetActive(false);
+                ps20.SetActive(false);
+                ps21.SetActive(false);
+            });
     }
-
-    
 }
