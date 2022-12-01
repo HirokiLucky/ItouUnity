@@ -32,6 +32,13 @@ public class AttackEffects : MonoBehaviour
     [SerializeField] private GameObject ps6;
     private ParticleSystem ps5Particle;
     private ParticleSystem ps6Particle;
+    
+    [SerializeField] private GameObject ps7;
+    [SerializeField] private GameObject ps8;
+    [SerializeField] private GameObject ps9;
+    private ParticleSystem ps7Particle;
+    private ParticleSystem ps8Particle;
+    private ParticleSystem ps9Particle;
 
     private Vector2 wizardPos = new Vector2(-6, -3.1f);
     private Vector2 JackOPos = new Vector2(6, -3.2f);
@@ -48,6 +55,10 @@ public class AttackEffects : MonoBehaviour
         ps4Particle = ps4.GetComponent<ParticleSystem>();
         ps5Particle = ps5.GetComponent<ParticleSystem>();
         ps6Particle = ps6.GetComponent<ParticleSystem>();
+        ps7Particle = ps7.GetComponent<ParticleSystem>();
+        ps8Particle = ps8.GetComponent<ParticleSystem>();
+        ps9Particle = ps9.GetComponent<ParticleSystem>();
+        
     }
 
 
@@ -171,15 +182,25 @@ public class AttackEffects : MonoBehaviour
     public void Level5()
     {
         WizardMagic();
-        ps1.transform.position = JackOPos;
-        ps2.transform.position = JackOPos;
-        ps1.SetActive(true);
-        ps2.SetActive(true);
-        ps1Particle.Play();
-        ps2Particle.Play();
+        ps7.transform.position = wizardPos;
+        ps8.transform.position = wizardPos;
+        ps9.transform.position = wizardPos;
+
+        ps7.SetActive(true);
+        ps7Particle.Play();
+        ps8.SetActive(true);
+        ps8Particle.Play();
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true);
+            .Append(ps7.transform.DOMoveY(4, 3).SetEase(Ease.OutSine)).SetRelative(true)
+            .Append(ps7.transform.DOMoveY(-4, 2).SetEase(Ease.InQuad)).SetRelative(true).OnComplete(() =>
+            {
+                ps7.SetActive(false);
+                ps8.SetActive(false);
+                ps9.SetActive(true);
+                ps9Particle.Play();
+            })
+            .Append(ps9.transform.DOMoveY(2, 2).SetEase(Ease.OutSine)).SetRelative(true);
     }
     
     public void Level6()
