@@ -39,6 +39,22 @@ public class AttackEffects : MonoBehaviour
     private ParticleSystem ps7Particle;
     private ParticleSystem ps8Particle;
     private ParticleSystem ps9Particle;
+    
+    [SerializeField] private GameObject ps10;
+    [SerializeField] private GameObject ps11;
+    [SerializeField] private GameObject ps12;
+    private ParticleSystem ps10Particle;
+    private ParticleSystem ps11Particle;
+    private ParticleSystem ps12Particle;
+    
+    [SerializeField] private GameObject ps13;
+    [SerializeField] private GameObject ps14;
+    [SerializeField] private GameObject ps15;
+    [SerializeField] private GameObject ps16;
+    private ParticleSystem ps13Particle;
+    private ParticleSystem ps14Particle;
+    private ParticleSystem ps15Particle;
+    private ParticleSystem ps16Particle;
 
     private Vector2 wizardPos = new Vector2(-6, -3.1f);
     private Vector2 JackOPos = new Vector2(6, -3.2f);
@@ -58,7 +74,14 @@ public class AttackEffects : MonoBehaviour
         ps7Particle = ps7.GetComponent<ParticleSystem>();
         ps8Particle = ps8.GetComponent<ParticleSystem>();
         ps9Particle = ps9.GetComponent<ParticleSystem>();
-        
+        ps10Particle = ps10.GetComponent<ParticleSystem>();
+        ps11Particle = ps11.GetComponent<ParticleSystem>();
+        ps12Particle = ps12.GetComponent<ParticleSystem>();
+        ps13Particle = ps13.GetComponent<ParticleSystem>();
+        ps14Particle = ps14.GetComponent<ParticleSystem>();
+        ps15Particle = ps15.GetComponent<ParticleSystem>();
+        ps16Particle = ps16.GetComponent<ParticleSystem>();
+
     }
 
 
@@ -205,32 +228,63 @@ public class AttackEffects : MonoBehaviour
     
     public void Level6()
     {
-        Debug.Log("aa");
         WizardMagic();
-        ps1.transform.position = JackOPos;
-        ps2.transform.position = JackOPos;
-        ps1.SetActive(true);
-        ps2.SetActive(true);
-        ps1Particle.Play();
-        ps2Particle.Play();
+        ps10.transform.position = wizardPos + new Vector2(2,2);
+        ps11.transform.position = wizardPos + new Vector2(4,2);
+        ps12.transform.position = JackOPos;
+
+        ps10.SetActive(true);
+        ps10Particle.Play();
+        ps11.SetActive(true);
+        ps11Particle.Play();
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true);
+            .Append(ps11.transform.DOScale(new Vector3(2,2), 3))
+            .Append(ps11.transform.DOMove(JackOPos, 3))
+            .AppendCallback(() =>
+            {
+                
+                ps11.SetActive(false);
+                ps12.SetActive(true);
+                ps12Particle.Play();
+            })
+            .AppendInterval(1)
+            .AppendCallback(() => ps10.SetActive(false));
     }
     
     public void Level7()
     {
-        Debug.Log("aa");
         WizardMagic();
-        ps1.transform.position = JackOPos;
-        ps2.transform.position = JackOPos;
-        ps1.SetActive(true);
-        ps2.SetActive(true);
-        ps1Particle.Play();
-        ps2Particle.Play();
+        ps13.transform.position = wizardPos;
+        ps14.transform.position = JackOPos + new Vector2(0,2);
+        ps15.transform.position = JackOPos + new Vector2(0,2);
+        ps16.transform.position = JackOPos + new Vector2(0, -0.8f);
+        
+        ps13.SetActive(true);
+        ps13Particle.Play();
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true);
+            .Append(ps13.transform.DOMove(JackOPos + new Vector2(0,2), 5))
+            .AppendCallback(() =>
+            {
+                ps14.SetActive(true);
+                ps14Particle.Play();
+                ps15.SetActive(true);
+                ps15Particle.Play();
+                ps13.SetActive(false);
+            })
+            .AppendInterval(1)
+            .AppendCallback(() =>
+            {
+                ps16.SetActive(true);
+                ps16Particle.Play();
+            })
+            .AppendInterval(2)
+            .OnComplete(() =>
+            {
+                ps15.SetActive(false);
+                ps16.SetActive(false);
+            });
     }
     
     public void Level8()
