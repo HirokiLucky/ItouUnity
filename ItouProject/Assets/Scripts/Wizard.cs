@@ -7,10 +7,11 @@ public class Wizard : MonoBehaviour
 {
     private Animator _animator;
 
+    [SerializeField] private GameSystem _gameSystem;
+
     public int hpWizard = 10;
 
-    [SerializeField] private GameObject magicAura;
-    private ParticleSystem magicAuraParticle;
+    
     
     private static readonly int Dead = Animator.StringToHash("Dead");
     private static readonly int Hurt = Animator.StringToHash("Hurt");
@@ -22,7 +23,7 @@ public class Wizard : MonoBehaviour
     void Start()
     {
         _animator = gameObject.GetComponent<Animator>();
-        magicAuraParticle = magicAura.GetComponent<ParticleSystem>();
+        
     }
     
 
@@ -39,14 +40,14 @@ public class Wizard : MonoBehaviour
         if (hpWizard <= 0)
         {
             Debug.Log("魔法使いダウン");
+            DeadWizard();
+            _gameSystem.GameOver();
         }
     }
     
     public void AttackWizard()
     {
         _animator.SetTrigger(Attack);
-        magicAura.SetActive(true);
-        magicAuraParticle.Play();
     }
     
     

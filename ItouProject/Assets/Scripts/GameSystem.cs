@@ -25,8 +25,9 @@ public class GameSystem : MonoBehaviour
     [NonSerialized]public GameObject clickedGameObject_save;
     [SerializeField] private GameObject magicButton;
     [SerializeField] private GameObject stopButton;
+    [SerializeField] private GameObject magicBook;
     
-    [SerializeField] private GameObject card1;
+    //[SerializeField] private GameObject card1;
     [SerializeField] private GameObject card2;
     [SerializeField] private GameObject card3;
     [SerializeField] private GameObject card4;
@@ -45,7 +46,7 @@ public class GameSystem : MonoBehaviour
 
     private void Start()
     {
-        cards = new[] { card1, card2, card3, card4, card5, card6, card7, card8};
+        cards = new[] { card2, card3, card4, card5, card6, card7, card8};
         Invoke("YourTurn", 1f);
     }
 
@@ -128,6 +129,8 @@ public class GameSystem : MonoBehaviour
             {
                 if(clickedGameObject.CompareTag("Card"))
                 {
+                    string talotNum = clickedGameObject.name;
+                    _listenner.wordCount = Convert.ToInt32(talotNum.Substring(5, 1));
                     Debug.Log(clickedGameObject);
                     magicButton.SetActive(true);
                     stopButton.SetActive(true);
@@ -169,8 +172,8 @@ public class GameSystem : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(yourTurn.DOAnchorPosX(100, 0.5f))
-            .Append(yourTurn.DOAnchorPosX(-100, 2))
+            .Append(yourTurn.DOAnchorPosX(200, 0.5f))
+            .Append(yourTurn.DOAnchorPosX(0, 2))
             .Append(yourTurn.DOAnchorPosX(-550, 0.5f))
             .Append(yourTurn.DOAnchorPosX(550, 0))
             .OnComplete(() => Invoke("WizardTurn", 1f));
@@ -180,9 +183,19 @@ public class GameSystem : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(enemyTurn.DOAnchorPosX(100, 0.5f))
-            .Append(enemyTurn.DOAnchorPosX(-100, 2))
+            .Append(enemyTurn.DOAnchorPosX(200, 0.5f))
+            .Append(enemyTurn.DOAnchorPosX(0, 2))
             .Append(enemyTurn.DOAnchorPosX(-550, 0.5f))
             .Append(enemyTurn.DOAnchorPosX(550, 0));
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("You Lose ...");
+    }
+
+    public void GameClear()
+    {
+        magicBook.SetActive(true);
     }
 }

@@ -7,6 +7,8 @@ public class JackO : MonoBehaviour
     private Animator _animator;
     
     public int hpJackO = 10;
+
+    [SerializeField] private GameSystem _gameSystem;
     
     [SerializeField] private GameObject magicAura;
     private ParticleSystem magicAuraParticle;
@@ -35,6 +37,8 @@ public class JackO : MonoBehaviour
         if (hpJackO <= 0)
         {
             Debug.Log("ジャックダウン");
+            DeadJackO();
+            _gameSystem.GameClear();
         }
     }
     
