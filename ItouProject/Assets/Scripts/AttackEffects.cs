@@ -152,6 +152,7 @@ public class AttackEffects : MonoBehaviour
     }
     
     
+    // 実装する
     void Effectmanager(int wordNum)
     {
         switch (wordNum)
