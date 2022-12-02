@@ -5,7 +5,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class ScrollView : MonoBehaviour
+public class DOScrollView : MonoBehaviour
 {
     private bool onOff = false;
     private RectTransform rect;
