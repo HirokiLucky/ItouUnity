@@ -7,7 +7,7 @@ using UnityEngine;
 public class DOMenuScreen : MonoBehaviour
 {
     private RectTransform rect;
-    private bool spread;
+    public bool spread;
 
     private void Start()
     {
