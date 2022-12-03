@@ -19,7 +19,7 @@ public class Listenner : MonoBehaviour
     [SerializeField] private string[] m_Keywords;
 
     // 返ってきた文字列
-    public TextMeshProUGUI ReturnText;
+    public Text ReturnText;
     
     [SerializeField] private GameSystem _gameSystem;
 
@@ -66,6 +66,7 @@ public class Listenner : MonoBehaviour
         
         _gameSystem.AddWordList(args.text);
         ReturnText.text = args.text;
+        _gameSystem.ReturnText();
         wordCount = args.text.Length - 2;
         m_Recognizer.Stop();
         m_Recognizer.Dispose();
