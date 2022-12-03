@@ -14,6 +14,7 @@ public class GameSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI lastWordUI;
     [SerializeField] private RectTransform yourTurn;
     [SerializeField] private RectTransform enemyTurn;
+    [SerializeField] private RectTransform returnText;
 
     [SerializeField] private ScrollViews _scrollViews;
     [SerializeField] private Enemy _enemy;
@@ -177,6 +178,16 @@ public class GameSystem : MonoBehaviour
             .Append(yourTurn.DOAnchorPosX(-550, 0.5f))
             .Append(yourTurn.DOAnchorPosX(550, 0))
             .OnComplete(() => Invoke("WizardTurn", 1f));
+    }
+    
+    public void ReturnText()
+    {
+        Sequence sequence = DOTween.Sequence();
+        sequence
+            .Append(returnText.DOAnchorPosX(0, 0.5f))
+            .AppendInterval(1)
+            .Append(returnText.DOAnchorPosX(-550, 0.5f))
+            .Append(returnText.DOAnchorPosX(550, 0));
     }
     
     public void EnemyTurn()

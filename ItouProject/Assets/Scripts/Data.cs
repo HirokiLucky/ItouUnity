@@ -28,9 +28,7 @@ public class Data : MonoBehaviour
     private string[] splitText;
     private string[] splitWord;
     public Dictionary<string, string[][]> sound50Index = new Dictionary<string, string[][]>();
-
-
-
+    
     private void Awake()
     {
         loadText = textAsset.text;
