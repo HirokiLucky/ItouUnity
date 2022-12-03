@@ -249,7 +249,8 @@ public class AttackEffects : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         sequence
             .Append(ps7.transform.DOMoveY(4, 3).SetEase(Ease.OutSine)).SetRelative(true)
-            .Append(ps7.transform.DOMoveY(-4, 2).SetEase(Ease.InQuad)).SetRelative(true).OnComplete(() =>
+            .Append(ps7.transform.DOMoveY(-4, 2).SetEase(Ease.InQuad)).SetRelative(true)
+            .AppendCallback(() =>
             {
                 ps7.SetActive(false);
                 ps8.SetActive(false);
