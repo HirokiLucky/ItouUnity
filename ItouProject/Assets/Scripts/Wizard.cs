@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class Wizard : MonoBehaviour
@@ -10,6 +11,8 @@ public class Wizard : MonoBehaviour
     [SerializeField] private GameSystem _gameSystem;
 
     public int hpWizard = 10;
+
+    [SerializeField] private TextMeshProUGUI hp;
 
     
     
@@ -37,6 +40,7 @@ public class Wizard : MonoBehaviour
         _animator.SetTrigger(Hurt);
         hpWizard -= damage;
         Debug.Log(damage + "ダメージ魔法使いは受けた。HP：" + hpWizard);
+        hp.text = hpWizard.ToString();
         if (hpWizard <= 0)
         {
             Debug.Log("魔法使いダウン");

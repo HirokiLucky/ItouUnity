@@ -128,7 +128,7 @@ public class AttackEffects : MonoBehaviour
         bomb.SetActive(true);
         bombParticleSystem.Play();
         
-        _jackO.HurtJackO(1);
+        _jackO.HurtJackO(wordCount);
         
         // シーケンス終了OnCompleteで
         _gameSystem.EnemyTurn();
@@ -137,7 +137,7 @@ public class AttackEffects : MonoBehaviour
     
     // 8番目 => 1番目
     // 敵のエフェクト
-    public void Attack()
+    public void Attack(int wordCount)
     {
         _jackO.AttackJackO();
         
@@ -145,7 +145,7 @@ public class AttackEffects : MonoBehaviour
         bomb.SetActive(true);
         bombParticleSystem.Play();
         
-        _wizard.HurtWizard(1);
+        _wizard.HurtWizard(wordCount);
         
         // シーケンス終了OnCompleteで
         _gameSystem.YourTurn();

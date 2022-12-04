@@ -28,6 +28,6 @@ public class Enemy : MonoBehaviour
         
         _gameSystem.AddWordListEnemy(res);
         
-        _attackEffects.Attack();
+        _attackEffects.Attack(wordCount);
     }
 }

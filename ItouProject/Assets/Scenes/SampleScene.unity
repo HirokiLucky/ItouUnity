@@ -2139,7 +2139,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 350, y: 160}
   m_SizeDelta: {x: 300, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &554820705
@@ -2330,6 +2330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameSystem: {fileID: 1242238997}
   hpWizard: 10
+  hp: {fileID: 986273669}
 --- !u!1001 &572279421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10115,6 +10116,7 @@ MonoBehaviour:
   hpJackO: 10
   _gameSystem: {fileID: 1242238997}
   magicAura: {fileID: 12727203}
+  hp: {fileID: 1064690352}
 --- !u!114 &1926255157
 MonoBehaviour:
   m_ObjectHideFlags: 0
