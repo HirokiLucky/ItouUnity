@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class JackO : MonoBehaviour
@@ -11,6 +12,7 @@ public class JackO : MonoBehaviour
     [SerializeField] private GameSystem _gameSystem;
     
     [SerializeField] private GameObject magicAura;
+    [SerializeField] private TextMeshProUGUI hp;
     private ParticleSystem magicAuraParticle;
     
     private static readonly int Dead = Animator.StringToHash("Dead");
@@ -34,6 +36,7 @@ public class JackO : MonoBehaviour
     {
         hpJackO -= damage;
         Debug.Log(damage + "ダメージジャックは受けた。HP：" + hpJackO);
+        hp.text = hpJackO.ToString();
         if (hpJackO <= 0)
         {
             Debug.Log("ジャックダウン");

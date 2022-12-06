@@ -128,7 +128,7 @@ public class AttackEffects : MonoBehaviour
         bomb.SetActive(true);
         bombParticleSystem.Play();
         
-        _jackO.HurtJackO(1);
+        _jackO.HurtJackO(wordCount);
         
         // シーケンス終了OnCompleteで
         _gameSystem.EnemyTurn();
@@ -137,7 +137,7 @@ public class AttackEffects : MonoBehaviour
     
     // 8番目 => 1番目
     // 敵のエフェクト
-    public void Attack()
+    public void Attack(int wordCount)
     {
         _jackO.AttackJackO();
         
@@ -145,7 +145,7 @@ public class AttackEffects : MonoBehaviour
         bomb.SetActive(true);
         bombParticleSystem.Play();
         
-        _wizard.HurtWizard(1);
+        _wizard.HurtWizard(wordCount);
         
         // シーケンス終了OnCompleteで
         _gameSystem.YourTurn();
@@ -158,21 +158,25 @@ public class AttackEffects : MonoBehaviour
         switch (wordNum)
         {
             case 2:
+                Level2();
                 break;
             case 3:
+                Level3();
                 break;
             case 4:
+                Level4();
                 break;
             case 5:
+                Level5();
                 break;
             case 6:
+                Level6();
                 break;
             case 7:
+                Level7();
                 break;
             case 8:
-                break;
-            default:
-                Debug.Log("a");
+                Level8();
                 break;
         }
     }
@@ -249,7 +253,8 @@ public class AttackEffects : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         sequence
             .Append(ps7.transform.DOMoveY(4, 3).SetEase(Ease.OutSine)).SetRelative(true)
-            .Append(ps7.transform.DOMoveY(-4, 2).SetEase(Ease.InQuad)).SetRelative(true).OnComplete(() =>
+            .Append(ps7.transform.DOMoveY(-4, 2).SetEase(Ease.InQuad)).SetRelative(true)
+            .AppendCallback(() =>
             {
                 ps7.SetActive(false);
                 ps8.SetActive(false);

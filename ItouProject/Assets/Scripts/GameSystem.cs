@@ -27,6 +27,8 @@ public class GameSystem : MonoBehaviour
     [SerializeField] private GameObject magicButton;
     [SerializeField] private GameObject stopButton;
     [SerializeField] private GameObject magicBook;
+    [SerializeField] private GameObject clearImage;
+    [SerializeField] private GameObject failImage;
     
     //[SerializeField] private GameObject card1;
     [SerializeField] private GameObject card2;
@@ -202,11 +204,14 @@ public class GameSystem : MonoBehaviour
 
     public void GameOver()
     {
+        magicBook.SetActive(true);
+        failImage.SetActive(true);
         Debug.Log("You Lose ...");
     }
 
     public void GameClear()
     {
         magicBook.SetActive(true);
+        clearImage.SetActive(true);
     }
 }
