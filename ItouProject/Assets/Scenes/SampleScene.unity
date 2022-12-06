@@ -5642,6 +5642,8 @@ MonoBehaviour:
   magicButton: {fileID: 801608288}
   stopButton: {fileID: 995361436}
   magicBook: {fileID: 2105449447}
+  clearImage: {fileID: 1443704640}
+  failImage: {fileID: 1524236901}
   card2: {fileID: 1819240469796266034, guid: 825201eaca99bbd4298e37fb46a1204f, type: 3}
   card3: {fileID: 703529991261933798, guid: 106456e9d66b2de4d8cc1089e8ec12ff, type: 3}
   card4: {fileID: 2489061009955794860, guid: 0d642d41b3a083c41add1e982bbe31a0, type: 3}
@@ -11198,7 +11200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2105449448
 RectTransform:
   m_ObjectHideFlags: 0

@@ -158,21 +158,25 @@ public class AttackEffects : MonoBehaviour
         switch (wordNum)
         {
             case 2:
+                Level2();
                 break;
             case 3:
+                Level3();
                 break;
             case 4:
+                Level4();
                 break;
             case 5:
+                Level5();
                 break;
             case 6:
+                Level6();
                 break;
             case 7:
+                Level7();
                 break;
             case 8:
-                break;
-            default:
-                Debug.Log("a");
+                Level8();
                 break;
         }
     }
