@@ -116,23 +116,26 @@ public class AttackEffects : MonoBehaviour
 
     }
 
+    void FinishEffect(char lastword, int wordCount)
+    {
+        _jackO.HurtJackO(wordCount);
+        _gameSystem.EnemyTurn();
+        _enemy.Response(lastword, wordCount);
+    }
 
     // 5番目
     // プレイヤーのエフェクト
     public void Attack(char lastword, int wordCount)
     {
         _wizard.AttackWizard();
-        
         WizardMagic();
-        
-        bomb.SetActive(true);
-        bombParticleSystem.Play();
-        
-        _jackO.HurtJackO(wordCount);
-        
-        // シーケンス終了OnCompleteで
-        _gameSystem.EnemyTurn();
-        _enemy.Response(lastword, wordCount);
+        Sequence sequence = DOTween.Sequence();
+        sequence
+            .AppendInterval(2)
+            .AppendCallback(() =>
+            {
+                Effectmanager(lastword,wordCount);
+            });
     }
     
     // 8番目 => 1番目
@@ -153,30 +156,30 @@ public class AttackEffects : MonoBehaviour
     
     
     // 実装する
-    void Effectmanager(int wordNum)
+    void Effectmanager(char lastword,int wordNum)
     {
         switch (wordNum)
         {
             case 2:
-                Level2();
+                Level2(lastword, wordNum);
                 break;
             case 3:
-                Level3();
+                Level3(lastword, wordNum);
                 break;
             case 4:
-                Level4();
+                Level4(lastword, wordNum);
                 break;
             case 5:
-                Level5();
+                Level5(lastword, wordNum);
                 break;
             case 6:
-                Level6();
+                Level6(lastword, wordNum);
                 break;
             case 7:
-                Level7();
+                Level7(lastword, wordNum);
                 break;
             case 8:
-                Level8();
+                Level8(lastword, wordNum);
                 break;
         }
     }
@@ -188,7 +191,7 @@ public class AttackEffects : MonoBehaviour
         magicLightParticle.Play();
     }
 
-    public void Level2()
+    public void Level2(char lastword,int wordNum)
     {
         WizardMagic();
         ps1.transform.position = JackOPos;
@@ -199,10 +202,11 @@ public class AttackEffects : MonoBehaviour
         ps2Particle.Play();
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true);
+            .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true)
+            .OnComplete(() => FinishEffect(lastword, wordNum));
     }
     
-    public void Level3()
+    public void Level3(char lastword,int wordNum)
     {
         WizardMagic();
         ps3.transform.position = wizardPos + new Vector2(2, 1);
@@ -218,10 +222,14 @@ public class AttackEffects : MonoBehaviour
                 ps4Particle.Play();
             })
             .Append(ps3.transform.DOMoveX(10, 1))
-            .OnComplete(() => ps3.SetActive(false));
+            .OnComplete(() =>
+            {
+                ps3.SetActive(false);
+                FinishEffect(lastword, wordNum);
+            });
     }
     
-    public void Level4()
+    public void Level4(char lastword,int wordNum)
     {
         WizardMagic();
         ps5.transform.position = wizardPos + new Vector2(2, 2);
@@ -236,10 +244,14 @@ public class AttackEffects : MonoBehaviour
                 ps6.SetActive(true);
                 ps6Particle.Play();
             })
-            .OnComplete(() => ps5.SetActive(false));;
+            .OnComplete(() =>
+            {
+                ps5.SetActive(false);
+                FinishEffect(lastword, wordNum);
+            });;
     }
     
-    public void Level5()
+    public void Level5(char lastword,int wordNum)
     {
         WizardMagic();
         ps7.transform.position = wizardPos;
@@ -261,10 +273,11 @@ public class AttackEffects : MonoBehaviour
                 ps9.SetActive(true);
                 ps9Particle.Play();
             })
-            .Append(ps9.transform.DOMoveY(2, 2).SetEase(Ease.OutSine)).SetRelative(true);
+            .Append(ps9.transform.DOMoveY(2, 2).SetEase(Ease.OutSine)).SetRelative(true)
+            .OnComplete(() => FinishEffect(lastword, wordNum));
     }
     
-    public void Level6()
+    public void Level6(char lastword,int wordNum)
     {
         WizardMagic();
         ps10.transform.position = wizardPos + new Vector2(2,2);
@@ -287,10 +300,14 @@ public class AttackEffects : MonoBehaviour
                 ps12Particle.Play();
             })
             .AppendInterval(1)
-            .AppendCallback(() => ps10.SetActive(false));
+            .AppendCallback(() =>
+            {
+                ps10.SetActive(false);
+                FinishEffect(lastword, wordNum);
+            });
     }
     
-    public void Level7()
+    public void Level7(char lastword,int wordNum)
     {
         WizardMagic();
         ps13.transform.position = wizardPos;
@@ -322,10 +339,11 @@ public class AttackEffects : MonoBehaviour
             {
                 ps15.SetActive(false);
                 ps16.SetActive(false);
+                FinishEffect(lastword, wordNum);
             });
     }
     
-    public void Level8()
+    public void Level8(char lastword,int wordNum)
     {
         WizardMagic();
         Vector2 grond = new Vector2(6, -4);
@@ -393,6 +411,7 @@ public class AttackEffects : MonoBehaviour
                 ps19.SetActive(false);
                 ps20.SetActive(false);
                 ps21.SetActive(false);
+                FinishEffect(lastword, wordNum);
             });
     }
 }

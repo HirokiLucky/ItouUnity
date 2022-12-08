@@ -43,7 +43,7 @@ public class GameSystem : MonoBehaviour
     private GameObject selectCard2;
     private GameObject selectCard3;
     private GameObject[] cards;
-    private Vector2 cardSporn = new Vector2(7.7f, -6.5f);
+    private Vector2 cardSporn = new Vector2(7.6f, -7.25f);
 
     
 
