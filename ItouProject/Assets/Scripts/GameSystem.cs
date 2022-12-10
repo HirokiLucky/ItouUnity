@@ -21,6 +21,8 @@ public class GameSystem : MonoBehaviour
     [SerializeField] private Wizard _wizard;
     [SerializeField] private JackO _jackO;
     [SerializeField] private Listenner _listenner;
+    [SerializeField] private DOTurnStart _doTurnStart;
+    [SerializeField] private DOTurnStart _doTurnStartEnemy;
     
     GameObject clickedGameObject;
     [NonSerialized]public GameObject clickedGameObject_save;
@@ -173,13 +175,8 @@ public class GameSystem : MonoBehaviour
 
     public void YourTurn()
     {
-        Sequence sequence = DOTween.Sequence();
-        sequence
-            .Append(yourTurn.DOAnchorPosX(200, 0.5f))
-            .Append(yourTurn.DOAnchorPosX(0, 2))
-            .Append(yourTurn.DOAnchorPosX(-550, 0.5f))
-            .Append(yourTurn.DOAnchorPosX(550, 0))
-            .OnComplete(() => Invoke("WizardTurn", 1f));
+        _doTurnStart.TurnStart();
+        Invoke("WizardTurn", 5f);
     }
     
     public void ReturnText()
@@ -194,12 +191,7 @@ public class GameSystem : MonoBehaviour
     
     public void EnemyTurn()
     {
-        Sequence sequence = DOTween.Sequence();
-        sequence
-            .Append(enemyTurn.DOAnchorPosX(200, 0.5f))
-            .Append(enemyTurn.DOAnchorPosX(0, 2))
-            .Append(enemyTurn.DOAnchorPosX(-550, 0.5f))
-            .Append(enemyTurn.DOAnchorPosX(550, 0));
+        _doTurnStartEnemy.TurnStart();
     }
 
     public void GameOver()
