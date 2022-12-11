@@ -76,11 +76,11 @@ public class AttackEffects : MonoBehaviour
     private ParticleSystem ps24Particle;
     private ParticleSystem ps25Particle;
     private ParticleSystem ps26Particle;
-
-
+    
     private Vector2 wizardPos = new Vector2(-6, -3.1f);
     private Vector2 JackOPos = new Vector2(6, -3.2f);
     
+    private float hitStopTimer = 0f;
 
     private void Start()
     {
@@ -114,6 +114,19 @@ public class AttackEffects : MonoBehaviour
         ps25Particle = ps25.GetComponent<ParticleSystem>();
         ps26Particle = ps26.GetComponent<ParticleSystem>();
 
+    }
+    
+    void Update()
+    {
+        if (hitStopTimer > 0f)
+        {
+            Time.timeScale = 0.01f;
+            hitStopTimer -= Time.deltaTime;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     void FinishEffect(char lastword, int wordCount)
@@ -220,6 +233,7 @@ public class AttackEffects : MonoBehaviour
             {
                 ps4.SetActive(true);
                 ps4Particle.Play();
+                hitStopTimer = 0.01f;
             })
             .Append(ps3.transform.DOMoveX(10, 1))
             .OnComplete(() =>
@@ -302,6 +316,7 @@ public class AttackEffects : MonoBehaviour
             .AppendInterval(1)
             .AppendCallback(() =>
             {
+                hitStopTimer = 0.015f;
                 ps10.SetActive(false);
                 FinishEffect(lastword, wordNum);
             });
@@ -313,8 +328,8 @@ public class AttackEffects : MonoBehaviour
         ps13.transform.position = wizardPos;
         ps14.transform.position = JackOPos + new Vector2(0,2);
         ps15.transform.position = JackOPos + new Vector2(0,2);
-        ps16.transform.position = JackOPos + new Vector2(0, -0.8f);
-        
+        ps16.transform.position = new Vector3(6,-4,10);
+
         ps13.SetActive(true);
         ps13Particle.Play();
         Sequence sequence = DOTween.Sequence();
