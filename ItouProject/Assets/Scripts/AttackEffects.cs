@@ -258,6 +258,8 @@ public class AttackEffects : MonoBehaviour
                 ps6.SetActive(true);
                 ps6Particle.Play();
             })
+            .AppendInterval(0.5f)
+            .AppendCallback(() => hitStopTimer = 0.02f)
             .OnComplete(() =>
             {
                 ps5.SetActive(false);
