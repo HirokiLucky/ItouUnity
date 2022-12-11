@@ -18,6 +18,8 @@ public class AttackEffects : MonoBehaviour
     [SerializeField] private JackO _jackO;
     [SerializeField] private GameSystem _gameSystem;
 
+    #region Effect
+
     [SerializeField] private GameObject ps1;
     [SerializeField] private GameObject ps2;
     private ParticleSystem ps1Particle;
@@ -77,13 +79,21 @@ public class AttackEffects : MonoBehaviour
     private ParticleSystem ps25Particle;
     private ParticleSystem ps26Particle;
     
+    #endregion
+    
     private Vector2 wizardPos = new Vector2(-6, -3.1f);
     private Vector2 JackOPos = new Vector2(6, -3.2f);
-    
+    private Vector2 JackOCamera = new Vector2(6, 2);
+    private Vector3 origin = new Vector3(0, -5, -1);
+
     private float hitStopTimer = 0f;
+
+    [SerializeField] private GameObject _cameraObject;
+    private Camera _camera;
 
     private void Start()
     {
+        _camera = _cameraObject.GetComponent<Camera>();
         bombParticleSystem = bomb.GetComponent<ParticleSystem>();
         magicAuraParticle = magicAura.GetComponent<ParticleSystem>();
         magicLightParticle = magicAura.GetComponent<ParticleSystem>();
@@ -209,14 +219,24 @@ public class AttackEffects : MonoBehaviour
         WizardMagic();
         ps1.transform.position = JackOPos;
         ps2.transform.position = JackOPos;
-        ps1.SetActive(true);
-        ps2.SetActive(true);
-        ps1Particle.Play();
-        ps2Particle.Play();
+        _camera.DOOrthoSize(3, 1f);
         Sequence sequence = DOTween.Sequence();
         sequence
+            .Append(_cameraObject.transform.DOMove(JackOCamera, 1))
+            .AppendCallback(() =>
+            {
+                ps1.SetActive(true);
+                ps2.SetActive(true);
+                ps1Particle.Play();
+                ps2Particle.Play();
+            })
             .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true)
-            .OnComplete(() => FinishEffect(lastword, wordNum));
+            .OnComplete(() =>
+            {
+                FinishEffect(lastword, wordNum);
+                _cameraObject.transform.DOMove(origin, 1);
+                _camera.DOOrthoSize(5, 1f);
+            });
     }
     
     public void Level3(char lastword,int wordNum)

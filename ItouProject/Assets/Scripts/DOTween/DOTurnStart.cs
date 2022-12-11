@@ -19,8 +19,6 @@ public class DOTurnStart : MonoBehaviour
     private Vector3 _vector360P = new Vector3(0, 0, 180);
     private Vector3 _vector360M = new Vector3(0, 0, -180);
 
-    
-
     public void TurnStart(){
         _parent.SetActive(true);
         black.SetActive(true);
