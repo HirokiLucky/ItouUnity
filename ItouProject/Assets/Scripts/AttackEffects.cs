@@ -316,7 +316,7 @@ public class AttackEffects : MonoBehaviour
             .AppendInterval(1)
             .AppendCallback(() =>
             {
-                hitStopTimer = 0.015f;
+                hitStopTimer = 0.02f;
                 ps10.SetActive(false);
                 FinishEffect(lastword, wordNum);
             });
