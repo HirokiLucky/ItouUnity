@@ -233,9 +233,9 @@ public class AttackEffects : MonoBehaviour
             .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true)
             .OnComplete(() =>
             {
-                FinishEffect(lastword, wordNum);
                 _cameraObject.transform.DOMove(origin, 1);
                 _camera.DOOrthoSize(5, 1f);
+                FinishEffect(lastword, wordNum);
             });
     }
     
@@ -251,6 +251,8 @@ public class AttackEffects : MonoBehaviour
             .Append(ps3.transform.DOMove(JackOPos, 3).SetEase(Ease.InExpo))
             .AppendCallback(() =>
             {
+                _cameraObject.transform.DOMove(JackOCamera, 0.1f);
+                _camera.DOOrthoSize(3, 0.1f);
                 ps4.SetActive(true);
                 ps4Particle.Play();
                 hitStopTimer = 0.01f;
