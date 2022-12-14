@@ -83,7 +83,8 @@ public class AttackEffects : MonoBehaviour
     
     private Vector2 wizardPos = new Vector2(-6, -3.1f);
     private Vector2 JackOPos = new Vector2(6, -3.2f);
-    private Vector2 JackOCamera = new Vector2(6, 2);
+    private Vector3 wizardCamera = new Vector3(-6, -2, -1);
+    private Vector3 jackOCamera = new Vector3(6, -2, -1);
     private Vector3 origin = new Vector3(0, -5, -1);
 
     private float hitStopTimer = 0f;
@@ -222,7 +223,7 @@ public class AttackEffects : MonoBehaviour
         _camera.DOOrthoSize(3, 1f);
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(_cameraObject.transform.DOMove(JackOCamera, 1))
+            .Append(_cameraObject.transform.DOMove(jackOCamera, 1))
             .AppendCallback(() =>
             {
                 ps1.SetActive(true);
@@ -251,11 +252,21 @@ public class AttackEffects : MonoBehaviour
             .Append(ps3.transform.DOMove(JackOPos, 3).SetEase(Ease.InExpo))
             .AppendCallback(() =>
             {
-                _cameraObject.transform.DOMove(JackOCamera, 0.1f);
+                _cameraObject.transform.DOMove(jackOCamera, 0.1f);
                 _camera.DOOrthoSize(3, 0.1f);
+            })
+            .AppendInterval(0.1f)
+            .AppendCallback(() =>
+            {
                 ps4.SetActive(true);
                 ps4Particle.Play();
                 hitStopTimer = 0.01f;
+            })
+            .AppendInterval(0.1f)
+            .AppendCallback(() =>
+            {
+                _cameraObject.transform.DOMove(origin, 0.5f);
+                _camera.DOOrthoSize(5, 0.5f);
             })
             .Append(ps3.transform.DOMoveX(10, 1))
             .OnComplete(() =>
@@ -280,8 +291,20 @@ public class AttackEffects : MonoBehaviour
                 ps6.SetActive(true);
                 ps6Particle.Play();
             })
+            .AppendInterval(0.2f)
+            .AppendCallback(() =>
+            {
+                _cameraObject.transform.DOMove(jackOCamera, 0.1f);
+                _camera.DOOrthoSize(3, 0.1f);
+            })
+            .AppendInterval(0.3f)
+            .AppendCallback(() => hitStopTimer = 0.01f)
             .AppendInterval(0.5f)
-            .AppendCallback(() => hitStopTimer = 0.02f)
+            .AppendCallback(() =>
+            {
+                _cameraObject.transform.DOMove(origin, 0.5f);
+                _camera.DOOrthoSize(5, 0.5f);
+            })
             .OnComplete(() =>
             {
                 ps5.SetActive(false);
@@ -312,7 +335,17 @@ public class AttackEffects : MonoBehaviour
                 ps9Particle.Play();
             })
             .Append(ps9.transform.DOMoveY(2, 2).SetEase(Ease.OutSine)).SetRelative(true)
-            .OnComplete(() => FinishEffect(lastword, wordNum));
+            .OnStart(() =>
+            {
+                _cameraObject.transform.DOMove(wizardCamera, 1f);
+                _camera.DOOrthoSize(4, 1f);
+            })
+            .OnComplete(() =>
+            {
+                _cameraObject.transform.DOMove(origin, 0.5f);
+                _camera.DOOrthoSize(5, 0.5f);
+                FinishEffect(lastword, wordNum);
+            });
     }
     
     public void Level6(char lastword,int wordNum)
@@ -336,12 +369,20 @@ public class AttackEffects : MonoBehaviour
                 ps11.SetActive(false);
                 ps12.SetActive(true);
                 ps12Particle.Play();
+                _cameraObject.transform.DOMove(jackOCamera, 0.9f);
+                _camera.DOOrthoSize(3, 0.9f);
             })
-            .AppendInterval(1)
+            .AppendInterval(1f)
             .AppendCallback(() =>
             {
-                hitStopTimer = 0.02f;
+                hitStopTimer = 0.015f;
                 ps10.SetActive(false);
+            })
+            .AppendInterval(0.3f)
+            .OnComplete(() =>
+            {
+                _cameraObject.transform.DOMove(origin, 0.5f);
+                _camera.DOOrthoSize(5, 0.5f);
                 FinishEffect(lastword, wordNum);
             });
     }
@@ -361,6 +402,8 @@ public class AttackEffects : MonoBehaviour
             .Append(ps13.transform.DOMove(JackOPos + new Vector2(0,2), 5))
             .AppendCallback(() =>
             {
+                _cameraObject.transform.DOMove(jackOCamera, 0.5f);
+                _camera.DOOrthoSize(3, 0.5f);
                 ps14.SetActive(true);
                 ps14Particle.Play();
                 ps15.SetActive(true);
@@ -376,6 +419,8 @@ public class AttackEffects : MonoBehaviour
             .AppendInterval(2)
             .OnComplete(() =>
             {
+                _cameraObject.transform.DOMove(origin, 0.5f);
+                _camera.DOOrthoSize(5, 0.5f);
                 ps15.SetActive(false);
                 ps16.SetActive(false);
                 FinishEffect(lastword, wordNum);
@@ -413,6 +458,11 @@ public class AttackEffects : MonoBehaviour
             .Join(ps19.transform.DOMove( JackOPos + new Vector2(-4,0), 2))
             .Join(ps20.transform.DOMove( JackOPos + new Vector2(2,2), 2))
             .Join(ps21.transform.DOMove( JackOPos + new Vector2(-2,2), 2))
+            .AppendCallback(() =>
+            {
+                _cameraObject.transform.DOMove(jackOCamera, 0.5f);
+                _camera.DOOrthoSize(4, 0.5f);
+            })
             .Append(ps17.transform.DOMove( JackOPos, 1))
             .AppendCallback(() =>
             {
@@ -445,6 +495,8 @@ public class AttackEffects : MonoBehaviour
             })
             .OnComplete(() =>
             {
+                _cameraObject.transform.DOMove(origin, 0.5f);
+                _camera.DOOrthoSize(5, 0.5f);
                 ps17.SetActive(false);
                 ps18.SetActive(false);
                 ps19.SetActive(false);
