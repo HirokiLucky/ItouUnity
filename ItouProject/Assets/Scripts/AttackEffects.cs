@@ -18,6 +18,8 @@ public class AttackEffects : MonoBehaviour
     [SerializeField] private JackO _jackO;
     [SerializeField] private GameSystem _gameSystem;
 
+    #region Effect
+
     [SerializeField] private GameObject ps1;
     [SerializeField] private GameObject ps2;
     private ParticleSystem ps1Particle;
@@ -76,14 +78,23 @@ public class AttackEffects : MonoBehaviour
     private ParticleSystem ps24Particle;
     private ParticleSystem ps25Particle;
     private ParticleSystem ps26Particle;
-
-
+    
+    #endregion
+    
     private Vector2 wizardPos = new Vector2(-6, -3.1f);
     private Vector2 JackOPos = new Vector2(6, -3.2f);
-    
+    private Vector3 wizardCamera = new Vector3(-6, -2, -1);
+    private Vector3 jackOCamera = new Vector3(6, -2, -1);
+    private Vector3 origin = new Vector3(0, -5, -1);
+
+    private float hitStopTimer = 0f;
+
+    [SerializeField] private GameObject _cameraObject;
+    private Camera _camera;
 
     private void Start()
     {
+        _camera = _cameraObject.GetComponent<Camera>();
         bombParticleSystem = bomb.GetComponent<ParticleSystem>();
         magicAuraParticle = magicAura.GetComponent<ParticleSystem>();
         magicLightParticle = magicAura.GetComponent<ParticleSystem>();
@@ -115,24 +126,40 @@ public class AttackEffects : MonoBehaviour
         ps26Particle = ps26.GetComponent<ParticleSystem>();
 
     }
+    
+    void Update()
+    {
+        if (hitStopTimer > 0f)
+        {
+            Time.timeScale = 0.01f;
+            hitStopTimer -= Time.deltaTime;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+    }
 
+    void FinishEffect(char lastword, int wordCount)
+    {
+        _jackO.HurtJackO(wordCount);
+        _gameSystem.EnemyTurn();
+        _enemy.Response(lastword, wordCount);
+    }
 
     // 5番目
     // プレイヤーのエフェクト
     public void Attack(char lastword, int wordCount)
     {
         _wizard.AttackWizard();
-        
         WizardMagic();
-        
-        bomb.SetActive(true);
-        bombParticleSystem.Play();
-        
-        _jackO.HurtJackO(wordCount);
-        
-        // シーケンス終了OnCompleteで
-        _gameSystem.EnemyTurn();
-        _enemy.Response(lastword, wordCount);
+        Sequence sequence = DOTween.Sequence();
+        sequence
+            .AppendInterval(2)
+            .AppendCallback(() =>
+            {
+                Effectmanager(lastword,wordCount);
+            });
     }
     
     // 8番目 => 1番目
@@ -153,30 +180,30 @@ public class AttackEffects : MonoBehaviour
     
     
     // 実装する
-    void Effectmanager(int wordNum)
+    void Effectmanager(char lastword,int wordNum)
     {
         switch (wordNum)
         {
             case 2:
-                Level2();
+                Level2(lastword, wordNum);
                 break;
             case 3:
-                Level3();
+                Level3(lastword, wordNum);
                 break;
             case 4:
-                Level4();
+                Level4(lastword, wordNum);
                 break;
             case 5:
-                Level5();
+                Level5(lastword, wordNum);
                 break;
             case 6:
-                Level6();
+                Level6(lastword, wordNum);
                 break;
             case 7:
-                Level7();
+                Level7(lastword, wordNum);
                 break;
             case 8:
-                Level8();
+                Level8(lastword, wordNum);
                 break;
         }
     }
@@ -188,21 +215,32 @@ public class AttackEffects : MonoBehaviour
         magicLightParticle.Play();
     }
 
-    public void Level2()
+    public void Level2(char lastword,int wordNum)
     {
         WizardMagic();
         ps1.transform.position = JackOPos;
         ps2.transform.position = JackOPos;
-        ps1.SetActive(true);
-        ps2.SetActive(true);
-        ps1Particle.Play();
-        ps2Particle.Play();
+        _camera.DOOrthoSize(3, 1f);
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true);
+            .Append(_cameraObject.transform.DOMove(jackOCamera, 1))
+            .AppendCallback(() =>
+            {
+                ps1.SetActive(true);
+                ps2.SetActive(true);
+                ps1Particle.Play();
+                ps2Particle.Play();
+            })
+            .Append(ps2.transform.DOMove(new Vector3(2,2), 1).SetEase(Ease.OutExpo)).SetRelative(true)
+            .OnComplete(() =>
+            {
+                _cameraObject.transform.DOMove(origin, 1);
+                _camera.DOOrthoSize(5, 1f);
+                FinishEffect(lastword, wordNum);
+            });
     }
     
-    public void Level3()
+    public void Level3(char lastword,int wordNum)
     {
         WizardMagic();
         ps3.transform.position = wizardPos + new Vector2(2, 1);
@@ -214,14 +252,31 @@ public class AttackEffects : MonoBehaviour
             .Append(ps3.transform.DOMove(JackOPos, 3).SetEase(Ease.InExpo))
             .AppendCallback(() =>
             {
+                _cameraObject.transform.DOMove(jackOCamera, 0.1f);
+                _camera.DOOrthoSize(3, 0.1f);
+            })
+            .AppendInterval(0.1f)
+            .AppendCallback(() =>
+            {
                 ps4.SetActive(true);
                 ps4Particle.Play();
+                hitStopTimer = 0.01f;
+            })
+            .AppendInterval(0.1f)
+            .AppendCallback(() =>
+            {
+                _cameraObject.transform.DOMove(origin, 0.5f);
+                _camera.DOOrthoSize(5, 0.5f);
             })
             .Append(ps3.transform.DOMoveX(10, 1))
-            .OnComplete(() => ps3.SetActive(false));
+            .OnComplete(() =>
+            {
+                ps3.SetActive(false);
+                FinishEffect(lastword, wordNum);
+            });
     }
     
-    public void Level4()
+    public void Level4(char lastword,int wordNum)
     {
         WizardMagic();
         ps5.transform.position = wizardPos + new Vector2(2, 2);
@@ -236,10 +291,28 @@ public class AttackEffects : MonoBehaviour
                 ps6.SetActive(true);
                 ps6Particle.Play();
             })
-            .OnComplete(() => ps5.SetActive(false));;
+            .AppendInterval(0.2f)
+            .AppendCallback(() =>
+            {
+                _cameraObject.transform.DOMove(jackOCamera, 0.1f);
+                _camera.DOOrthoSize(3, 0.1f);
+            })
+            .AppendInterval(0.3f)
+            .AppendCallback(() => hitStopTimer = 0.01f)
+            .AppendInterval(0.5f)
+            .AppendCallback(() =>
+            {
+                _cameraObject.transform.DOMove(origin, 0.5f);
+                _camera.DOOrthoSize(5, 0.5f);
+            })
+            .OnComplete(() =>
+            {
+                ps5.SetActive(false);
+                FinishEffect(lastword, wordNum);
+            });;
     }
     
-    public void Level5()
+    public void Level5(char lastword,int wordNum)
     {
         WizardMagic();
         ps7.transform.position = wizardPos;
@@ -261,10 +334,21 @@ public class AttackEffects : MonoBehaviour
                 ps9.SetActive(true);
                 ps9Particle.Play();
             })
-            .Append(ps9.transform.DOMoveY(2, 2).SetEase(Ease.OutSine)).SetRelative(true);
+            .Append(ps9.transform.DOMoveY(2, 2).SetEase(Ease.OutSine)).SetRelative(true)
+            .OnStart(() =>
+            {
+                _cameraObject.transform.DOMove(wizardCamera, 1f);
+                _camera.DOOrthoSize(4, 1f);
+            })
+            .OnComplete(() =>
+            {
+                _cameraObject.transform.DOMove(origin, 0.5f);
+                _camera.DOOrthoSize(5, 0.5f);
+                FinishEffect(lastword, wordNum);
+            });
     }
     
-    public void Level6()
+    public void Level6(char lastword,int wordNum)
     {
         WizardMagic();
         ps10.transform.position = wizardPos + new Vector2(2,2);
@@ -285,19 +369,32 @@ public class AttackEffects : MonoBehaviour
                 ps11.SetActive(false);
                 ps12.SetActive(true);
                 ps12Particle.Play();
+                _cameraObject.transform.DOMove(jackOCamera, 0.9f);
+                _camera.DOOrthoSize(3, 0.9f);
             })
-            .AppendInterval(1)
-            .AppendCallback(() => ps10.SetActive(false));
+            .AppendInterval(1f)
+            .AppendCallback(() =>
+            {
+                hitStopTimer = 0.015f;
+                ps10.SetActive(false);
+            })
+            .AppendInterval(0.3f)
+            .OnComplete(() =>
+            {
+                _cameraObject.transform.DOMove(origin, 0.5f);
+                _camera.DOOrthoSize(5, 0.5f);
+                FinishEffect(lastword, wordNum);
+            });
     }
     
-    public void Level7()
+    public void Level7(char lastword,int wordNum)
     {
         WizardMagic();
         ps13.transform.position = wizardPos;
         ps14.transform.position = JackOPos + new Vector2(0,2);
         ps15.transform.position = JackOPos + new Vector2(0,2);
-        ps16.transform.position = JackOPos + new Vector2(0, -0.8f);
-        
+        ps16.transform.position = new Vector3(6,-4,10);
+
         ps13.SetActive(true);
         ps13Particle.Play();
         Sequence sequence = DOTween.Sequence();
@@ -305,6 +402,8 @@ public class AttackEffects : MonoBehaviour
             .Append(ps13.transform.DOMove(JackOPos + new Vector2(0,2), 5))
             .AppendCallback(() =>
             {
+                _cameraObject.transform.DOMove(jackOCamera, 0.5f);
+                _camera.DOOrthoSize(3, 0.5f);
                 ps14.SetActive(true);
                 ps14Particle.Play();
                 ps15.SetActive(true);
@@ -320,12 +419,15 @@ public class AttackEffects : MonoBehaviour
             .AppendInterval(2)
             .OnComplete(() =>
             {
+                _cameraObject.transform.DOMove(origin, 0.5f);
+                _camera.DOOrthoSize(5, 0.5f);
                 ps15.SetActive(false);
                 ps16.SetActive(false);
+                FinishEffect(lastword, wordNum);
             });
     }
     
-    public void Level8()
+    public void Level8(char lastword,int wordNum)
     {
         WizardMagic();
         Vector2 grond = new Vector2(6, -4);
@@ -356,6 +458,11 @@ public class AttackEffects : MonoBehaviour
             .Join(ps19.transform.DOMove( JackOPos + new Vector2(-4,0), 2))
             .Join(ps20.transform.DOMove( JackOPos + new Vector2(2,2), 2))
             .Join(ps21.transform.DOMove( JackOPos + new Vector2(-2,2), 2))
+            .AppendCallback(() =>
+            {
+                _cameraObject.transform.DOMove(jackOCamera, 0.5f);
+                _camera.DOOrthoSize(4, 0.5f);
+            })
             .Append(ps17.transform.DOMove( JackOPos, 1))
             .AppendCallback(() =>
             {
@@ -388,11 +495,14 @@ public class AttackEffects : MonoBehaviour
             })
             .OnComplete(() =>
             {
+                _cameraObject.transform.DOMove(origin, 0.5f);
+                _camera.DOOrthoSize(5, 0.5f);
                 ps17.SetActive(false);
                 ps18.SetActive(false);
                 ps19.SetActive(false);
                 ps20.SetActive(false);
                 ps21.SetActive(false);
+                FinishEffect(lastword, wordNum);
             });
     }
 }
