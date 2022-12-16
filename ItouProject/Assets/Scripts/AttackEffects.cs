@@ -12,13 +12,11 @@ public class AttackEffects : MonoBehaviour
     private ParticleSystem magicAuraParticle;
     [SerializeField] private GameObject magicLight;
     private ParticleSystem magicLightParticle;
-
+    
     [SerializeField] private Enemy _enemy;
     [SerializeField] private Wizard _wizard;
     [SerializeField] private JackO _jackO;
     [SerializeField] private GameSystem _gameSystem;
-
-    #region Effect
 
     [SerializeField] private GameObject ps1;
     [SerializeField] private GameObject ps2;
@@ -78,9 +76,7 @@ public class AttackEffects : MonoBehaviour
     private ParticleSystem ps24Particle;
     private ParticleSystem ps25Particle;
     private ParticleSystem ps26Particle;
-    
-    #endregion
-    
+
     private Vector2 wizardPos = new Vector2(-6, -3.1f);
     private Vector2 JackOPos = new Vector2(6, -3.2f);
     private Vector3 wizardCamera = new Vector3(-6, -2, -1);
@@ -220,10 +216,15 @@ public class AttackEffects : MonoBehaviour
         WizardMagic();
         ps1.transform.position = JackOPos;
         ps2.transform.position = JackOPos;
-        _camera.DOOrthoSize(3, 1f);
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(_cameraObject.transform.DOMove(jackOCamera, 1))
+            .AppendInterval(0.1f)
+            .AppendCallback(() =>
+            {
+                _cameraObject.transform.DOMove(jackOCamera, 0.5f);
+                _camera.DOOrthoSize(3, 0.5f);
+            })
+            .AppendInterval(0.5f)
             .AppendCallback(() =>
             {
                 ps1.SetActive(true);
