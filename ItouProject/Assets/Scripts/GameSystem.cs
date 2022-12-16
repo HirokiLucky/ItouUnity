@@ -23,6 +23,7 @@ public class GameSystem : MonoBehaviour
     [SerializeField] private Listenner _listenner;
     [SerializeField] private DOTurnStart _doTurnStart;
     [SerializeField] private DOTurnStart _doTurnStartEnemy;
+    [SerializeField] private DOGameStart _doGameStart;
     
     GameObject clickedGameObject;
     [NonSerialized]public GameObject clickedGameObject_save;
@@ -52,7 +53,8 @@ public class GameSystem : MonoBehaviour
     private void Start()
     {
         cards = new[] { card2, card3, card4, card5, card6, card7, card8};
-        Invoke("YourTurn", 1f);
+        _doGameStart.GameStart();
+        Invoke("YourTurn", 5f);
     }
 
     private void Update()
