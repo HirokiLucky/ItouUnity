@@ -5911,7 +5911,7 @@ MonoBehaviour:
   _listenner: {fileID: 1715277207}
   _doTurnStart: {fileID: 462862587}
   _doTurnStartEnemy: {fileID: 1326313118}
-  _doGameStart: {fileID: 0}
+  _doGameStart: {fileID: 1242238998}
   magicButton: {fileID: 801608288}
   stopButton: {fileID: 995361436}
   magicBook: {fileID: 2105449447}
