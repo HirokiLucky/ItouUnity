@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
 
+
+// ネットワーク
 [Obsolete("Obsolete")]
 public class Player : NetworkBehaviour
 {
     private NetworkCharacterController _cc;
-
+    
     private void Awake()
     {
         _cc = GetComponent<NetworkCharacterController>();
