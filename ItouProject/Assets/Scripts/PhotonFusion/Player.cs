@@ -5,7 +5,7 @@ using Fusion;
 using UnityEngine;
 
 
-// ネットワーク
+// Photon ネットワーク関係
 [Obsolete("Obsolete")]
 public class Player : NetworkBehaviour
 {
