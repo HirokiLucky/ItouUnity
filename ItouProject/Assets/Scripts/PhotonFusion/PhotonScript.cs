@@ -14,7 +14,7 @@ public class PhotonScript : MonoBehaviour, INetworkRunnerCallbacks
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         Debug.Log("aaaaaaaaa");
-        if (runner.IsClient)
+        if (runner.GameMode == GameMode.Client)
         {
             runner.Spawn(prefabClient, new Vector3(6, -3.2f,0), Quaternion.identity, player);
         }
@@ -22,7 +22,6 @@ public class PhotonScript : MonoBehaviour, INetworkRunnerCallbacks
         {
             runner.Spawn(prefabClient, new Vector3(-6, -3.2f, 0), Quaternion.identity, player);
         }
-        
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
@@ -86,17 +85,27 @@ public class PhotonScript : MonoBehaviour, INetworkRunnerCallbacks
     public void OnSceneLoadStart(NetworkRunner runner)
     {
     }
+
+    public void OnClickHost()
+    {
+        StartGame(GameMode.Host);
+    }
+
+    public void OnClickClient()
+    {
+        StartGame(GameMode.Client);
+    }
     
     private NetworkRunner _networkRunner;
 
-    private void Start()
+    private void StartGame(GameMode mode)
     {
         _networkRunner = GetComponent<NetworkRunner>();
         _networkRunner.ProvideInput = true;
 
         _networkRunner.StartGame(new StartGameArgs()
         {
-            GameMode = GameMode.AutoHostOrClient,
+            GameMode = mode,
             SessionName = "PlayRoom",
             Scene = SceneManager.GetActiveScene().buildIndex
             //SceneObjectProvider = GetComponent<NetworkSceneManagerDefault>()
