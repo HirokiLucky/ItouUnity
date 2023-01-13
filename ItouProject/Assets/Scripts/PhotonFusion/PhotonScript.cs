@@ -14,7 +14,8 @@ public class PhotonScript : MonoBehaviour, INetworkRunnerCallbacks
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         Debug.Log("aaaaaaaaa");
-        if (runner.GameMode == GameMode.Client)
+        Debug.Log(runner.Config);
+        if ((runner.Mode & SimulationModes.Host) != 0)
         {
             runner.Spawn(prefabClient, new Vector3(6, -3.2f,0), Quaternion.identity, player);
         }
