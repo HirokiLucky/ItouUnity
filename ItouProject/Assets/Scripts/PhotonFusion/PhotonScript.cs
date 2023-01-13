@@ -13,20 +13,19 @@ public class PhotonScript : MonoBehaviour, INetworkRunnerCallbacks
     
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        Debug.Log("aaaaaaaaa");
-        Debug.Log(runner.Config);
-        if ((runner.Mode & SimulationModes.Host) != 0)
+        Debug.Log("プレイヤーが入室しました");
+        Debug.Log(runner.GameMode);
+        if(runner.GameMode == GameMode.Host)
         {
+            Debug.Log("host");
+            runner.Spawn(prefabHost, new Vector3(-6, -3.2f, 0), Quaternion.identity, player);
             runner.Spawn(prefabClient, new Vector3(6, -3.2f,0), Quaternion.identity, player);
-        }
-        else
-        {
-            runner.Spawn(prefabClient, new Vector3(-6, -3.2f, 0), Quaternion.identity, player);
         }
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
+        Debug.Log("プレイヤーが退室しました");
     }
 
     public void OnInput(NetworkRunner runner, Fusion.NetworkInput input)
