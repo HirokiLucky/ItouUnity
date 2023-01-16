@@ -48,7 +48,9 @@ public class GameSystem : MonoBehaviour
     private GameObject[] cards;
     private Vector2 cardSporn = new Vector2(7.6f, -7.25f);
 
-    
+    [SerializeField] private TextMeshProUGUI timer;
+
+
 
     private void Start()
     {
@@ -104,7 +106,8 @@ public class GameSystem : MonoBehaviour
         sequence
             .Append(selectCard1.transform.DOMoveX(-14f, 1)).SetRelative(true)
             .Join(selectCard2.transform.DOMoveX(-9f, 1).SetRelative(true))
-            .Join(selectCard3.transform.DOMoveX(-4f, 1)).SetRelative(true);
+            .Join(selectCard3.transform.DOMoveX(-4f, 1)).SetRelative(true)
+            .AppendCallback(() => StartCoroutine("Timer", 30));
     }
 
     void RandomCard()
@@ -207,5 +210,22 @@ public class GameSystem : MonoBehaviour
     {
         magicBook.SetActive(true);
         clearImage.SetActive(true);
+    }
+
+    public IEnumerator Timer(int num)
+    {
+        timer.text = num.ToString();
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            num--;
+            timer.text = num.ToString();
+            if (num == 0)
+            {
+                Debug.Log("時間切れです");
+                StopCoroutine("Timer");
+            }
+            
+        }
     }
 }

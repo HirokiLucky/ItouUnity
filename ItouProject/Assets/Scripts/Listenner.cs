@@ -70,6 +70,7 @@ public class Listenner : MonoBehaviour
         wordCount = args.text.Length - 2;
         m_Recognizer.Stop();
         m_Recognizer.Dispose();
+        _gameSystem.StopCoroutine("Timer");
         magicButton.SetActive(false);
         stopButton.SetActive(false);
         m_speechToTextButton.interactable = true;
