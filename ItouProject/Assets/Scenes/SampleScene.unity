@@ -6125,6 +6125,7 @@ MonoBehaviour:
   yourTurn: {fileID: 315491193}
   enemyTurn: {fileID: 2058381070}
   returnText: {fileID: 1815332299}
+  returnTextUI: {fileID: 1815332303}
   _scrollViews: {fileID: 1591701925}
   _enemy: {fileID: 1926255157}
   _wizard: {fileID: 566675661}
