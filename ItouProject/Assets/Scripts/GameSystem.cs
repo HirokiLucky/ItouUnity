@@ -56,7 +56,6 @@ public class GameSystem : MonoBehaviour
     {
         cards = new[] { card2, card3, card4, card5, card6, card7, card8};
         _doGameStart.GameStart();
-        Invoke("YourTurn", 5f);
     }
 
     private void Update()
@@ -194,9 +193,10 @@ public class GameSystem : MonoBehaviour
             .Append(returnText.DOAnchorPosX(550, 0));
     }
     
-    public void EnemyTurn()
+    public void EnemyTurn(char lastword, int wordCount)
     {
         _doTurnStartEnemy.TurnStart();
+        _enemy.Response(lastword, wordCount);
     }
 
     public void GameOver()

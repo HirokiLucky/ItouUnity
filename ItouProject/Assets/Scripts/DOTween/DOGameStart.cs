@@ -10,8 +10,9 @@ using Sequence = DG.Tweening.Sequence;
 
 public class DOGameStart : MonoBehaviour
 {
+    [SerializeField] private GameSystem _gameSystem;
+    
     [SerializeField] private GameObject cameraObject;
-    private Camera _camera;
 
     [SerializeField] private GameObject bat;
     [SerializeField] private ParticleSystem batPS;
@@ -30,7 +31,6 @@ public class DOGameStart : MonoBehaviour
     
     void Start()
     {
-        _camera = cameraObject.GetComponent<Camera>();
         blackImage = black.GetComponent<Image>();
         parentRect = parent.GetComponent<RectTransform>();
     }
@@ -69,6 +69,8 @@ public class DOGameStart : MonoBehaviour
             .OnComplete(() =>
             {
                 parent.SetActive(false);
+                if(firstAttackVariable) _gameSystem.YourTurn();
+                else _gameSystem.EnemyTurn('り', 3);
             });
     }
 

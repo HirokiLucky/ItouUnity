@@ -6158,6 +6158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf27fdff4df7074cbd95455f71b2953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameSystem: {fileID: 1242238997}
   cameraObject: {fileID: 519420028}
   bat: {fileID: 1468457227}
   batPS: {fileID: 1468457230}
@@ -6166,6 +6167,7 @@ MonoBehaviour:
   secondAttack: {fileID: 1847057837}
   yazirushiParent: {fileID: 1985584665}
   black: {fileID: 1032057903}
+  firstAttackVariable: 0
 --- !u!1 &1244168027
 GameObject:
   m_ObjectHideFlags: 0

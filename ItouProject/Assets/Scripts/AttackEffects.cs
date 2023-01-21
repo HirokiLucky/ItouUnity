@@ -139,8 +139,7 @@ public class AttackEffects : MonoBehaviour
     void FinishEffect(char lastword, int wordCount)
     {
         _jackO.HurtJackO(wordCount);
-        _gameSystem.EnemyTurn();
-        _enemy.Response(lastword, wordCount);
+        _gameSystem.EnemyTurn(lastword, wordCount);
     }
 
     // 5番目
