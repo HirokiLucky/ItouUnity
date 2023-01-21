@@ -130,6 +130,9 @@ public class GameSystem : MonoBehaviour
             case 'っ':
                 lastWord = 'つ';
                 break;
+            case 'を':
+                lastWord = 'お';
+                break;
             default:
                 lastWord = word;
                 break;
