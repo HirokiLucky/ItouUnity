@@ -76,8 +76,8 @@ public class GameSystem : MonoBehaviour
             _scrollViews.AddText(addWord);
             wordList.Add(addWord);
             Debug.Log(wordList.Count);
-
-            lastWord = addWord.LastOrDefault();
+            
+            LastWordConversion(addWord.LastOrDefault());
             if (lastWord == 'ん')
             {
                 Debug.Log("game over");
@@ -88,7 +88,7 @@ public class GameSystem : MonoBehaviour
     
     public void AddWordListEnemy(string addWord)
     {
-        lastWord = addWord.LastOrDefault();
+        LastWordConversion(addWord.LastOrDefault());
         if (wordList.Contains(addWord)) Debug.Log("既に言われた言葉でした");
         else if (lastWord == 'ん') Debug.Log("game over　Enemy");
         
@@ -97,6 +97,40 @@ public class GameSystem : MonoBehaviour
         Debug.Log(wordList.Count);
         
         lastWordUI.text = "「" + lastWord + "」から始まる";
+    }
+
+    void LastWordConversion(char word)
+    {
+        switch (word)
+        {
+            case 'ぁ':
+                lastWord = 'あ';
+                break;
+            case 'ぃ':
+                lastWord = 'い';
+                break;
+            case 'ぅ':
+                lastWord = 'う';
+                break;
+            case 'ぇ':
+                lastWord = 'え';
+                break;
+            case 'ぉ':
+                lastWord = 'お';
+                break;
+            case 'ゃ':
+                lastWord = 'や';
+                break;
+            case 'ゅ':
+                lastWord = 'ゆ';
+                break;
+            case 'ょ':
+                lastWord = 'よ';
+                break;
+            default:
+                lastWord = word;
+                break;
+        }
     }
     
     // 1番目
@@ -224,7 +258,6 @@ public class GameSystem : MonoBehaviour
             timer.text = num.ToString();
             if (num == 0)
             {
-                Debug.Log("時間切れです");
                 returnTextUI.text = "Time UP !";
                 ReturnText();
                 _listenner.OnClickStop();
