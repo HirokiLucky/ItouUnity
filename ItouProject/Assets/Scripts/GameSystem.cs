@@ -5,6 +5,7 @@ using System.Linq;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GameSystem : MonoBehaviour
@@ -15,6 +16,7 @@ public class GameSystem : MonoBehaviour
     [SerializeField] private RectTransform yourTurn;
     [SerializeField] private RectTransform enemyTurn;
     [SerializeField] private RectTransform returnText;
+    [SerializeField] private Text returnTextUI;
 
     [SerializeField] private ScrollViews _scrollViews;
     [SerializeField] private Enemy _enemy;
@@ -223,9 +225,21 @@ public class GameSystem : MonoBehaviour
             if (num == 0)
             {
                 Debug.Log("時間切れです");
+                returnTextUI.text = "Time UP !";
+                ReturnText();
+                _listenner.OnClickStop();
                 StopCoroutine("Timer");
+                magicButton.SetActive(false);
+                stopButton.SetActive(false);
+                Destroy(selectCard1);
+                Destroy(selectCard2);
+                Destroy(selectCard3);
+                Destroy(clickedGameObject_save);
+                Sequence sequence = DOTween.Sequence();
+                sequence
+                    .AppendInterval(3)
+                    .OnComplete(() => EnemyTurn(lastWord, 3));
             }
-            
         }
     }
 }
