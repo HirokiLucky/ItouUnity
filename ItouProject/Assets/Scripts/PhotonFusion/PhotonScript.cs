@@ -10,7 +10,7 @@ public class PhotonScript : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private NetworkPrefabRef prefabHost;
     [SerializeField] private NetworkPrefabRef prefabClient;
-    
+
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         Debug.Log("プレイヤーが入室しました");
