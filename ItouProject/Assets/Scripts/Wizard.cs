@@ -49,6 +49,8 @@ public class Wizard : MonoBehaviour
         }
     }
     
+    
+    // 攻撃時の関数
     public void AttackWizard()
     {
         _animator.SetTrigger(Attack);
