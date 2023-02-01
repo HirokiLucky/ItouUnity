@@ -139,8 +139,7 @@ public class AttackEffects : MonoBehaviour
     void FinishEffect(char lastword, int wordCount)
     {
         _jackO.HurtJackO(wordCount);
-        _gameSystem.EnemyTurn();
-        _enemy.Response(lastword, wordCount);
+        if(_jackO.hpJackO > 0) _gameSystem.EnemyTurn(lastword, wordCount);
     }
 
     // 5番目
@@ -169,9 +168,7 @@ public class AttackEffects : MonoBehaviour
         bombParticleSystem.Play();
         
         _wizard.HurtWizard(wordCount);
-        
-        // シーケンス終了OnCompleteで
-        _gameSystem.YourTurn();
+        if(_wizard.hpWizard > 0) _gameSystem.YourTurn();
     }
     
     

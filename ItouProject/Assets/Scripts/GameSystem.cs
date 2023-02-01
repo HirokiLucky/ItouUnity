@@ -5,6 +5,7 @@ using System.Linq;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GameSystem : MonoBehaviour
@@ -15,6 +16,7 @@ public class GameSystem : MonoBehaviour
     [SerializeField] private RectTransform yourTurn;
     [SerializeField] private RectTransform enemyTurn;
     [SerializeField] private RectTransform returnText;
+    [SerializeField] private Text returnTextUI;
 
     [SerializeField] private ScrollViews _scrollViews;
     [SerializeField] private Enemy _enemy;
@@ -56,7 +58,6 @@ public class GameSystem : MonoBehaviour
     {
         cards = new[] { card2, card3, card4, card5, card6, card7, card8};
         _doGameStart.GameStart();
-        Invoke("YourTurn", 5f);
     }
 
     private void Update()
@@ -75,8 +76,8 @@ public class GameSystem : MonoBehaviour
             _scrollViews.AddText(addWord);
             wordList.Add(addWord);
             Debug.Log(wordList.Count);
-
-            lastWord = addWord.LastOrDefault();
+            
+            LastWordConversion(addWord.LastOrDefault());
             if (lastWord == 'ん')
             {
                 Debug.Log("game over");
@@ -87,7 +88,7 @@ public class GameSystem : MonoBehaviour
     
     public void AddWordListEnemy(string addWord)
     {
-        lastWord = addWord.LastOrDefault();
+        LastWordConversion(addWord.LastOrDefault());
         if (wordList.Contains(addWord)) Debug.Log("既に言われた言葉でした");
         else if (lastWord == 'ん') Debug.Log("game over　Enemy");
         
@@ -96,6 +97,46 @@ public class GameSystem : MonoBehaviour
         Debug.Log(wordList.Count);
         
         lastWordUI.text = "「" + lastWord + "」から始まる";
+    }
+
+    void LastWordConversion(char word)
+    {
+        switch (word)
+        {
+            case 'ぁ':
+                lastWord = 'あ';
+                break;
+            case 'ぃ':
+                lastWord = 'い';
+                break;
+            case 'ぅ':
+                lastWord = 'う';
+                break;
+            case 'ぇ':
+                lastWord = 'え';
+                break;
+            case 'ぉ':
+                lastWord = 'お';
+                break;
+            case 'ゃ':
+                lastWord = 'や';
+                break;
+            case 'ゅ':
+                lastWord = 'ゆ';
+                break;
+            case 'ょ':
+                lastWord = 'よ';
+                break;
+            case 'っ':
+                lastWord = 'つ';
+                break;
+            case 'を':
+                lastWord = 'お';
+                break;
+            default:
+                lastWord = word;
+                break;
+        }
     }
     
     // 1番目
@@ -194,9 +235,10 @@ public class GameSystem : MonoBehaviour
             .Append(returnText.DOAnchorPosX(550, 0));
     }
     
-    public void EnemyTurn()
+    public void EnemyTurn(char lastword, int wordCount)
     {
         _doTurnStartEnemy.TurnStart();
+        _enemy.Response(lastword, wordCount);
     }
 
     public void GameOver()
@@ -222,10 +264,21 @@ public class GameSystem : MonoBehaviour
             timer.text = num.ToString();
             if (num == 0)
             {
-                Debug.Log("時間切れです");
+                returnTextUI.text = "Time UP !";
+                ReturnText();
+                _listenner.OnClickStop();
                 StopCoroutine("Timer");
+                magicButton.SetActive(false);
+                stopButton.SetActive(false);
+                Destroy(selectCard1);
+                Destroy(selectCard2);
+                Destroy(selectCard3);
+                Destroy(clickedGameObject_save);
+                Sequence sequence = DOTween.Sequence();
+                sequence
+                    .AppendInterval(3)
+                    .OnComplete(() => EnemyTurn(lastWord, 3));
             }
-            
         }
     }
 }
