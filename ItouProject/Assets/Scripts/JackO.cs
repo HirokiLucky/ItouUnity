@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+//敵のスクリプト
 public class JackO : MonoBehaviour
 {
     private Animator _animator;
@@ -26,7 +27,7 @@ public class JackO : MonoBehaviour
         magicAuraParticle = magicAura.GetComponent<ParticleSystem>();
     }
     
-
+    # 
     public void DeadJackO()
     {
         _animator.SetTrigger(Dead);
