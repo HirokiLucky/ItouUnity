@@ -5,6 +5,7 @@ using System.Linq;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -51,6 +52,7 @@ public class GameSystem : MonoBehaviour
     private Vector2 cardSporn = new Vector2(7.6f, -7.25f);
 
     [SerializeField] private TextMeshProUGUI timer;
+    [SerializeField] private GameObject screenButton;
 
 
 
@@ -91,7 +93,7 @@ public class GameSystem : MonoBehaviour
         return true;
     }
     
-    public void AddWordListEnemy(string addWord)
+    public bool AddWordListEnemy(string addWord)
     {
         LastWordConversion(addWord.LastOrDefault());
         if (wordList.Contains(addWord)) Debug.Log("既に言われた言葉でした");
@@ -99,6 +101,7 @@ public class GameSystem : MonoBehaviour
         {
             GameClear();
             Debug.Log("game over　Enemy");
+            return false;
         }
         
         _scrollViews.AddText(addWord);
@@ -106,6 +109,8 @@ public class GameSystem : MonoBehaviour
         Debug.Log(wordList.Count);
         
         lastWordUI.text = "「" + lastWord + "」から始まる";
+
+        return true;
     }
 
     void LastWordConversion(char word)
@@ -254,6 +259,7 @@ public class GameSystem : MonoBehaviour
     {
         magicBook.SetActive(true);
         failImage.SetActive(true);
+        screenButton.SetActive(true);
         Debug.Log("You Lose ...");
     }
 
@@ -261,7 +267,13 @@ public class GameSystem : MonoBehaviour
     {
         magicBook.SetActive(true);
         clearImage.SetActive(true);
+        screenButton.SetActive(true);
         Debug.Log("You Win !!");
+    }
+
+    public void OnClickScreenButoon()
+    {
+        SceneManager.LoadScene("TitleScene");
     }
 
     public IEnumerator Timer(int num)

@@ -151,7 +151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &29443451
 RectTransform:
   m_ObjectHideFlags: 0
@@ -216,7 +216,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 29443453}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1242238997}
+        m_TargetAssemblyTypeName: GameSystem, Assembly-CSharp
+        m_MethodName: OnClickScreenButoon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &29443453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2679,6 +2691,7 @@ MonoBehaviour:
   _gameSystem: {fileID: 1242238997}
   hpWizard: 10
   hp: {fileID: 986273669}
+  screenButton: {fileID: 29443450}
 --- !u!1001 &572279421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6405,6 +6418,7 @@ MonoBehaviour:
   card7: {fileID: 5536811286917420152, guid: 48589fb14f5d8a94c8edf09f44c576c3, type: 3}
   card8: {fileID: 3261299180412147608, guid: 373f5bdd9d70a5e49803a792b68b4c74, type: 3}
   timer: {fileID: 1244168029}
+  screenButton: {fileID: 29443450}
 --- !u!114 &1242238998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12613,6 +12627,7 @@ MonoBehaviour:
   _gameSystem: {fileID: 1242238997}
   magicAura: {fileID: 12727203}
   hp: {fileID: 1064690352}
+  screenButton: {fileID: 29443450}
 --- !u!114 &1926255157
 MonoBehaviour:
   m_ObjectHideFlags: 0

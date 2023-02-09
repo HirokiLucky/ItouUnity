@@ -20,7 +20,7 @@ public class Wizard : MonoBehaviour
     private static readonly int Hurt = Animator.StringToHash("Hurt");
     private static readonly int Attack = Animator.StringToHash("Attack");
     
-    
+    [SerializeField] private GameObject screenButton;
 
 
     void Start()
@@ -46,6 +46,7 @@ public class Wizard : MonoBehaviour
             Debug.Log("魔法使いダウン");
             DeadWizard();
             _gameSystem.GameOver();
+            screenButton.SetActive(true);
         }
     }
     

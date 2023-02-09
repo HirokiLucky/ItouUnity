@@ -20,6 +20,8 @@ public class JackO : MonoBehaviour
     private static readonly int Hurt = Animator.StringToHash("Hurt");
     private static readonly int Attack = Animator.StringToHash("Attack");
 
+    [SerializeField] private GameObject screenButton;
+
 
     void Start()
     {
@@ -42,6 +44,7 @@ public class JackO : MonoBehaviour
             Debug.Log("ジャックダウン");
             DeadJackO();
             _gameSystem.GameClear();
+            screenButton.SetActive(true);
         }
     }
     

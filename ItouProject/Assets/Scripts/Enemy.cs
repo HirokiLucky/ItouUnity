@@ -26,8 +26,8 @@ public class Enemy : MonoBehaviour
         string res = seachWord[num];
         Debug.Log(res);
         
-        _gameSystem.AddWordListEnemy(res);
+        bool lastWordJudge = _gameSystem.AddWordListEnemy(res);
         
-        _attackEffects.Attack(wordCount);
+        if(lastWordJudge)_attackEffects.Attack(wordCount);
     }
 }
