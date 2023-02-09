@@ -294,6 +294,7 @@ public class GameSystem : MonoBehaviour
                 StopCoroutine("Timer");
                 magicButton.SetActive(false);
                 stopButton.SetActive(false);
+                magicUI.SetActive(false);
                 Destroy(selectCard1);
                 Destroy(selectCard2);
                 Destroy(selectCard3);
