@@ -32,6 +32,7 @@ public class GameSystem : MonoBehaviour
     [NonSerialized]public GameObject clickedGameObject_save;
     [SerializeField] private GameObject magicButton;
     [SerializeField] private GameObject stopButton;
+    [SerializeField] private GameObject magicUI;
     [SerializeField] private GameObject magicBook;
     [SerializeField] private GameObject clearImage;
     [SerializeField] private GameObject failImage;
@@ -86,7 +87,7 @@ public class GameSystem : MonoBehaviour
                 Debug.Log("game over");
                 return false;
             }
-            lastWordUI.text = "「" + lastWord + "」から始まる";
+            lastWordUI.text = "「" + lastWord + "」をとなえろ!";
             return true;
         }
 
@@ -108,7 +109,7 @@ public class GameSystem : MonoBehaviour
         wordList.Add(addWord);
         Debug.Log(wordList.Count);
         
-        lastWordUI.text = "「" + lastWord + "」から始まる";
+        lastWordUI.text = "「" + lastWord + "」をとなえろ!";
 
         return true;
     }
@@ -199,6 +200,7 @@ public class GameSystem : MonoBehaviour
                     Debug.Log(clickedGameObject);
                     magicButton.SetActive(true);
                     stopButton.SetActive(true);
+                    magicUI.SetActive(true);
                     SelectCard();
                 }
             }

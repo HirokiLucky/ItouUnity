@@ -31,6 +31,7 @@ public class Listenner : MonoBehaviour
 
     [SerializeField] private GameObject magicButton;
     [SerializeField] private GameObject stopButton;
+    [SerializeField] private GameObject magicUI;
 
     private void Start()
     {
@@ -73,6 +74,7 @@ public class Listenner : MonoBehaviour
         _gameSystem.StopCoroutine("Timer");
         magicButton.SetActive(false);
         stopButton.SetActive(false);
+        magicUI.SetActive(false);
         m_speechToTextButton.interactable = true;
         Destroy(_gameSystem.clickedGameObject_save);
         if(lastWordJudge) _attackEffects.Attack(_gameSystem.lastWord, args.text.Length);
