@@ -65,7 +65,7 @@ public class GameSystem : MonoBehaviour
         ClickCard();
     }
     
-    public void AddWordList(string addWord)
+    public bool AddWordList(string addWord)
     {
         if (wordList.Contains(addWord))
         {
@@ -80,17 +80,26 @@ public class GameSystem : MonoBehaviour
             LastWordConversion(addWord.LastOrDefault());
             if (lastWord == 'ん')
             {
+                GameOver();
                 Debug.Log("game over");
+                return false;
             }
             lastWordUI.text = "「" + lastWord + "」から始まる";
+            return true;
         }
+
+        return true;
     }
     
     public void AddWordListEnemy(string addWord)
     {
         LastWordConversion(addWord.LastOrDefault());
         if (wordList.Contains(addWord)) Debug.Log("既に言われた言葉でした");
-        else if (lastWord == 'ん') Debug.Log("game over　Enemy");
+        else if (lastWord == 'ん')
+        {
+            GameClear();
+            Debug.Log("game over　Enemy");
+        }
         
         _scrollViews.AddText(addWord);
         wordList.Add(addWord);
@@ -252,6 +261,7 @@ public class GameSystem : MonoBehaviour
     {
         magicBook.SetActive(true);
         clearImage.SetActive(true);
+        Debug.Log("You Win !!");
     }
 
     public IEnumerator Timer(int num)

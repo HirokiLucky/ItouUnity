@@ -64,7 +64,7 @@ public class Listenner : MonoBehaviour
         builder.AppendFormat("\tDuration: {0} seconds{1}", args.phraseDuration.TotalSeconds, Environment.NewLine);
         Debug.Log(builder.ToString());
         
-        _gameSystem.AddWordList(args.text);
+        bool lastWordJudge = _gameSystem.AddWordList(args.text);
         ReturnText.text = args.text;
         _gameSystem.ReturnText();
         wordCount = args.text.Length - 2;
@@ -75,7 +75,7 @@ public class Listenner : MonoBehaviour
         stopButton.SetActive(false);
         m_speechToTextButton.interactable = true;
         Destroy(_gameSystem.clickedGameObject_save);
-        _attackEffects.Attack(_gameSystem.lastWord, args.text.Length);
+        if(lastWordJudge) _attackEffects.Attack(_gameSystem.lastWord, args.text.Length);
     }
 
     public void OnClickStop()

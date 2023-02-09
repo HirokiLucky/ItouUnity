@@ -27,7 +27,6 @@ public class JackO : MonoBehaviour
         magicAuraParticle = magicAura.GetComponent<ParticleSystem>();
     }
     
-    # 
     public void DeadJackO()
     {
         _animator.SetTrigger(Dead);
