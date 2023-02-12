@@ -12,7 +12,7 @@ public class SoundScript : MonoBehaviour
     }
 
     void Update () {
-        if (Input.GetKey (KeyCode.LeftArrow)) {
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) {
             //音(sound1)を鳴らす
             audioSource.PlayOneShot(sound1);
         }
