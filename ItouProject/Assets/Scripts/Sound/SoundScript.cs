@@ -17,7 +17,8 @@ public class SoundScript : MonoBehaviour
     public AudioClip thunderAttack;
     public AudioClip heal;
     public AudioClip faa;
-    public AudioClip a;
+    public AudioClip magic;
+    public AudioClip glass;
     public AudioClip sound10;
     AudioSource audioSource;
 
@@ -100,6 +101,16 @@ public class SoundScript : MonoBehaviour
     }
 
     // Level6(ハート)
+    public void Level6MagicSE()
+    {
+        audioSource.PlayOneShot(magic);
+    }
+    
+    public void Level6GlassSE()
+    {
+        audioSource.PlayOneShot(glass);
+    }
+    
     // Level7(上から落ちてくる)
     // Level8(爆弾)
 }
