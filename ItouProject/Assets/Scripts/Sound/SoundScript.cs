@@ -9,10 +9,15 @@ public class SoundScript : MonoBehaviour
     public AudioClip roll;
     public AudioClip finishRoll;
     public AudioClip slowMotion;
-    public AudioClip sound6;
-    public AudioClip sound7;
-    public AudioClip sound8;
-    public AudioClip sound9;
+    public AudioClip returnTextSE;
+    public AudioClip hirateuti;
+    public AudioClip fire;
+    public AudioClip SlashSword;
+    public AudioClip thunderStart;
+    public AudioClip thunderAttack;
+    public AudioClip heal;
+    public AudioClip faa;
+    public AudioClip a;
     public AudioClip sound10;
     AudioSource audioSource;
 
@@ -21,33 +26,80 @@ public class SoundScript : MonoBehaviour
     }
     
     // シーン開始のコウモリエフェクト用
-    public void BatFly()
+    public void BatFlySE()
     {
         audioSource.PlayOneShot(bat);
     }
     
     // 先行後攻のUI用
-    public void DropJudge()
+    public void DropJudgeSE()
     {
         audioSource.PlayOneShot(dropJudge);
     }
     
-    public void Roll()
+    public void RollSE()
     {
         audioSource.PlayOneShot(roll);
     }
     
-    public void FinishRoll()
+    public void FinishRollSE()
     {
         audioSource.PlayOneShot(finishRoll);
     }
     
     // ターン開始UI用
-    public void StartTurn()
+    public void StartTurnSE()
     {
         audioSource.PlayOneShot(slowMotion);
     }
     
     // 認識文字用
+    public void ReturnTextUISE()
+    {
+        audioSource.PlayOneShot(returnTextSE);
+    }
     
+    // 攻撃用
+    // Level2(はたく)
+    public void Level2SE()
+    {
+        audioSource.PlayOneShot(hirateuti);
+    }
+    
+    // Level3(火の剣)
+    public void Level3FireSE()
+    {
+        audioSource.PlayOneShot(fire);
+    }
+    
+    public void Level3SlashSE()
+    {
+        audioSource.PlayOneShot(SlashSword);
+    }
+    
+    // Level4(電気)
+    public void Level4thunder1SE()
+    {
+        audioSource.PlayOneShot(thunderStart);
+    }
+    
+    public void Level4thunder2SE()
+    {
+        audioSource.PlayOneShot(thunderAttack);
+    }
+    
+    // Level5(回復)
+    public void Level5HealSE()
+    {
+        audioSource.PlayOneShot(heal);
+    }
+    
+    public void Level5FaaSE()
+    {
+        audioSource.PlayOneShot(faa);
+    }
+
+    // Level6(ハート)
+    // Level7(上から落ちてくる)
+    // Level8(爆弾)
 }

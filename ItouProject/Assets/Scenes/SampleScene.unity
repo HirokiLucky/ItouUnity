@@ -7567,10 +7567,10 @@ MonoBehaviour:
   roll: {fileID: 8300000, guid: 6de12afee90ad4940ae1d3bc91fb32e8, type: 3}
   finishRoll: {fileID: 8300000, guid: fb14d87616ceaad4891c75561077ecf9, type: 3}
   slowMotion: {fileID: 8300000, guid: 9625bca7438c453418558410d633eb5c, type: 3}
-  sound6: {fileID: 0}
-  sound7: {fileID: 0}
-  sound8: {fileID: 0}
-  sound9: {fileID: 0}
+  returnTextSE: {fileID: 8300000, guid: d6aa744f209a35e4490d64d9100b09ff, type: 3}
+  hirateuti: {fileID: 8300000, guid: f303d700cb3374545a2e84781025d17d, type: 3}
+  fire: {fileID: 8300000, guid: 523931714cd8e014286656982ae2768f, type: 3}
+  SlashSword: {fileID: 8300000, guid: 4342d753085c8784cb12e6b318c5a6e4, type: 3}
   sound10: {fileID: 0}
 --- !u!1 &1419674922
 GameObject:
