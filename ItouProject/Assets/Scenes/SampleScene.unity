@@ -7571,7 +7571,18 @@ MonoBehaviour:
   hirateuti: {fileID: 8300000, guid: f303d700cb3374545a2e84781025d17d, type: 3}
   fire: {fileID: 8300000, guid: 523931714cd8e014286656982ae2768f, type: 3}
   SlashSword: {fileID: 8300000, guid: 4342d753085c8784cb12e6b318c5a6e4, type: 3}
-  sound10: {fileID: 0}
+  thunderStart: {fileID: 8300000, guid: 29d38ee84a96ade42b3d28426e514d57, type: 3}
+  thunderAttack: {fileID: 8300000, guid: 707791352bc39f14d87fe4f545a6bfd9, type: 3}
+  heal: {fileID: 8300000, guid: b0e069ffde795294baa0175d3d2e362a, type: 3}
+  faa: {fileID: 8300000, guid: cac544eea0162b441a43965a1b758d12, type: 3}
+  magic: {fileID: 8300000, guid: 8568120ad00fefb46ab88955be2113f3, type: 3}
+  glass: {fileID: 8300000, guid: 8d55cd41f3e104545ae6f384a8d7131c, type: 3}
+  holyMagic: {fileID: 8300000, guid: 1fd9149d75eab994688b966f523c9784, type: 3}
+  lmg: {fileID: 8300000, guid: a5f4d1c3db404f94a843de7443ed3c56, type: 3}
+  ex1: {fileID: 8300000, guid: b7afd1a1db5de1847b1f33a5baf75bc0, type: 3}
+  ex2: {fileID: 8300000, guid: 45081eed9b7046642b79a8f7fcc5ae2b, type: 3}
+  gravity: {fileID: 8300000, guid: 14c9e77ba9da6d447b00e41d2ec912c7, type: 3}
+  decide: {fileID: 8300000, guid: 59997edfbbcb7ae418c246611f3e2fae, type: 3}
 --- !u!1 &1419674922
 GameObject:
   m_ObjectHideFlags: 0

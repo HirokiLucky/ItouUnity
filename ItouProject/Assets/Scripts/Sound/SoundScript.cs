@@ -24,6 +24,8 @@ public class SoundScript : MonoBehaviour
     public AudioClip ex1;
     public AudioClip ex2;
     public AudioClip gravity;
+    public AudioClip decide;
+
 
     AudioSource audioSource;
 
@@ -143,4 +145,9 @@ public class SoundScript : MonoBehaviour
         audioSource.PlayOneShot(ex2);
     }
     
+    // ボタンを押す音
+    public void OnClickSE()
+    {
+        audioSource.PlayOneShot(decide);
+    }
 }
