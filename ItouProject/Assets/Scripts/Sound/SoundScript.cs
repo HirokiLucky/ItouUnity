@@ -19,7 +19,12 @@ public class SoundScript : MonoBehaviour
     public AudioClip faa;
     public AudioClip magic;
     public AudioClip glass;
-    public AudioClip sound10;
+    public AudioClip holyMagic;
+    public AudioClip lmg;
+    public AudioClip ex1;
+    public AudioClip ex2;
+    public AudioClip gravity;
+
     AudioSource audioSource;
 
     void Start () {
@@ -112,5 +117,30 @@ public class SoundScript : MonoBehaviour
     }
     
     // Level7(上から落ちてくる)
+    public void Level7HolySE()
+    {
+        audioSource.PlayOneShot(holyMagic);
+    }
+    
+    public void Level7LMGSE()
+    {
+        audioSource.PlayOneShot(lmg);
+    }
+    
     // Level8(爆弾)
+    public void Level8MagicSE()
+    {
+        audioSource.PlayOneShot(gravity);
+    }
+    
+    public void Level8Ex1SE()
+    {
+        audioSource.PlayOneShot(ex1);
+    }
+    
+    public void Level8Ex2SE()
+    {
+        audioSource.PlayOneShot(ex2);
+    }
+    
 }
