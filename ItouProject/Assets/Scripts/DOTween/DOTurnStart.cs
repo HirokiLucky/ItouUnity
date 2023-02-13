@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class DOTurnStart : MonoBehaviour
 {
+    [SerializeField] private SoundScript _soundScript;
+    
     [SerializeField] private GameObject _parent;
     [SerializeField] private GameObject black;
     [SerializeField] private Image blackImage;
@@ -34,6 +36,7 @@ public class DOTurnStart : MonoBehaviour
             .Join(bigImage.transform.DOScale(_vector10, 0.5f))
             .Join(smallImage.transform.DOScale(_vector10, 0.5f))
             .Join(blackImage.DOColor(new Color(0, 0, 0, 0), 0.5f))
+            .OnStart(() => _soundScript.StartTurnSE())
             .OnComplete(() =>
             {
                 _parent.SetActive(false);

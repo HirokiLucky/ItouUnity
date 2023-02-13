@@ -2286,6 +2286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682c62e4e2d8f994facc1769075db5e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _soundScript: {fileID: 1412431608}
   _parent: {fileID: 462862585}
   black: {fileID: 1032057903}
   blackImage: {fileID: 1032057905}
@@ -6729,6 +6730,7 @@ MonoBehaviour:
   card8: {fileID: 3261299180412147608, guid: 373f5bdd9d70a5e49803a792b68b4c74, type: 3}
   timer: {fileID: 1244168029}
   screenButton: {fileID: 29443450}
+  _soundScript: {fileID: 1412431608}
 --- !u!114 &1242238998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6743,6 +6745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameSystem: {fileID: 1242238997}
   cameraObject: {fileID: 519420028}
+  _soundScript: {fileID: 1412431608}
   bat: {fileID: 1468457227}
   batPS: {fileID: 1468457230}
   parent: {fileID: 255551742}
@@ -7248,6 +7251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682c62e4e2d8f994facc1769075db5e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _soundScript: {fileID: 1412431608}
   _parent: {fileID: 1326313116}
   black: {fileID: 1032057903}
   blackImage: {fileID: 1032057905}
@@ -7450,10 +7454,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -7583,6 +7587,7 @@ MonoBehaviour:
   ex2: {fileID: 8300000, guid: 45081eed9b7046642b79a8f7fcc5ae2b, type: 3}
   gravity: {fileID: 8300000, guid: 14c9e77ba9da6d447b00e41d2ec912c7, type: 3}
   decide: {fileID: 8300000, guid: 59997edfbbcb7ae418c246611f3e2fae, type: 3}
+  audioSource: {fileID: 1412431606}
 --- !u!1 &1419674922
 GameObject:
   m_ObjectHideFlags: 0

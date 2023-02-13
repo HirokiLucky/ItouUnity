@@ -37,7 +37,6 @@ public class GameSystem : MonoBehaviour
     [SerializeField] private GameObject clearImage;
     [SerializeField] private GameObject failImage;
     
-    //[SerializeField] private GameObject card1;
     [SerializeField] private GameObject card2;
     [SerializeField] private GameObject card3;
     [SerializeField] private GameObject card4;
@@ -54,6 +53,8 @@ public class GameSystem : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI timer;
     [SerializeField] private GameObject screenButton;
+
+    [SerializeField] private SoundScript _soundScript;
 
 
 

@@ -25,12 +25,11 @@ public class SoundScript : MonoBehaviour
     public AudioClip ex2;
     public AudioClip gravity;
     public AudioClip decide;
+    
+    public AudioSource audioSource;
 
-
-    AudioSource audioSource;
-
-    void Start () {
-        audioSource = GetComponent<AudioSource>();
+    private void Start () {
+        // audioSource = gameObject.GetComponent<AudioSource>();
     }
     
     // シーン開始のコウモリエフェクト用
