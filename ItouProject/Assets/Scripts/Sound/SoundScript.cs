@@ -106,7 +106,7 @@ public class SoundScript : MonoBehaviour
         audioSource.PlayOneShot(faa);
     }
 
-    // Level6(ハート)
+    // Level6(ハートブレイク)
     public void Level6MagicSE()
     {
         audioSource.PlayOneShot(magic);

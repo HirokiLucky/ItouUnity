@@ -226,6 +226,7 @@ public class AttackEffects : MonoBehaviour
             .AppendInterval(0.5f)
             .AppendCallback(() =>
             {
+                _soundScript.Level2SE();
                 ps1.SetActive(true);
                 ps2.SetActive(true);
                 ps1Particle.Play();
@@ -254,12 +255,14 @@ public class AttackEffects : MonoBehaviour
             {
                 _cameraObject.transform.DOMove(jackOCamera, 0.1f);
                 _camera.DOOrthoSize(3, 0.1f);
+                _soundScript.Level3FireSE();
             })
             .AppendInterval(0.1f)
             .AppendCallback(() =>
             {
                 ps4.SetActive(true);
                 ps4Particle.Play();
+                _soundScript.Level3SlashSE();
                 hitStopTimer = 0.01f;
             })
             .AppendInterval(0.1f)
@@ -283,6 +286,7 @@ public class AttackEffects : MonoBehaviour
         ps6.transform.position = JackOPos;
         ps5.SetActive(true);
         ps5Particle.Play();
+        _soundScript.Level4thunder1SE();
         Sequence sequence = DOTween.Sequence();
         sequence
             .Append(ps5.transform.DOMove(JackOPos, 4))
@@ -290,6 +294,7 @@ public class AttackEffects : MonoBehaviour
             {
                 ps6.SetActive(true);
                 ps6Particle.Play();
+                _soundScript.Level4thunder2SE();
             })
             .AppendInterval(0.2f)
             .AppendCallback(() =>
@@ -323,6 +328,7 @@ public class AttackEffects : MonoBehaviour
         ps7Particle.Play();
         ps8.SetActive(true);
         ps8Particle.Play();
+        _soundScript.Level5FaaSE();
         Sequence sequence = DOTween.Sequence();
         sequence
             .Append(ps7.transform.DOMoveY(4, 3).SetEase(Ease.OutSine)).SetRelative(true)
@@ -333,6 +339,7 @@ public class AttackEffects : MonoBehaviour
                 ps8.SetActive(false);
                 ps9.SetActive(true);
                 ps9Particle.Play();
+                _soundScript.Level5HealSE();
             })
             .Append(ps9.transform.DOMoveY(2, 2).SetEase(Ease.OutSine)).SetRelative(true)
             .OnStart(() =>
@@ -359,6 +366,7 @@ public class AttackEffects : MonoBehaviour
         ps10Particle.Play();
         ps11.SetActive(true);
         ps11Particle.Play();
+        _soundScript.Level6MagicSE();
         Sequence sequence = DOTween.Sequence();
         sequence
             .Append(ps11.transform.DOScale(new Vector3(2,2), 3))
@@ -376,6 +384,7 @@ public class AttackEffects : MonoBehaviour
             .AppendCallback(() =>
             {
                 hitStopTimer = 0.015f;
+                _soundScript.Level6GlassSE();
                 ps10.SetActive(false);
             })
             .AppendInterval(0.3f)
@@ -397,6 +406,7 @@ public class AttackEffects : MonoBehaviour
 
         ps13.SetActive(true);
         ps13Particle.Play();
+        _soundScript.Level7HolySE();
         Sequence sequence = DOTween.Sequence();
         sequence
             .Append(ps13.transform.DOMove(JackOPos + new Vector2(0,2), 5))
@@ -409,6 +419,7 @@ public class AttackEffects : MonoBehaviour
                 ps15.SetActive(true);
                 ps15Particle.Play();
                 ps13.SetActive(false);
+                _soundScript.Level7LMGSE();
             })
             .AppendInterval(1)
             .AppendCallback(() =>
@@ -451,6 +462,7 @@ public class AttackEffects : MonoBehaviour
         ps19Particle.Play();
         ps20Particle.Play();
         ps21Particle.Play();
+        _soundScript.Level8MagicSE();
         Sequence sequence = DOTween.Sequence();
         sequence
             .Append(ps17.transform.DOMove( JackOPos + new Vector2(0,4), 2))
@@ -468,30 +480,35 @@ public class AttackEffects : MonoBehaviour
             {
                 ps22.SetActive(true);
                 ps22Particle.Play();
+                _soundScript.Level8Ex1SE();
             })
             .Append(ps18.transform.DOMove( JackOPos, 1))
             .AppendCallback(() =>
             {
                 ps23.SetActive(true);
                 ps23Particle.Play();
+                _soundScript.Level8Ex1SE();
             })
             .Append(ps19.transform.DOMove( JackOPos, 1))
             .AppendCallback(() =>
             {
                 ps24.SetActive(true);
                 ps24Particle.Play();
+                _soundScript.Level8Ex1SE();
             })
             .Append(ps20.transform.DOMove( JackOPos, 1))
             .AppendCallback(() =>
             {
                 ps25.SetActive(true);
                 ps25Particle.Play();
+                _soundScript.Level8Ex1SE();
             })
             .Append(ps21.transform.DOMove( JackOPos, 1))
             .AppendCallback(() =>
             {
                 ps26.SetActive(true);
                 ps26Particle.Play();
+                _soundScript.Level8Ex2SE();
             })
             .OnComplete(() =>
             {
