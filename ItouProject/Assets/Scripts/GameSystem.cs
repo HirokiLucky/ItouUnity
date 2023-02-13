@@ -244,6 +244,7 @@ public class GameSystem : MonoBehaviour
     
     public void ReturnText()
     {
+        _soundScript.ReturnTextUISE();
         Sequence sequence = DOTween.Sequence();
         sequence
             .Append(returnText.DOAnchorPosX(0, 0.5f))

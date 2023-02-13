@@ -13891,6 +13891,7 @@ MonoBehaviour:
   ps25: {fileID: 1700209217}
   ps26: {fileID: 292416436}
   _cameraObject: {fileID: 519420028}
+  _soundScript: {fileID: 1412431608}
 --- !u!4 &2044789796
 Transform:
   m_ObjectHideFlags: 0

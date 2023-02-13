@@ -88,6 +88,8 @@ public class AttackEffects : MonoBehaviour
     [SerializeField] private GameObject _cameraObject;
     private Camera _camera;
 
+    [SerializeField] private SoundScript _soundScript;
+
     private void Start()
     {
         _camera = _cameraObject.GetComponent<Camera>();
