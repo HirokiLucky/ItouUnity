@@ -210,6 +210,7 @@ public class AttackEffects : MonoBehaviour
         magicLightParticle.Play();
     }
 
+    // level2
     public void Level2(char lastword,int wordNum)
     {
         WizardMagic();
@@ -241,6 +242,7 @@ public class AttackEffects : MonoBehaviour
             });
     }
     
+    // level3
     public void Level3(char lastword,int wordNum)
     {
         WizardMagic();
@@ -279,6 +281,7 @@ public class AttackEffects : MonoBehaviour
             });
     }
     
+    // level4
     public void Level4(char lastword,int wordNum)
     {
         WizardMagic();
@@ -317,6 +320,7 @@ public class AttackEffects : MonoBehaviour
             });;
     }
     
+    // level5
     public void Level5(char lastword,int wordNum)
     {
         WizardMagic();
@@ -355,6 +359,7 @@ public class AttackEffects : MonoBehaviour
             });
     }
     
+    // level6
     public void Level6(char lastword,int wordNum)
     {
         WizardMagic();
@@ -396,6 +401,7 @@ public class AttackEffects : MonoBehaviour
             });
     }
     
+    // level7
     public void Level7(char lastword,int wordNum)
     {
         WizardMagic();
@@ -438,6 +444,7 @@ public class AttackEffects : MonoBehaviour
             });
     }
     
+    // Level8
     public void Level8(char lastword,int wordNum)
     {
         WizardMagic();
