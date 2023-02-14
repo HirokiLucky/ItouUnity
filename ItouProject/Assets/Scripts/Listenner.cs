@@ -19,7 +19,7 @@ public class Listenner : MonoBehaviour
     [SerializeField] private string[] m_Keywords;
 
     // 返ってきた文字列
-    public Text ReturnText;
+    public Text returnText;
     
     [SerializeField] private GameSystem _gameSystem;
 
@@ -66,7 +66,7 @@ public class Listenner : MonoBehaviour
         Debug.Log(builder.ToString());
         
         bool lastWordJudge = _gameSystem.AddWordList(args.text);
-        ReturnText.text = args.text;
+        returnText.text = args.text;
         _gameSystem.ReturnText();
         wordCount = args.text.Length - 2;
         m_Recognizer.Stop();

@@ -11994,7 +11994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_speechToTextButton: {fileID: 801608290}
   m_Keywords: []
-  ReturnText: {fileID: 1815332303}
+  returnText: {fileID: 1815332303}
   _gameSystem: {fileID: 1242238997}
   _data: {fileID: 844067723}
   _attackEffects: {fileID: 2044789795}
@@ -13121,6 +13121,7 @@ MonoBehaviour:
   data: {fileID: 844067723}
   _gameSystem: {fileID: 1242238997}
   _attackEffects: {fileID: 2044789795}
+  returnText: {fileID: 1815332303}
 --- !u!1 &1945766980
 GameObject:
   m_ObjectHideFlags: 0
