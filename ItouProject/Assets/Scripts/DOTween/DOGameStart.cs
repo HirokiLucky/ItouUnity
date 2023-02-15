@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 using Sequence = DG.Tweening.Sequence;
 
+// ゲームスタート時のスクリプト
 public class DOGameStart : MonoBehaviour
 {
     [SerializeField] private GameSystem _gameSystem;
