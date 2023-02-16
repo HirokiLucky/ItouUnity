@@ -565,7 +565,7 @@ public class AttackEffects : MonoBehaviour
     // level2
     public void Level2Enemy(int wordNum)
     {
-        WizardMagic();
+        _jackO.AttackJackO();
         ps1.transform.position = JackOPos;
         ps2.transform.position = JackOPos;
         Sequence sequence = DOTween.Sequence();
@@ -597,7 +597,7 @@ public class AttackEffects : MonoBehaviour
     // level3
     public void Level3Enemy(int wordNum)
     {
-        WizardMagic();
+        _jackO.AttackJackO();
         ps3.transform.position = wizardPos + new Vector2(2, 1);
         ps4.transform.position = JackOPos + new Vector2(0, 3);
         ps3.SetActive(true);
@@ -636,7 +636,7 @@ public class AttackEffects : MonoBehaviour
     // level4
     public void Level4Enemy(int wordNum)
     {
-        WizardMagic();
+        _jackO.AttackJackO();
         ps5.transform.position = wizardPos + new Vector2(2, 2);
         ps6.transform.position = JackOPos;
         ps5.SetActive(true);
@@ -675,7 +675,7 @@ public class AttackEffects : MonoBehaviour
     // level5
     public void Level5Enemy(int wordNum)
     {
-        WizardMagic();
+        _jackO.AttackJackO();
         ps7.transform.position = wizardPos;
         ps8.transform.position = wizardPos;
         ps9.transform.position = wizardPos;
@@ -714,7 +714,7 @@ public class AttackEffects : MonoBehaviour
     // level6
     public void Level6Enemy(int wordNum)
     {
-        WizardMagic();
+        _jackO.AttackJackO();
         ps10.transform.position = wizardPos + new Vector2(2,2);
         ps11.transform.position = wizardPos + new Vector2(4,2);
         ps12.transform.position = JackOPos;
@@ -756,7 +756,7 @@ public class AttackEffects : MonoBehaviour
     // level7
     public void Level7Enemy(int wordNum)
     {
-        WizardMagic();
+        _jackO.AttackJackO();
         ps13.transform.position = wizardPos;
         ps14.transform.position = JackOPos + new Vector2(0,2);
         ps15.transform.position = JackOPos + new Vector2(0,2);
@@ -799,7 +799,7 @@ public class AttackEffects : MonoBehaviour
     // Level8
     public void Level8Enemy(int wordNum)
     {
-        WizardMagic();
+        _jackO.AttackJackO();
         Vector2 grond = new Vector2(6, -4);
         ps17.transform.position = wizardPos;
         ps18.transform.position = wizardPos;
