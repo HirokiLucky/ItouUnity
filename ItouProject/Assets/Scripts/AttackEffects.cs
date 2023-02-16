@@ -250,6 +250,7 @@ public class AttackEffects : MonoBehaviour
         ps4.transform.position = JackOPos + new Vector2(0, 3);
         ps3.SetActive(true);
         ps3Particle.Play();
+        _soundScript.Level3FireSE();
         Sequence sequence = DOTween.Sequence();
         sequence
             .Append(ps3.transform.DOMove(JackOPos, 3).SetEase(Ease.InExpo))
@@ -257,7 +258,6 @@ public class AttackEffects : MonoBehaviour
             {
                 _cameraObject.transform.DOMove(jackOCamera, 0.1f);
                 _camera.DOOrthoSize(3, 0.1f);
-                _soundScript.Level3FireSE();
             })
             .AppendInterval(0.1f)
             .AppendCallback(() =>
