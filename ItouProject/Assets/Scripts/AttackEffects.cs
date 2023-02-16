@@ -566,14 +566,14 @@ public class AttackEffects : MonoBehaviour
     public void Level2Enemy(int wordNum)
     {
         _jackO.AttackJackO();
-        ps1.transform.position = JackOPos;
-        ps2.transform.position = JackOPos;
+        ps1.transform.position = wizardPos;
+        ps2.transform.position = wizardPos;
         Sequence sequence = DOTween.Sequence();
         sequence
             .AppendInterval(0.1f)
             .AppendCallback(() =>
             {
-                _cameraObject.transform.DOMove(jackOCamera, 0.5f);
+                _cameraObject.transform.DOMove(wizardCamera, 0.5f);
                 _camera.DOOrthoSize(3, 0.5f);
             })
             .AppendInterval(0.5f)
@@ -598,17 +598,17 @@ public class AttackEffects : MonoBehaviour
     public void Level3Enemy(int wordNum)
     {
         _jackO.AttackJackO();
-        ps3.transform.position = wizardPos + new Vector2(2, 1);
-        ps4.transform.position = JackOPos + new Vector2(0, 3);
+        ps3.transform.position = JackOPos + new Vector2(-2, 1);
+        ps4.transform.position = wizardPos + new Vector2(0, 3);
         ps3.SetActive(true);
         ps3Particle.Play();
         _soundScript.Level3FireSE();
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(ps3.transform.DOMove(JackOPos, 3).SetEase(Ease.InExpo))
+            .Append(ps3.transform.DOMove(wizardPos, 3).SetEase(Ease.InExpo))
             .AppendCallback(() =>
             {
-                _cameraObject.transform.DOMove(jackOCamera, 0.1f);
+                _cameraObject.transform.DOMove(wizardCamera, 0.1f);
                 _camera.DOOrthoSize(3, 0.1f);
             })
             .AppendInterval(0.1f)
@@ -637,14 +637,14 @@ public class AttackEffects : MonoBehaviour
     public void Level4Enemy(int wordNum)
     {
         _jackO.AttackJackO();
-        ps5.transform.position = wizardPos + new Vector2(2, 2);
-        ps6.transform.position = JackOPos;
+        ps5.transform.position = JackOPos + new Vector2(-2, 2);
+        ps6.transform.position = wizardPos;
         ps5.SetActive(true);
         ps5Particle.Play();
         _soundScript.Level4thunder1SE();
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(ps5.transform.DOMove(JackOPos, 4))
+            .Append(ps5.transform.DOMove(wizardPos, 4))
             .AppendCallback(() =>
             {
                 ps6.SetActive(true);
@@ -654,7 +654,7 @@ public class AttackEffects : MonoBehaviour
             .AppendInterval(0.2f)
             .AppendCallback(() =>
             {
-                _cameraObject.transform.DOMove(jackOCamera, 0.1f);
+                _cameraObject.transform.DOMove(wizardCamera, 0.1f);
                 _camera.DOOrthoSize(3, 0.1f);
             })
             .AppendInterval(0.3f)
@@ -676,9 +676,9 @@ public class AttackEffects : MonoBehaviour
     public void Level5Enemy(int wordNum)
     {
         _jackO.AttackJackO();
-        ps7.transform.position = wizardPos;
-        ps8.transform.position = wizardPos;
-        ps9.transform.position = wizardPos;
+        ps7.transform.position = JackOPos;
+        ps8.transform.position = JackOPos;
+        ps9.transform.position = JackOPos;
 
         ps7.SetActive(true);
         ps7Particle.Play();
@@ -700,7 +700,7 @@ public class AttackEffects : MonoBehaviour
             .Append(ps9.transform.DOMoveY(2, 2).SetEase(Ease.OutSine)).SetRelative(true)
             .OnStart(() =>
             {
-                _cameraObject.transform.DOMove(wizardCamera, 1f);
+                _cameraObject.transform.DOMove(jackOCamera, 1f);
                 _camera.DOOrthoSize(4, 1f);
             })
             .OnComplete(() =>
@@ -715,9 +715,9 @@ public class AttackEffects : MonoBehaviour
     public void Level6Enemy(int wordNum)
     {
         _jackO.AttackJackO();
-        ps10.transform.position = wizardPos + new Vector2(2,2);
-        ps11.transform.position = wizardPos + new Vector2(4,2);
-        ps12.transform.position = JackOPos;
+        ps10.transform.position = JackOPos + new Vector2(-2,2);
+        ps11.transform.position = JackOPos + new Vector2(4,2);
+        ps12.transform.position = wizardPos;
 
         ps10.SetActive(true);
         ps10Particle.Play();
@@ -727,14 +727,14 @@ public class AttackEffects : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         sequence
             .Append(ps11.transform.DOScale(new Vector3(2,2), 3))
-            .Append(ps11.transform.DOMove(JackOPos, 3))
+            .Append(ps11.transform.DOMove(wizardPos, 3))
             .AppendCallback(() =>
             {
                 
                 ps11.SetActive(false);
                 ps12.SetActive(true);
                 ps12Particle.Play();
-                _cameraObject.transform.DOMove(jackOCamera, 0.9f);
+                _cameraObject.transform.DOMove(wizardCamera, 0.9f);
                 _camera.DOOrthoSize(3, 0.9f);
             })
             .AppendInterval(1f)
@@ -757,20 +757,20 @@ public class AttackEffects : MonoBehaviour
     public void Level7Enemy(int wordNum)
     {
         _jackO.AttackJackO();
-        ps13.transform.position = wizardPos;
-        ps14.transform.position = JackOPos + new Vector2(0,2);
-        ps15.transform.position = JackOPos + new Vector2(0,2);
-        ps16.transform.position = new Vector3(6,-4,10);
+        ps13.transform.position = JackOPos;
+        ps14.transform.position = wizardPos + new Vector2(0,2);
+        ps15.transform.position = wizardPos + new Vector2(0,2);
+        ps16.transform.position = new Vector3(-6,-4,10);
 
         ps13.SetActive(true);
         ps13Particle.Play();
         _soundScript.Level7HolySE();
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(ps13.transform.DOMove(JackOPos + new Vector2(0,2), 5))
+            .Append(ps13.transform.DOMove(wizardPos + new Vector2(0,2), 5))
             .AppendCallback(() =>
             {
-                _cameraObject.transform.DOMove(jackOCamera, 0.5f);
+                _cameraObject.transform.DOMove(wizardCamera, 0.5f);
                 _camera.DOOrthoSize(3, 0.5f);
                 ps14.SetActive(true);
                 ps14Particle.Play();
@@ -800,12 +800,12 @@ public class AttackEffects : MonoBehaviour
     public void Level8Enemy(int wordNum)
     {
         _jackO.AttackJackO();
-        Vector2 grond = new Vector2(6, -4);
-        ps17.transform.position = wizardPos;
-        ps18.transform.position = wizardPos;
-        ps19.transform.position = wizardPos;
-        ps20.transform.position = wizardPos;
-        ps21.transform.position = wizardPos;
+        Vector2 grond = new Vector2(-6, -4);
+        ps17.transform.position = JackOPos;
+        ps18.transform.position = JackOPos;
+        ps19.transform.position = JackOPos;
+        ps20.transform.position = JackOPos;
+        ps21.transform.position = JackOPos;
         ps22.transform.position = grond;
         ps23.transform.position = grond;
         ps24.transform.position = grond;
@@ -824,45 +824,45 @@ public class AttackEffects : MonoBehaviour
         _soundScript.Level8MagicSE();
         Sequence sequence = DOTween.Sequence();
         sequence
-            .Append(ps17.transform.DOMove( JackOPos + new Vector2(0,4), 2))
-            .Join(ps18.transform.DOMove( JackOPos + new Vector2(4,0), 2))
-            .Join(ps19.transform.DOMove( JackOPos + new Vector2(-4,0), 2))
-            .Join(ps20.transform.DOMove( JackOPos + new Vector2(2,2), 2))
-            .Join(ps21.transform.DOMove( JackOPos + new Vector2(-2,2), 2))
+            .Append(ps17.transform.DOMove( wizardPos + new Vector2(0,4), 2))
+            .Join(ps18.transform.DOMove( wizardPos + new Vector2(4,0), 2))
+            .Join(ps19.transform.DOMove( wizardPos + new Vector2(-4,0), 2))
+            .Join(ps20.transform.DOMove( wizardPos + new Vector2(2,2), 2))
+            .Join(ps21.transform.DOMove( wizardPos + new Vector2(-2,2), 2))
             .AppendCallback(() =>
             {
-                _cameraObject.transform.DOMove(jackOCamera, 0.5f);
+                _cameraObject.transform.DOMove(wizardCamera, 0.5f);
                 _camera.DOOrthoSize(4, 0.5f);
             })
-            .Append(ps17.transform.DOMove( JackOPos, 1))
+            .Append(ps17.transform.DOMove( wizardPos, 1))
             .AppendCallback(() =>
             {
                 ps22.SetActive(true);
                 ps22Particle.Play();
                 _soundScript.Level8Ex1SE();
             })
-            .Append(ps18.transform.DOMove( JackOPos, 1))
+            .Append(ps18.transform.DOMove( wizardPos, 1))
             .AppendCallback(() =>
             {
                 ps23.SetActive(true);
                 ps23Particle.Play();
                 _soundScript.Level8Ex1SE();
             })
-            .Append(ps19.transform.DOMove( JackOPos, 1))
+            .Append(ps19.transform.DOMove( wizardPos, 1))
             .AppendCallback(() =>
             {
                 ps24.SetActive(true);
                 ps24Particle.Play();
                 _soundScript.Level8Ex1SE();
             })
-            .Append(ps20.transform.DOMove( JackOPos, 1))
+            .Append(ps20.transform.DOMove( wizardPos, 1))
             .AppendCallback(() =>
             {
                 ps25.SetActive(true);
                 ps25Particle.Play();
                 _soundScript.Level8Ex1SE();
             })
-            .Append(ps21.transform.DOMove( JackOPos, 1))
+            .Append(ps21.transform.DOMove( wizardPos, 1))
             .AppendCallback(() =>
             {
                 ps26.SetActive(true);
