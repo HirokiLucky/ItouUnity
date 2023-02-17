@@ -625,7 +625,7 @@ public class AttackEffects : MonoBehaviour
                 _cameraObject.transform.DOMove(origin, 0.5f);
                 _camera.DOOrthoSize(5, 0.5f);
             })
-            .Append(ps3.transform.DOMoveX(10, 1))
+            .Append(ps3.transform.DOMoveX(-10, 1))
             .OnComplete(() =>
             {
                 ps3.SetActive(false);
@@ -716,7 +716,7 @@ public class AttackEffects : MonoBehaviour
     {
         _jackO.AttackJackO();
         ps10.transform.position = JackOPos + new Vector2(-2,2);
-        ps11.transform.position = JackOPos + new Vector2(4,2);
+        ps11.transform.position = JackOPos + new Vector2(-4,2);
         ps12.transform.position = wizardPos;
 
         ps10.SetActive(true);
