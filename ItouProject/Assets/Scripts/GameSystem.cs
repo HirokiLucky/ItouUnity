@@ -5,6 +5,7 @@ using System.Linq;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -31,11 +32,11 @@ public class GameSystem : MonoBehaviour
     [NonSerialized]public GameObject clickedGameObject_save;
     [SerializeField] private GameObject magicButton;
     [SerializeField] private GameObject stopButton;
+    [SerializeField] private GameObject magicUI;
     [SerializeField] private GameObject magicBook;
     [SerializeField] private GameObject clearImage;
     [SerializeField] private GameObject failImage;
     
-    //[SerializeField] private GameObject card1;
     [SerializeField] private GameObject card2;
     [SerializeField] private GameObject card3;
     [SerializeField] private GameObject card4;
@@ -51,6 +52,9 @@ public class GameSystem : MonoBehaviour
     private Vector2 cardSporn = new Vector2(7.6f, -7.25f);
 
     [SerializeField] private TextMeshProUGUI timer;
+    [SerializeField] private GameObject screenButton;
+
+    [SerializeField] private SoundScript _soundScript;
 
 
 
@@ -65,7 +69,7 @@ public class GameSystem : MonoBehaviour
         ClickCard();
     }
     
-    public void AddWordList(string addWord)
+    public bool AddWordList(string addWord)
     {
         if (wordList.Contains(addWord))
         {
@@ -80,23 +84,35 @@ public class GameSystem : MonoBehaviour
             LastWordConversion(addWord.LastOrDefault());
             if (lastWord == 'ん')
             {
+                GameOver();
                 Debug.Log("game over");
+                return false;
             }
-            lastWordUI.text = "「" + lastWord + "」から始まる";
+            lastWordUI.text = "「" + lastWord + "」をとなえろ!";
+            return true;
         }
+
+        return true;
     }
     
-    public void AddWordListEnemy(string addWord)
+    public bool AddWordListEnemy(string addWord)
     {
         LastWordConversion(addWord.LastOrDefault());
         if (wordList.Contains(addWord)) Debug.Log("既に言われた言葉でした");
-        else if (lastWord == 'ん') Debug.Log("game over　Enemy");
+        else if (lastWord == 'ん')
+        {
+            GameClear();
+            Debug.Log("game over　Enemy");
+            return false;
+        }
         
         _scrollViews.AddText(addWord);
         wordList.Add(addWord);
         Debug.Log(wordList.Count);
         
-        lastWordUI.text = "「" + lastWord + "」から始まる";
+        lastWordUI.text = "「" + lastWord + "」をとなえろ!";
+
+        return true;
     }
 
     void LastWordConversion(char word)
@@ -185,6 +201,7 @@ public class GameSystem : MonoBehaviour
                     Debug.Log(clickedGameObject);
                     magicButton.SetActive(true);
                     stopButton.SetActive(true);
+                    magicUI.SetActive(true);
                     SelectCard();
                 }
             }
@@ -227,6 +244,7 @@ public class GameSystem : MonoBehaviour
     
     public void ReturnText()
     {
+        _soundScript.ReturnTextUISE();
         Sequence sequence = DOTween.Sequence();
         sequence
             .Append(returnText.DOAnchorPosX(0, 0.5f))
@@ -245,6 +263,7 @@ public class GameSystem : MonoBehaviour
     {
         magicBook.SetActive(true);
         failImage.SetActive(true);
+        screenButton.SetActive(true);
         Debug.Log("You Lose ...");
     }
 
@@ -252,6 +271,13 @@ public class GameSystem : MonoBehaviour
     {
         magicBook.SetActive(true);
         clearImage.SetActive(true);
+        screenButton.SetActive(true);
+        Debug.Log("You Win !!");
+    }
+
+    public void OnClickScreenButoon()
+    {
+        SceneManager.LoadScene("TitleScene");
     }
 
     public IEnumerator Timer(int num)
@@ -270,6 +296,7 @@ public class GameSystem : MonoBehaviour
                 StopCoroutine("Timer");
                 magicButton.SetActive(false);
                 stopButton.SetActive(false);
+                magicUI.SetActive(false);
                 Destroy(selectCard1);
                 Destroy(selectCard2);
                 Destroy(selectCard3);

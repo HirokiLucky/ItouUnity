@@ -8,11 +8,14 @@ using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 using Sequence = DG.Tweening.Sequence;
 
+// ゲームスタート時のスクリプト
 public class DOGameStart : MonoBehaviour
 {
     [SerializeField] private GameSystem _gameSystem;
     
     [SerializeField] private GameObject cameraObject;
+
+    [SerializeField] private SoundScript _soundScript;
 
     [SerializeField] private GameObject bat;
     [SerializeField] private ParticleSystem batPS;
@@ -42,6 +45,7 @@ public class DOGameStart : MonoBehaviour
         cameraObject.transform.position = start;
         bat.SetActive(true);
         batPS.Play();
+        _soundScript.BatFlySE();
         Sequence sequence = DOTween.Sequence();
         sequence
             .AppendInterval(1f)
@@ -55,16 +59,20 @@ public class DOGameStart : MonoBehaviour
         firstAttackVariable = DecideFirstAttack();
         parent.SetActive(true);
         black.SetActive(true);
+        _soundScript.DropJudgeSE();
         Sequence sequence = DOTween.Sequence();
         sequence
             .Append(blackImage.DOColor(new Color(0, 0, 0, 0.33f), 0.5f))
             .Join(parentRect.DOAnchorPosY(0, 0.5f).SetEase(Ease.OutElastic))
             .AppendCallback(() =>
             {
+                _soundScript.RollSE();
                 if (firstAttackVariable) yazirushiParent.DOLocalRotate(new Vector3(0, 0, 3690), 5, RotateMode.FastBeyond360).SetEase(Ease.OutExpo);
                 else yazirushiParent.DOLocalRotate(new Vector3(0, 0, 3510), 5, RotateMode.FastBeyond360).SetEase(Ease.OutExpo);
             })
-            .AppendInterval(6)
+            .AppendInterval(5)
+            .AppendCallback(() => _soundScript.FinishRollSE())
+            .AppendInterval(1)
             .Append(parentRect.DOAnchorPosY(300, 0.5f).SetEase(Ease.InOutQuint))
             .OnComplete(() =>
             {
