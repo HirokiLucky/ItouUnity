@@ -623,7 +623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &101773036
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3075,8 +3075,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameSystem: {fileID: 1242238997}
+  _jackO: {fileID: 1926255156}
   hpWizard: 10
   hp: {fileID: 986273669}
+  paralysis: 0
+  fire: 0
+  spell: 0
+  paralysisUI: {fileID: 1201853662}
+  fireUI: {fileID: 1024125808}
+  spellUI: {fileID: 101773035}
   screenButton: {fileID: 29443450}
 --- !u!1001 &572279421
 PrefabInstance:
@@ -4521,7 +4528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &759352446
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6000,7 +6007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1024125809
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6847,7 +6854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1194530557
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6980,7 +6987,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1201853663
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8078,7 +8085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1422246630
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13565,8 +13572,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpJackO: 10
   _gameSystem: {fileID: 1242238997}
+  _wizard: {fileID: 566675661}
   magicAura: {fileID: 12727203}
   hp: {fileID: 1064690352}
+  paralysis: 0
+  fire: 0
+  spell: -1
+  paralysisUI: {fileID: 1194530556}
+  fireUI: {fileID: 1422246629}
+  spellUI: {fileID: 759352445}
   screenButton: {fileID: 29443450}
 --- !u!114 &1926255157
 MonoBehaviour:

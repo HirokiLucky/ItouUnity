@@ -83,9 +83,6 @@ public class Wizard : MonoBehaviour
             Debug.Log("呪い発動：５ダメージ増加");
         }
         
-        
-        
-        
         hpWizard -= wordNum + damage;
         Debug.Log(wordNum + damage + "ダメージ魔法使いは受けた。HP：" + hpWizard);
         hp.text = hpWizard.ToString();

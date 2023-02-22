@@ -19,7 +19,7 @@ public class JackO : MonoBehaviour
     
     public bool paralysis = false;
     public int fire = 0;
-    public int spell = 0;
+    public int spell = -1;
     public GameObject paralysisUI;
     public GameObject fireUI;
     public GameObject spellUI;
