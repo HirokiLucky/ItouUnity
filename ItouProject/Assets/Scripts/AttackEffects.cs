@@ -125,6 +125,7 @@ public class AttackEffects : MonoBehaviour
 
     }
     
+    // ヒットストップの管理
     void Update()
     {
         if (hitStopTimer > 0f)
@@ -348,6 +349,11 @@ public class AttackEffects : MonoBehaviour
             {
                 ps5.SetActive(false);
                 FinishEffect(lastword, wordNum);
+                
+                // 状態異常
+                _jackO.paralysis = true;
+                _jackO.paralysisUI.SetActive(true);
+                
             });;
     }
     
@@ -429,6 +435,13 @@ public class AttackEffects : MonoBehaviour
                 _cameraObject.transform.DOMove(origin, 0.5f);
                 _camera.DOOrthoSize(5, 0.5f);
                 FinishEffect(lastword, wordNum);
+                
+                // 状態異常
+                if (_jackO.spell == -1)
+                {
+                    _jackO.spell = 3;
+                    _jackO.spellUI.SetActive(true);
+                }
             });
     }
     
@@ -471,6 +484,14 @@ public class AttackEffects : MonoBehaviour
                 _camera.DOOrthoSize(5, 0.5f);
                 ps15.SetActive(false);
                 ps16.SetActive(false);
+                
+                // 状態異常
+                if (_jackO.fire == 0)
+                {
+                    _jackO.fire = 3;
+                    _jackO.fireUI.SetActive(true);
+                }
+
                 FinishEffect(lastword, wordNum);
             });
     }
@@ -557,6 +578,16 @@ public class AttackEffects : MonoBehaviour
                 ps19.SetActive(false);
                 ps20.SetActive(false);
                 ps21.SetActive(false);
+                
+                // 状態異常
+                _jackO.paralysis = true;
+                _jackO.paralysisUI.SetActive(true);
+                if (_jackO.fire == 0)
+                {
+                    _jackO.fire = 3;
+                    _jackO.fireUI.SetActive(true);
+                }
+                
                 FinishEffect(lastword, wordNum);
             });
     }
@@ -669,6 +700,10 @@ public class AttackEffects : MonoBehaviour
             {
                 ps5.SetActive(false);
                 FinishEffectEnemy(wordNum);
+                
+                // 状態異常
+                _wizard.paralysis = true;
+                _wizard.paralysisUI.SetActive(true);
             });;
     }
     
@@ -750,6 +785,13 @@ public class AttackEffects : MonoBehaviour
                 _cameraObject.transform.DOMove(origin, 0.5f);
                 _camera.DOOrthoSize(5, 0.5f);
                 FinishEffectEnemy(wordNum);
+                
+                // 状態異常
+                if (_wizard.spell == -1)
+                {
+                    _wizard.spell = 3;
+                    _wizard.spellUI.SetActive(true);
+                }
             });
     }
     
@@ -792,6 +834,14 @@ public class AttackEffects : MonoBehaviour
                 _camera.DOOrthoSize(5, 0.5f);
                 ps15.SetActive(false);
                 ps16.SetActive(false);
+
+                // 状態異常
+                if (_wizard.fire == 0)
+                {
+                    _wizard.fire = 3;
+                    _wizard.fireUI.SetActive(true);
+                }
+                
                 FinishEffectEnemy(wordNum);
             });
     }
@@ -878,6 +928,16 @@ public class AttackEffects : MonoBehaviour
                 ps19.SetActive(false);
                 ps20.SetActive(false);
                 ps21.SetActive(false);
+                
+                // 状態異常
+                _wizard.paralysis = true;
+                _wizard.paralysisUI.SetActive(true);
+                if (_wizard.fire == 0)
+                {
+                    _wizard.fire = 3;
+                    _wizard.fireUI.SetActive(true);
+                }
+                
                 FinishEffectEnemy(wordNum);
             });
     }
