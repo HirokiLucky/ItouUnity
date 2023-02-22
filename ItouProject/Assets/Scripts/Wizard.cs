@@ -14,8 +14,10 @@ public class Wizard : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI hp;
 
-    
-    
+    private int paralysis = 0;
+    private int fire = 0;
+    private int spell = 0;
+
     private static readonly int Dead = Animator.StringToHash("Dead");
     private static readonly int Hurt = Animator.StringToHash("Hurt");
     private static readonly int Attack = Animator.StringToHash("Attack");
