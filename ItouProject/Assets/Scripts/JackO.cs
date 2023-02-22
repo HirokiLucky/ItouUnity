@@ -11,10 +11,18 @@ public class JackO : MonoBehaviour
     public int hpJackO = 10;
 
     [SerializeField] private GameSystem _gameSystem;
+    [SerializeField] private Wizard _wizard;
     
     [SerializeField] private GameObject magicAura;
     [SerializeField] private TextMeshProUGUI hp;
     private ParticleSystem magicAuraParticle;
+    
+    public bool paralysis = false;
+    public int fire = 0;
+    public int spell = 0;
+    public GameObject paralysisUI;
+    public GameObject fireUI;
+    public GameObject spellUI;
     
     private static readonly int Dead = Animator.StringToHash("Dead");
     private static readonly int Hurt = Animator.StringToHash("Hurt");
@@ -34,10 +42,50 @@ public class JackO : MonoBehaviour
         _animator.SetTrigger(Dead);
     }
     
-    public void HurtJackO(int damage)
+    public void HurtJackO(int wordNum)
     {
-        hpJackO -= damage;
-        Debug.Log(damage + "ダメージジャックは受けた。HP：" + hpJackO);
+        int damage = 0;
+        
+        // ダメージ計算
+        // 回復
+        if (wordNum == 5)
+        {
+            _wizard.hpWizard += 8;
+            if (_wizard.paralysis) damage -= wordNum - 2;
+            else damage -= wordNum;
+        }
+        
+        
+        // 麻痺
+        if (_wizard.paralysis)
+        {
+            damage -= 2;
+            _wizard.paralysis = false;
+            _wizard.paralysisUI.SetActive(false);
+            Debug.Log("麻痺発動：２ダメージ軽減");
+        }
+        
+        // 炎症
+        if (fire != 0)
+        {
+            damage += 2;
+            fire--;
+            Debug.Log("炎症発動：２ダメージ増加");
+        }
+
+        // 呪い
+        if (spell > 0)
+        {
+            spell--;
+        } else if (spell == 0)
+        {
+            damage += 5;
+            spell--;
+            Debug.Log("呪い発動：５ダメージ増加");
+        }
+        
+        hpJackO -= wordNum + damage;
+        Debug.Log(wordNum + "ダメージジャックは受けた。HP：" + hpJackO);
         hp.text = hpJackO.ToString();
         if (hpJackO <= 0)
         {

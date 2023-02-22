@@ -9,14 +9,18 @@ public class Wizard : MonoBehaviour
     private Animator _animator;
 
     [SerializeField] private GameSystem _gameSystem;
+    [SerializeField] private JackO _jackO;
 
     public int hpWizard = 10;
 
     [SerializeField] private TextMeshProUGUI hp;
 
-    private int paralysis = 0;
-    private int fire = 0;
-    private int spell = 0;
+    public bool paralysis = false;
+    public int fire = 0;
+    public int spell = -1;
+    public GameObject paralysisUI;
+    public GameObject fireUI;
+    public GameObject spellUI;
 
     private static readonly int Dead = Animator.StringToHash("Dead");
     private static readonly int Hurt = Animator.StringToHash("Hurt");
@@ -28,7 +32,6 @@ public class Wizard : MonoBehaviour
     void Start()
     {
         _animator = gameObject.GetComponent<Animator>();
-        
     }
     
 
@@ -37,11 +40,54 @@ public class Wizard : MonoBehaviour
         _animator.SetTrigger(Dead);
     }
 
-    public void HurtWizard(int damage)
+    public void HurtWizard(int wordNum)
     {
+        int damage = 0;
         _animator.SetTrigger(Hurt);
-        hpWizard -= damage;
-        Debug.Log(damage + "ダメージ魔法使いは受けた。HP：" + hpWizard);
+        
+        // ダメージ計算
+        // 回復
+        if (wordNum == 5)
+        {
+            _jackO.hpJackO += 8;
+            if (_jackO.paralysis) damage -= wordNum - 2;
+            else damage -= wordNum;
+        }
+        
+        
+        // 麻痺
+        if (_jackO.paralysis)
+        {
+            damage -= 2;
+            _jackO.paralysis = false;
+            _jackO.paralysisUI.SetActive(false);
+            Debug.Log("麻痺発動：２ダメージ軽減");
+        }
+        
+        // 炎症
+        if (fire != 0)
+        {
+            damage += 2;
+            fire--;
+            Debug.Log("炎症発動：２ダメージ増加");
+        }
+
+        // 呪い
+        if (spell > 0)
+        {
+            spell--;
+        } else if (spell == 0)
+        {
+            damage += 5;
+            spell--;
+            Debug.Log("呪い発動：５ダメージ増加");
+        }
+        
+        
+        
+        
+        hpWizard -= wordNum + damage;
+        Debug.Log(wordNum + damage + "ダメージ魔法使いは受けた。HP：" + hpWizard);
         hp.text = hpWizard.ToString();
         if (hpWizard <= 0)
         {
@@ -59,5 +105,7 @@ public class Wizard : MonoBehaviour
         _animator.SetTrigger(Attack);
     }
     
+    
+    // 状態異常
     
 }
