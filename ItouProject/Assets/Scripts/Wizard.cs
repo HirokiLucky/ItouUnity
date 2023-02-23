@@ -54,7 +54,6 @@ public class Wizard : MonoBehaviour
             else damage -= wordNum;
         }
         
-        
         // 麻痺
         if (_jackO.paralysis)
         {
@@ -95,14 +94,9 @@ public class Wizard : MonoBehaviour
         }
     }
     
-    
     // 攻撃時の関数
     public void AttackWizard()
     {
         _animator.SetTrigger(Attack);
     }
-    
-    
-    // 状態異常
-    
 }

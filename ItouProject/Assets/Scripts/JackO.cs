@@ -54,8 +54,7 @@ public class JackO : MonoBehaviour
             if (_wizard.paralysis) damage -= wordNum - 2;
             else damage -= wordNum;
         }
-        
-        
+
         // 麻痺
         if (_wizard.paralysis)
         {
