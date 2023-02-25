@@ -49,7 +49,8 @@ public class Wizard : MonoBehaviour
         // 回復
         if (wordNum == 5)
         {
-            hpWizard += 8;
+            Debug.Log("回復８");
+            //_jackO.hpJackO += 8;
             if (_jackO.paralysis) damage -= wordNum - 2;
             else damage -= wordNum;
         }
@@ -64,7 +65,13 @@ public class Wizard : MonoBehaviour
         }
         
         // 炎症
-        if (fire != 0)
+        if (fire == 1)
+        {
+            damage += 2;
+            fire--;
+            fireUI.SetActive(false);
+            Debug.Log("炎症発動：２ダメージ増加");
+        } else if (fire != 0)
         {
             damage += 2;
             fire--;
@@ -79,6 +86,7 @@ public class Wizard : MonoBehaviour
         {
             damage += 5;
             spell--;
+            spellUI.SetActive(false);
             Debug.Log("呪い発動：５ダメージ増加");
         }
         
