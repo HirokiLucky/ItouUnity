@@ -139,12 +139,14 @@ public class AttackEffects : MonoBehaviour
         }
     }
 
+    // プレイヤー側のエフェクト中止    
     void FinishEffect(char lastword, int wordCount)
     {
         _jackO.HurtJackO(wordCount);
         if(_jackO.hpJackO > 0) _gameSystem.EnemyTurn(lastword, wordCount);
     }
     
+    // エネミー側のエフェクト中止    
     void FinishEffectEnemy(int wordCount)
     {
         _wizard.HurtWizard(wordCount);
