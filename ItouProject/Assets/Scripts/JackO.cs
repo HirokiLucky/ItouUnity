@@ -50,7 +50,7 @@ public class JackO : MonoBehaviour
         // 回復
         if (wordNum == 5)
         {
-            _wizard.hpWizard += 8;
+            hpJackO += 8;
             if (_wizard.paralysis) damage -= wordNum - 2;
             else damage -= wordNum;
         }
@@ -65,7 +65,13 @@ public class JackO : MonoBehaviour
         }
         
         // 炎症
-        if (fire != 0)
+        if (fire == 1)
+        {
+            damage += 2;
+            fire--;
+            fireUI.SetActive(false);
+            Debug.Log("炎症発動：２ダメージ増加");
+        } else if (fire != 0)
         {
             damage += 2;
             fire--;
@@ -80,6 +86,7 @@ public class JackO : MonoBehaviour
         {
             damage += 5;
             spell--;
+            spellUI.SetActive(false);
             Debug.Log("呪い発動：５ダメージ増加");
         }
         

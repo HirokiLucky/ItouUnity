@@ -49,7 +49,7 @@ public class Wizard : MonoBehaviour
         // 回復
         if (wordNum == 5)
         {
-            _jackO.hpJackO += 8;
+            hpWizard += 8;
             if (_jackO.paralysis) damage -= wordNum - 2;
             else damage -= wordNum;
         }
