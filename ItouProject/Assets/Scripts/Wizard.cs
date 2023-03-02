@@ -34,12 +34,13 @@ public class Wizard : MonoBehaviour
         _animator = gameObject.GetComponent<Animator>();
     }
     
-
+    // 死んだ時のプログラム
     public void DeadWizard()
     {
         _animator.SetTrigger(Dead);
     }
 
+    // 攻撃を受けた時のプログラム
     public void HurtWizard(int wordNum)
     {
         int damage = 0;

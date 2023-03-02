@@ -37,11 +37,13 @@ public class JackO : MonoBehaviour
         magicAuraParticle = magicAura.GetComponent<ParticleSystem>();
     }
     
+    // 死んだ時のプログラム
     public void DeadJackO()
     {
         _animator.SetTrigger(Dead);
     }
     
+    // 攻撃受けたときのプログラム
     public void HurtJackO(int wordNum)
     {
         int damage = 0;
@@ -103,6 +105,7 @@ public class JackO : MonoBehaviour
         }
     }
     
+    // 攻撃する時のプログラム
     public void AttackJackO()
     {
         magicAura.SetActive(true);
@@ -110,6 +113,7 @@ public class JackO : MonoBehaviour
         Invoke("StopParticle",3);
     }
 
+    
     void StopParticle()
     {
         magicAuraParticle.Stop();

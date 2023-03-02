@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     }
 
     // 7番目
+    // 敵の動き
     IEnumerator ThinkingTime(char lastword, int wordCount)
     {
         int rest = Random.Range(7, 10);
