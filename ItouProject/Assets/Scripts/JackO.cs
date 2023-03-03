@@ -114,6 +114,7 @@ public class JackO : MonoBehaviour
     }
 
     
+    // パーティクル停止
     void StopParticle()
     {
         magicAuraParticle.Stop();
