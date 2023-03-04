@@ -54,9 +54,7 @@ public class JackO : MonoBehaviour
         if (wordNum == 5)
         {
             Debug.Log("回復８");
-            Debug.Log(_wizard.hpWizard);
             _wizard.hpWizard += 8;
-            Debug.Log(_wizard.hpWizard);
             if (_wizard.paralysis) damage -= wordNum - 2;
             else damage -= wordNum;
         }

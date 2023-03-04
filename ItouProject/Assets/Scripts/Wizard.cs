@@ -52,9 +52,7 @@ public class Wizard : MonoBehaviour
         if (wordNum == 5)
         {
             Debug.Log("回復８");
-            Debug.Log(_jackO.hpJackO);
             _jackO.hpJackO += 8;
-            Debug.Log(_jackO.hpJackO);
             if (_jackO.paralysis) damage -= wordNum - 2;
             else damage -= wordNum;
         }
