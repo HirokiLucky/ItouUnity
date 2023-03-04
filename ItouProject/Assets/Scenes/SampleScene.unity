@@ -5674,6 +5674,7 @@ Transform:
   - {fileID: 1780252208}
   - {fileID: 1825255882}
   - {fileID: 1468457226}
+  - {fileID: 1537866211}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9367,7 +9368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1537866210
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9427,14 +9428,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537866209}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.79, y: 3.4126992, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 555832209}
-  m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_Father: {fileID: 907714854}
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1546098444
 PrefabInstance:
@@ -14827,6 +14828,7 @@ MonoBehaviour:
   ps26: {fileID: 292416436}
   _cameraObject: {fileID: 519420028}
   _soundScript: {fileID: 1412431608}
+  damageEffect: {fileID: 1537866209}
 --- !u!4 &2044789796
 Transform:
   m_ObjectHideFlags: 0
