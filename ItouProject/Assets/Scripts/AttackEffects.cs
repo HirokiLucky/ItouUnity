@@ -305,7 +305,7 @@ public class AttackEffects : MonoBehaviour
                 _soundScript.Level3SlashSE();
                 hitStopTimer = 0.01f;
             })
-            .Join(damageEffect.transform.DOMove(new Vector3(-2,1), 0.5f).SetEase(Ease.OutExpo).SetRelative(true))
+            .Insert(0, damageEffect.transform.DOMove(new Vector3(-2,1), 0.5f).SetEase(Ease.OutExpo).SetRelative(true))
             .AppendCallback(() =>
             {
                 _cameraObject.transform.DOMove(origin, 0.5f);
@@ -673,7 +673,7 @@ public class AttackEffects : MonoBehaviour
                 _soundScript.Level3SlashSE();
                 hitStopTimer = 0.01f;
             })
-            .Join(damageEffect.transform.DOMove(new Vector3(2,1), 0.5f).SetEase(Ease.OutExpo).SetRelative(true))
+            .Insert(0, damageEffect.transform.DOMove(new Vector3(2,1), 0.5f).SetEase(Ease.OutExpo).SetRelative(true))
             .AppendCallback(() =>
             {
                 _cameraObject.transform.DOMove(origin, 0.5f);
