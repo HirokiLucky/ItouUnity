@@ -80,6 +80,7 @@ public class Listenner : MonoBehaviour
         if(lastWordJudge) _attackEffects.Attack(_gameSystem.lastWord, args.text.Length);
     }
 
+    // 音声認識中止
     public void OnClickStop()
     {
         m_Recognizer.Stop();

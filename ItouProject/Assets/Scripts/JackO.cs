@@ -8,13 +8,14 @@ public class JackO : MonoBehaviour
 {
     private Animator _animator;
     
-    public int hpJackO = 10;
+    public int hpJackO;
 
     [SerializeField] private GameSystem _gameSystem;
     [SerializeField] private Wizard _wizard;
     
     [SerializeField] private GameObject magicAura;
     [SerializeField] private TextMeshProUGUI hp;
+    [SerializeField] private TextMeshProUGUI hpEnemy;
     private ParticleSystem magicAuraParticle;
     
     public bool paralysis = false;
@@ -37,11 +38,13 @@ public class JackO : MonoBehaviour
         magicAuraParticle = magicAura.GetComponent<ParticleSystem>();
     }
     
+    // 死んだ時のプログラム
     public void DeadJackO()
     {
         _animator.SetTrigger(Dead);
     }
     
+    // 攻撃受けたときのプログラム
     public void HurtJackO(int wordNum)
     {
         int damage = 0;
@@ -50,12 +53,14 @@ public class JackO : MonoBehaviour
         // 回復
         if (wordNum == 5)
         {
+            Debug.Log("回復８");
+            Debug.Log(_wizard.hpWizard);
             _wizard.hpWizard += 8;
+            Debug.Log(_wizard.hpWizard);
             if (_wizard.paralysis) damage -= wordNum - 2;
             else damage -= wordNum;
         }
-        
-        
+
         // 麻痺
         if (_wizard.paralysis)
         {
@@ -66,7 +71,13 @@ public class JackO : MonoBehaviour
         }
         
         // 炎症
-        if (fire != 0)
+        if (fire == 1)
+        {
+            damage += 2;
+            fire--;
+            fireUI.SetActive(false);
+            Debug.Log("炎症発動：２ダメージ増加");
+        } else if (fire != 0)
         {
             damage += 2;
             fire--;
@@ -81,12 +92,14 @@ public class JackO : MonoBehaviour
         {
             damage += 5;
             spell--;
+            spellUI.SetActive(false);
             Debug.Log("呪い発動：５ダメージ増加");
         }
         
         hpJackO -= wordNum + damage;
-        Debug.Log(wordNum + "ダメージジャックは受けた。HP：" + hpJackO);
+        Debug.Log(wordNum+ damage + "ダメージジャックは受けた。HP：" + hpJackO);
         hp.text = hpJackO.ToString();
+        hpEnemy.text = _wizard.hpWizard.ToString();
         if (hpJackO <= 0)
         {
             Debug.Log("ジャックダウン");
@@ -96,6 +109,7 @@ public class JackO : MonoBehaviour
         }
     }
     
+    // 攻撃する時のプログラム
     public void AttackJackO()
     {
         magicAura.SetActive(true);
@@ -103,6 +117,8 @@ public class JackO : MonoBehaviour
         Invoke("StopParticle",3);
     }
 
+    
+    // パーティクル停止
     void StopParticle()
     {
         magicAuraParticle.Stop();
