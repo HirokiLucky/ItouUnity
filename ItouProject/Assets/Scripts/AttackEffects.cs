@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class AttackEffects : MonoBehaviour
 {
-    [SerializeField] private GameObject bomb;
-    private ParticleSystem bombParticleSystem;
     [SerializeField] private GameObject magicAura;
     private ParticleSystem magicAuraParticle;
     [SerializeField] private GameObject magicLight;
@@ -95,7 +93,6 @@ public class AttackEffects : MonoBehaviour
     private void Start()
     {
         _camera = _cameraObject.GetComponent<Camera>();
-        bombParticleSystem = bomb.GetComponent<ParticleSystem>();
         magicAuraParticle = magicAura.GetComponent<ParticleSystem>();
         magicLightParticle = magicAura.GetComponent<ParticleSystem>();
         ps1Particle = ps1.GetComponent<ParticleSystem>();
@@ -124,7 +121,6 @@ public class AttackEffects : MonoBehaviour
         ps24Particle = ps24.GetComponent<ParticleSystem>();
         ps25Particle = ps25.GetComponent<ParticleSystem>();
         ps26Particle = ps26.GetComponent<ParticleSystem>();
-
     }
     
     // ヒットストップの管理
