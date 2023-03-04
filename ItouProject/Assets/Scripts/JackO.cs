@@ -8,13 +8,14 @@ public class JackO : MonoBehaviour
 {
     private Animator _animator;
     
-    public int hpJackO = 10;
+    public int hpJackO;
 
     [SerializeField] private GameSystem _gameSystem;
     [SerializeField] private Wizard _wizard;
     
     [SerializeField] private GameObject magicAura;
     [SerializeField] private TextMeshProUGUI hp;
+    [SerializeField] private TextMeshProUGUI hpEnemy;
     private ParticleSystem magicAuraParticle;
     
     public bool paralysis = false;
@@ -53,7 +54,9 @@ public class JackO : MonoBehaviour
         if (wordNum == 5)
         {
             Debug.Log("回復８");
-            //_wizard.hpWizard += 8;
+            Debug.Log(_wizard.hpWizard);
+            _wizard.hpWizard += 8;
+            Debug.Log(_wizard.hpWizard);
             if (_wizard.paralysis) damage -= wordNum - 2;
             else damage -= wordNum;
         }
@@ -94,8 +97,9 @@ public class JackO : MonoBehaviour
         }
         
         hpJackO -= wordNum + damage;
-        Debug.Log(wordNum + "ダメージジャックは受けた。HP：" + hpJackO);
+        Debug.Log(wordNum+ damage + "ダメージジャックは受けた。HP：" + hpJackO);
         hp.text = hpJackO.ToString();
+        hpEnemy.text = _wizard.hpWizard.ToString();
         if (hpJackO <= 0)
         {
             Debug.Log("ジャックダウン");

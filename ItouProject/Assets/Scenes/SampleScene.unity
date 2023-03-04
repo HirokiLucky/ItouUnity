@@ -3078,6 +3078,7 @@ MonoBehaviour:
   _jackO: {fileID: 1926255156}
   hpWizard: 100
   hp: {fileID: 986273669}
+  hpEnemy: {fileID: 1064690352}
   paralysis: 0
   fire: 0
   spell: -1
@@ -13575,6 +13576,7 @@ MonoBehaviour:
   _wizard: {fileID: 566675661}
   magicAura: {fileID: 12727203}
   hp: {fileID: 1064690352}
+  hpEnemy: {fileID: 986273669}
   paralysis: 0
   fire: 0
   spell: -1

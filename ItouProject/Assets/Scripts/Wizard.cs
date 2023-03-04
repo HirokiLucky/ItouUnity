@@ -11,9 +11,10 @@ public class Wizard : MonoBehaviour
     [SerializeField] private GameSystem _gameSystem;
     [SerializeField] private JackO _jackO;
 
-    public int hpWizard = 10;
+    public int hpWizard;
 
     [SerializeField] private TextMeshProUGUI hp;
+    [SerializeField] private TextMeshProUGUI hpEnemy;
 
     public bool paralysis = false;
     public int fire = 0;
@@ -51,7 +52,9 @@ public class Wizard : MonoBehaviour
         if (wordNum == 5)
         {
             Debug.Log("回復８");
-            //_jackO.hpJackO += 8;
+            Debug.Log(_jackO.hpJackO);
+            _jackO.hpJackO += 8;
+            Debug.Log(_jackO.hpJackO);
             if (_jackO.paralysis) damage -= wordNum - 2;
             else damage -= wordNum;
         }
@@ -94,6 +97,7 @@ public class Wizard : MonoBehaviour
         hpWizard -= wordNum + damage;
         Debug.Log(wordNum + damage + "ダメージ魔法使いは受けた。HP：" + hpWizard);
         hp.text = hpWizard.ToString();
+        hpEnemy.text = _jackO.hpJackO.ToString();
         if (hpWizard <= 0)
         {
             Debug.Log("魔法使いダウン");
