@@ -75,12 +75,12 @@ public class Wizard : MonoBehaviour
         // 回復
         if (wordNum == 5)
         {
-            paralysis = false;
-            fire = 0;
-            spell = -1;
-            paralysisUI.SetActive(false);
-            fireUI.SetActive(false);
-            spellUI.SetActive(false);
+            _jackO.paralysis = false;
+            _jackO.fire = 0;
+            _jackO.spell = -1;
+            _jackO.paralysisUI.SetActive(false);
+            _jackO.fireUI.SetActive(false);
+            _jackO.spellUI.SetActive(false);
             if (_jackO.paralysis) damage -= wordNum - 2;
             else damage -= wordNum;
         }

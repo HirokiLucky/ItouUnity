@@ -78,12 +78,12 @@ public class JackO : MonoBehaviour
         // 回復
         if (wordNum == 5)
         {
-            paralysis = false;
-            fire = 0;
-            spell = -1;
-            paralysisUI.SetActive(false);
-            fireUI.SetActive(false);
-            spellUI.SetActive(false);
+            _wizard.paralysis = false;
+            _wizard.fire = 0;
+            _wizard.spell = -1;
+            _wizard.paralysisUI.SetActive(false);
+            _wizard.fireUI.SetActive(false);
+            _wizard.spellUI.SetActive(false);
             if (_wizard.paralysis) damage -= wordNum - 2;
             else damage -= wordNum;
         }
