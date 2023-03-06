@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class AttackEffects : MonoBehaviour
@@ -89,7 +90,9 @@ public class AttackEffects : MonoBehaviour
     [SerializeField] private SoundScript _soundScript;
 
     [SerializeField] private GameObject damageEffect;
-
+    [SerializeField] private TextMeshProUGUI damageText;
+    public int totalDamage;
+    
     private void Start()
     {
         _camera = _cameraObject.GetComponent<Camera>();
@@ -157,6 +160,9 @@ public class AttackEffects : MonoBehaviour
     {
         _wizard.AttackWizard();
         WizardMagic();
+        int damage = _jackO.DamageCal(wordCount);
+        totalDamage = damage + wordCount;
+        damageText.text = totalDamage.ToString();
         Sequence sequence = DOTween.Sequence();
         sequence
             .AppendInterval(2)
@@ -171,6 +177,9 @@ public class AttackEffects : MonoBehaviour
     public void Attack(int wordCount)
     {
         _jackO.AttackJackO();
+        int damage = _wizard.DamageCul(wordCount);
+        totalDamage = damage + wordCount;
+        damageText.text = totalDamage.ToString();
         EffectmanagerEnemy(wordCount);
     }
     

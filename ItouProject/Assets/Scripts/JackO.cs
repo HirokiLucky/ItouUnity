@@ -12,6 +12,7 @@ public class JackO : MonoBehaviour
 
     [SerializeField] private GameSystem _gameSystem;
     [SerializeField] private Wizard _wizard;
+    [SerializeField] private AttackEffects _attackEffects;
     
     [SerializeField] private GameObject magicAura;
     [SerializeField] private TextMeshProUGUI hp;
@@ -47,18 +48,46 @@ public class JackO : MonoBehaviour
     // 攻撃受けたときのプログラム
     public void HurtJackO(int wordNum)
     {
-        int damage = 0;
-        
         // ダメージ計算
         // 回復
         if (wordNum == 5)
         {
             Debug.Log("回復８");
             _wizard.hpWizard += 8;
+        }
+
+        hpJackO -= _attackEffects.totalDamage;
+        Debug.Log(_attackEffects.totalDamage + "ダメージジャックは受けた。HP：" + hpJackO);
+        hp.text = hpJackO.ToString();
+        hpEnemy.text = _wizard.hpWizard.ToString();
+        if (hpJackO <= 0)
+        {
+            Debug.Log("ジャックダウン");
+            DeadJackO();
+            _gameSystem.GameClear();
+            screenButton.SetActive(true);
+        }
+    }
+    
+    // ダメージ計算
+    public int DamageCal(int wordNum)
+    {
+        int damage = 0;
+        
+        // ダメージ計算
+        // 回復
+        if (wordNum == 5)
+        {
+            paralysis = false;
+            fire = 0;
+            spell = -1;
+            paralysisUI.SetActive(false);
+            fireUI.SetActive(false);
+            spellUI.SetActive(false);
             if (_wizard.paralysis) damage -= wordNum - 2;
             else damage -= wordNum;
         }
-
+        
         // 麻痺
         if (_wizard.paralysis)
         {
@@ -93,18 +122,8 @@ public class JackO : MonoBehaviour
             spellUI.SetActive(false);
             Debug.Log("呪い発動：５ダメージ増加");
         }
-        
-        hpJackO -= wordNum + damage;
-        Debug.Log(wordNum+ damage + "ダメージジャックは受けた。HP：" + hpJackO);
-        hp.text = hpJackO.ToString();
-        hpEnemy.text = _wizard.hpWizard.ToString();
-        if (hpJackO <= 0)
-        {
-            Debug.Log("ジャックダウン");
-            DeadJackO();
-            _gameSystem.GameClear();
-            screenButton.SetActive(true);
-        }
+
+        return damage;
     }
     
     // 攻撃する時のプログラム

@@ -3177,6 +3177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameSystem: {fileID: 1242238997}
   _jackO: {fileID: 1926255156}
+  _attackEffects: {fileID: 2044789795}
   hpWizard: 100
   hp: {fileID: 986273669}
   hpEnemy: {fileID: 1064690352}
@@ -12837,8 +12838,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 552747125}
   m_HandleRect: {fileID: 552747124}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 0.9999999
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13909,6 +13910,7 @@ MonoBehaviour:
   hpJackO: 100
   _gameSystem: {fileID: 1242238997}
   _wizard: {fileID: 566675661}
+  _attackEffects: {fileID: 2044789795}
   magicAura: {fileID: 12727203}
   hp: {fileID: 1064690352}
   hpEnemy: {fileID: 986273669}
@@ -14671,7 +14673,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8714d0c1423259d47b9f94a45f88845d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bomb: {fileID: 0}
   magicAura: {fileID: 514962663}
   magicLight: {fileID: 33286395}
   _enemy: {fileID: 1926255157}
@@ -14707,6 +14708,8 @@ MonoBehaviour:
   _cameraObject: {fileID: 519420028}
   _soundScript: {fileID: 1412431608}
   damageEffect: {fileID: 1537866209}
+  damageText: {fileID: 1340982929}
+  totalDamage: 0
 --- !u!4 &2044789796
 Transform:
   m_ObjectHideFlags: 0
