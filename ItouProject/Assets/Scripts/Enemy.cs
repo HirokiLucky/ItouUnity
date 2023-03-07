@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour
 
         bool lastWordJudge = _gameSystem.AddWordListEnemy(res);
         
-        if(lastWordJudge)_attackEffects.Attack(wordCount);
+        if(lastWordJudge)_attackEffects.Attack(res.Length);
     }
     
 }
