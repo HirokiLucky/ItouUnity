@@ -2,12 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class AttackEffects : MonoBehaviour
 {
-    [SerializeField] private GameObject bomb;
-    private ParticleSystem bombParticleSystem;
     [SerializeField] private GameObject magicAura;
     private ParticleSystem magicAuraParticle;
     [SerializeField] private GameObject magicLight;
@@ -91,11 +90,12 @@ public class AttackEffects : MonoBehaviour
     [SerializeField] private SoundScript _soundScript;
 
     [SerializeField] private GameObject damageEffect;
-
+    [SerializeField] private TextMeshProUGUI damageText;
+    public int totalDamage;
+    
     private void Start()
     {
         _camera = _cameraObject.GetComponent<Camera>();
-        bombParticleSystem = bomb.GetComponent<ParticleSystem>();
         magicAuraParticle = magicAura.GetComponent<ParticleSystem>();
         magicLightParticle = magicAura.GetComponent<ParticleSystem>();
         ps1Particle = ps1.GetComponent<ParticleSystem>();
@@ -124,7 +124,6 @@ public class AttackEffects : MonoBehaviour
         ps24Particle = ps24.GetComponent<ParticleSystem>();
         ps25Particle = ps25.GetComponent<ParticleSystem>();
         ps26Particle = ps26.GetComponent<ParticleSystem>();
-
     }
     
     // ヒットストップの管理
@@ -161,6 +160,9 @@ public class AttackEffects : MonoBehaviour
     {
         _wizard.AttackWizard();
         WizardMagic();
+        int damage = _jackO.DamageCal(wordCount);
+        totalDamage = damage + wordCount;
+        damageText.text = totalDamage.ToString();
         Sequence sequence = DOTween.Sequence();
         sequence
             .AppendInterval(2)
@@ -175,6 +177,9 @@ public class AttackEffects : MonoBehaviour
     public void Attack(int wordCount)
     {
         _jackO.AttackJackO();
+        int damage = _wizard.DamageCul(wordCount);
+        totalDamage = damage + wordCount;
+        damageText.text = totalDamage.ToString();
         EffectmanagerEnemy(wordCount);
     }
     
@@ -309,7 +314,7 @@ public class AttackEffects : MonoBehaviour
                 _soundScript.Level3SlashSE();
                 hitStopTimer = 0.01f;
             })
-            .Join(damageEffect.transform.DOMove(new Vector3(-2,1), 0.5f).SetEase(Ease.OutExpo).SetRelative(true))
+            .Insert(0, damageEffect.transform.DOMove(new Vector3(-2,1), 1).SetEase(Ease.OutExpo).SetRelative(true))
             .AppendCallback(() =>
             {
                 _cameraObject.transform.DOMove(origin, 0.5f);
@@ -344,7 +349,7 @@ public class AttackEffects : MonoBehaviour
                 ps6Particle.Play();
                 _soundScript.Level4thunder2SE();
             })
-            .Join(damageEffect.transform.DOMove(new Vector3(-2,1), 0.5f).SetEase(Ease.OutExpo)).SetRelative(true)
+            .Insert(0, damageEffect.transform.DOMove(new Vector3(-2,1), 1).SetEase(Ease.OutExpo).SetRelative(true))
             .AppendCallback(() =>
             {
                 _cameraObject.transform.DOMove(jackOCamera, 0.1f);
@@ -442,7 +447,7 @@ public class AttackEffects : MonoBehaviour
                 _soundScript.Level6GlassSE();
                 ps10.SetActive(false);
             })
-            .Join(damageEffect.transform.DOMove(new Vector3(-2,1), 0.5f).SetEase(Ease.OutExpo)).SetRelative(true)
+            .Join(damageEffect.transform.DOMove(new Vector3(-2,1), 0.5f).SetEase(Ease.OutExpo).SetRelative(true))
             .OnComplete(() =>
             {
                 damageEffect.SetActive(false);
@@ -492,7 +497,7 @@ public class AttackEffects : MonoBehaviour
                 damageEffect.SetActive(true);
                 ps16Particle.Play();
             })
-            .Append(damageEffect.transform.DOMove(new Vector3(-2,1), 1).SetEase(Ease.OutExpo)).SetRelative(true)
+            .Append(damageEffect.transform.DOMove(new Vector3(-2,1), 1).SetEase(Ease.OutExpo).SetRelative(true))
             .AppendInterval(1)
             .OnComplete(() =>
             {
@@ -588,7 +593,7 @@ public class AttackEffects : MonoBehaviour
                 ps26Particle.Play();
                 _soundScript.Level8Ex2SE();
             })
-            .Join(damageEffect.transform.DOMove(new Vector3(-2,1), 1).SetEase(Ease.OutExpo)).SetRelative(true)
+            .Join(damageEffect.transform.DOMove(new Vector3(-2,1), 1).SetEase(Ease.OutExpo).SetRelative(true))
             .OnComplete(() =>
             {
                 damageEffect.SetActive(false);
@@ -677,7 +682,7 @@ public class AttackEffects : MonoBehaviour
                 _soundScript.Level3SlashSE();
                 hitStopTimer = 0.01f;
             })
-            .Join(damageEffect.transform.DOMove(new Vector3(2,1), 0.5f).SetEase(Ease.OutExpo).SetRelative(true))
+            .Insert(0, damageEffect.transform.DOMove(new Vector3(2,1), 1).SetEase(Ease.OutExpo).SetRelative(true))
             .AppendCallback(() =>
             {
                 _cameraObject.transform.DOMove(origin, 0.5f);
@@ -712,7 +717,7 @@ public class AttackEffects : MonoBehaviour
                 ps6Particle.Play();
                 _soundScript.Level4thunder2SE();
             })
-            .Join(damageEffect.transform.DOMove(new Vector3(2,1), 0.5f).SetEase(Ease.OutExpo)).SetRelative(true)
+            .Insert(0, damageEffect.transform.DOMove(new Vector3(2,1), 1).SetEase(Ease.OutExpo).SetRelative(true))
             .AppendCallback(() =>
             {
                 _cameraObject.transform.DOMove(wizardCamera, 0.1f);
@@ -811,7 +816,7 @@ public class AttackEffects : MonoBehaviour
                 _soundScript.Level6GlassSE();
                 ps10.SetActive(false);
             })
-            .Join(damageEffect.transform.DOMove(new Vector3(2,1), 0.5f).SetEase(Ease.OutExpo)).SetRelative(true)
+            .Join(damageEffect.transform.DOMove(new Vector3(2,1), 0.5f).SetEase(Ease.OutExpo).SetRelative(true))
             .OnComplete(() =>
             {
                 damageEffect.SetActive(false);
@@ -861,7 +866,7 @@ public class AttackEffects : MonoBehaviour
                 damageEffect.SetActive(true);
                 ps16Particle.Play();
             })
-            .Append(damageEffect.transform.DOMove(new Vector3(2,1), 1).SetEase(Ease.OutExpo)).SetRelative(true)
+            .Append(damageEffect.transform.DOMove(new Vector3(2,1), 1).SetEase(Ease.OutExpo).SetRelative(true))
             .AppendInterval(1)
             .OnComplete(() =>
             {
@@ -957,7 +962,7 @@ public class AttackEffects : MonoBehaviour
                 ps26Particle.Play();
                 _soundScript.Level8Ex2SE();
             })
-            .Join(damageEffect.transform.DOMove(new Vector3(2,1), 1).SetEase(Ease.OutExpo)).SetRelative(true)
+            .Join(damageEffect.transform.DOMove(new Vector3(2,1), 1).SetEase(Ease.OutExpo).SetRelative(true))
             .OnComplete(() =>
             {
                 damageEffect.SetActive(false);

@@ -10,7 +10,8 @@ public class Wizard : MonoBehaviour
 
     [SerializeField] private GameSystem _gameSystem;
     [SerializeField] private JackO _jackO;
-
+    [SerializeField] private AttackEffects _attackEffects;
+ 
     public int hpWizard;
 
     [SerializeField] private TextMeshProUGUI hp;
@@ -44,17 +45,42 @@ public class Wizard : MonoBehaviour
     // 攻撃を受けた時のプログラム
     public void HurtWizard(int wordNum)
     {
-        int damage = 0;
         _animator.SetTrigger(Hurt);
+        
+        // 回復
+        if (wordNum == 5)
+        {
+            Debug.Log("回復８");
+            _jackO.hpJackO += 8;
+        }
+
+        hpWizard -= _attackEffects.totalDamage;
+        Debug.Log(_attackEffects.totalDamage + "ダメージ魔法使いは受けた。HP：" + hpWizard);
+        hp.text = hpWizard.ToString();
+        hpEnemy.text = _jackO.hpJackO.ToString();
+        if (hpWizard <= 0)
+        {
+            Debug.Log("魔法使いダウン");
+            DeadWizard();
+            _gameSystem.GameOver();
+            screenButton.SetActive(true);
+        }
+    }
+
+    public int DamageCul(int wordNum)
+    {
+        int damage = 0;
         
         // ダメージ計算
         // 回復
         if (wordNum == 5)
         {
-            Debug.Log("回復８");
-            Debug.Log(_jackO.hpJackO);
-            _jackO.hpJackO += 8;
-            Debug.Log(_jackO.hpJackO);
+            _jackO.paralysis = false;
+            _jackO.fire = 0;
+            _jackO.spell = -1;
+            _jackO.paralysisUI.SetActive(false);
+            _jackO.fireUI.SetActive(false);
+            _jackO.spellUI.SetActive(false);
             if (_jackO.paralysis) damage -= wordNum - 2;
             else damage -= wordNum;
         }
@@ -93,18 +119,8 @@ public class Wizard : MonoBehaviour
             spellUI.SetActive(false);
             Debug.Log("呪い発動：５ダメージ増加");
         }
-        
-        hpWizard -= wordNum + damage;
-        Debug.Log(wordNum + damage + "ダメージ魔法使いは受けた。HP：" + hpWizard);
-        hp.text = hpWizard.ToString();
-        hpEnemy.text = _jackO.hpJackO.ToString();
-        if (hpWizard <= 0)
-        {
-            Debug.Log("魔法使いダウン");
-            DeadWizard();
-            _gameSystem.GameOver();
-            screenButton.SetActive(true);
-        }
+
+        return damage;
     }
     
     // 攻撃時の関数
