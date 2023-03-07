@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
         yield return　new WaitForSeconds(rest);
         
         // 単語選択
-        string[] seachWord = data.sound50Index[lastword.ToString()][wordCount - 2];
+        string[] seachWord = data.sound50Index[lastword.ToString()][wordCount - 2]; // プレイヤーの単語数と同じ（オウム返し）
         int num = Random.Range(0, seachWord.Length - 1);
         string res = seachWord[num];
         returnText.text = res;
@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
         yield return　new WaitForSeconds(rest);
         
         string res;
-        string[] seachWord = data.sound50Index[lastword.ToString()][wordCount - 2];
+        string[] seachWord = data.sound50Index[lastword.ToString()][Random.Range(0, 6)]; // ランダムな単語数
         do
         {
             int num = Random.Range(0, seachWord.Length - 1);
@@ -70,4 +70,5 @@ public class Enemy : MonoBehaviour
         
         if(lastWordJudge)_attackEffects.Attack(wordCount);
     }
+    
 }
