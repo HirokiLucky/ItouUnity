@@ -4,6 +4,7 @@ using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 敵の動きに関するスクリプト
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Data data;
