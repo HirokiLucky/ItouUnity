@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
         yield return　new WaitForSeconds(rest);
         
         string res;
-        string[] seachWord = data.sound50Index[lastword.ToString()][Random.Range(0, 6)]; // ランダムな単語数
+        string[] seachWord = data.sound50Index[lastword.ToString()][Random.Range(0, 7)]; // ランダムな単語数
         do
         {
             int num = Random.Range(0, seachWord.Length - 1);
