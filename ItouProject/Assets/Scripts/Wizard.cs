@@ -67,6 +67,7 @@ public class Wizard : MonoBehaviour
         }
     }
 
+    // ダメージ計算
     public int DamageCul(int wordNum)
     {
         int damage = 0;
