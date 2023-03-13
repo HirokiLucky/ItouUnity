@@ -242,6 +242,7 @@ public class AttackEffects : MonoBehaviour
     }
     
     
+    // プレイヤー攻撃時のエフェクト
     void WizardMagic()
     {
         magicAura.SetActive(true);
