@@ -207,7 +207,7 @@ public class AttackEffects : MonoBehaviour
             case 7:
                 Level7(lastword, wordNum);
                 break;
-            case 8:
+            default:
                 Level8(lastword, wordNum);
                 break;
         }
@@ -235,7 +235,7 @@ public class AttackEffects : MonoBehaviour
             case 7:
                 Level7Enemy(wordNum);
                 break;
-            case 8:
+            default:
                 Level8Enemy(wordNum);
                 break;
         }
