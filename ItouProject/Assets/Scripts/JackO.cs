@@ -52,8 +52,8 @@ public class JackO : MonoBehaviour
         // 回復
         if (wordNum == 5)
         {
-            Debug.Log("回復８");
-            _wizard.hpWizard += 8;
+            Debug.Log("回復5");
+            _wizard.hpWizard += 5;
         }
 
         hpJackO -= _attackEffects.totalDamage;

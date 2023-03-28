@@ -50,8 +50,8 @@ public class Wizard : MonoBehaviour
         // 回復
         if (wordNum == 5)
         {
-            Debug.Log("回復８");
-            _jackO.hpJackO += 8;
+            Debug.Log("回復5");
+            _jackO.hpJackO += 5;
         }
 
         hpWizard -= _attackEffects.totalDamage;
@@ -67,6 +67,7 @@ public class Wizard : MonoBehaviour
         }
     }
 
+    // ダメージ計算
     public int DamageCul(int wordNum)
     {
         int damage = 0;

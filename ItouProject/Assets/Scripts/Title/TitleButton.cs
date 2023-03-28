@@ -14,4 +14,9 @@ public class TitleButton : MonoBehaviour
     {
         Debug.Log("未実装");
     }
+
+    public void OnClickHowToPlay()
+    {
+        Debug.Log("a");
+    }
 }
