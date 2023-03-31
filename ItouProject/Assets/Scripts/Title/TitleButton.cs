@@ -5,6 +5,7 @@ using ExitGames.Client.Photon.StructWrapping;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Title シーンのボタン操作について
 public class TitleButton : MonoBehaviour
 {
     [SerializeField] private GameObject howToPlay;
